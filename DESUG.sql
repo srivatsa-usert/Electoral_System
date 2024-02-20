@@ -1,5 +1,13 @@
 create database DESUG;
 
+use DESUG;
+
+CREATE TABLE student (
+    roll_number CHAR(8) PRIMARY KEY,
+    name VARCHAR(100),
+    department ENUM('SLS', 'SEST', 'SoMS', 'SMS', 'SSS', 'SE', 'SH', 'SM&S', 'SCIS', 'SP.SC', 'SNS', 'CIS')
+);
+
 INSERT INTO Student (roll_number, name, department) VALUES
 ('21MCME01', 'stu1', 'SCIS'),
 ('21MCME02', 'stu2', 'SCIS'),
@@ -22,12 +30,6 @@ INSERT INTO Student (roll_number, name, department) VALUES
 ('21MCME19', 'stu19', 'SCIS'),
 ('21MCME20', 'stu20', 'SCIS');
 
-CREATE TABLE student (
-    roll_number CHAR(8) PRIMARY KEY,
-    name VARCHAR(100),
-    department ENUM('SLS', 'SEST', 'SoMS', 'SMS', 'SSS', 'SE', 'SH', 'SM&S', 'SCIS', 'SP.SC', 'SNS', 'CIS')
-);
-
 CREATE TABLE candidate (
     roll_number CHAR(8) PRIMARY KEY,
     election_position VARCHAR(100),
@@ -44,9 +46,6 @@ CREATE TABLE candidate (
     CHECK (roll_number <> proposer AND roll_number <> seconder AND proposer <> seconder)
 );
 
-
-drop table student;
-
 -- Inserting nominees
 INSERT INTO candidate (roll_number, election_position, manifesto, election_status, proposer, seconder) VALUES
 ('21MCME01', 'President', 'I promise to improve student facilities on campus.', 'Nominee', '21MCME05','21MCME06'),
@@ -58,6 +57,12 @@ INSERT INTO candidate (roll_number, election_position, manifesto, election_statu
 INSERT INTO Candidate (roll_number, election_position, manifesto, election_status) VALUES
 ('21MCME05', 'Vice Treasurer', 'I will work towards financial transparency and accountability.', 'Former');
 
-drop table candidate;
+CREATE TABLE token (
+	token_id VARCHAR(50) PRIMARY KEY,
+    created_time DATETIME NOT NULL,
+    status ENUM('Active', 'Used', 'Expired')
+);
 
-select * from candidate;
+CREATE TABLE vote (
+
+);

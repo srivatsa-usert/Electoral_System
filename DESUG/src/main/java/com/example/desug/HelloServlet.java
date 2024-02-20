@@ -1,6 +1,8 @@
 package com.example.desug;
 
 import java.io.*;
+import java.util.UUID;
+
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -12,6 +14,10 @@ public class HelloServlet extends HttpServlet {
         message = "Hello World!";
     }
 
+    public static String generateToken() {
+        return UUID.randomUUID().toString();
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
 
@@ -20,6 +26,8 @@ public class HelloServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
+        String token = generateToken();
+        out.println(token);
     }
 
     public void destroy() {
