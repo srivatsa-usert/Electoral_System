@@ -1002,7 +1002,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="290" parent="1" name="desug">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-02-20.15:57:42</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-02-21.06:16:46</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="291" parent="1" name="entertainmentagency">
@@ -1062,103 +1062,136 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <check id="307" parent="305" name="candidate_chk_1">
+    <table id="307" parent="290" name="token">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <check id="308" parent="305" name="candidate_chk_1">
       <NameSurrogate>1</NameSurrogate>
       <Predicate>(`roll_number` &lt;&gt; `proposer`) and (`roll_number` &lt;&gt; `seconder`) and (`proposer` &lt;&gt; `seconder`)</Predicate>
     </check>
-    <column id="308" parent="305" name="roll_number">
+    <column id="309" parent="305" name="roll_number">
       <DasType>char(8)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="309" parent="305" name="election_position">
+    <column id="310" parent="305" name="election_position">
       <DasType>varchar(100)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="310" parent="305" name="manifesto">
+    <column id="311" parent="305" name="manifesto">
       <DasType>text|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="311" parent="305" name="election_status">
+    <column id="312" parent="305" name="election_status">
       <DasType>enum(&apos;Nominee&apos;, &apos;Won&apos;, &apos;Lost&apos;, &apos;Former&apos;)|0e</DasType>
       <Position>4</Position>
     </column>
-    <column id="312" parent="305" name="proposer">
+    <column id="313" parent="305" name="proposer">
       <DasType>char(8)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="313" parent="305" name="seconder">
+    <column id="314" parent="305" name="seconder">
       <DasType>char(8)|0s</DasType>
       <Position>6</Position>
     </column>
-    <foreign-key id="314" parent="305" name="candidate_ibfk_1">
+    <foreign-key id="315" parent="305" name="candidate_ibfk_1">
       <ColNames>roll_number</ColNames>
       <RefColNames>roll_number</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <foreign-key id="315" parent="305" name="candidate_ibfk_2">
+    <foreign-key id="316" parent="305" name="candidate_ibfk_2">
       <ColNames>proposer</ColNames>
       <RefColNames>roll_number</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <foreign-key id="316" parent="305" name="candidate_ibfk_3">
+    <foreign-key id="317" parent="305" name="candidate_ibfk_3">
       <ColNames>seconder</ColNames>
       <RefColNames>roll_number</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <index id="317" parent="305" name="PRIMARY">
+    <index id="318" parent="305" name="PRIMARY">
       <ColNames>roll_number</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="318" parent="305" name="roll_number">
+    <index id="319" parent="305" name="roll_number">
       <ColNames>roll_number</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="319" parent="305" name="proposer">
+    <index id="320" parent="305" name="proposer">
       <ColNames>proposer</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="320" parent="305" name="seconder">
+    <index id="321" parent="305" name="seconder">
       <ColNames>seconder</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="321" parent="305" name="PRIMARY">
+    <key id="322" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="322" parent="305" name="roll_number">
+    <key id="323" parent="305" name="roll_number">
       <UnderlyingIndexName>roll_number</UnderlyingIndexName>
     </key>
-    <key id="323" parent="305" name="proposer">
+    <key id="324" parent="305" name="proposer">
       <UnderlyingIndexName>proposer</UnderlyingIndexName>
     </key>
-    <key id="324" parent="305" name="seconder">
+    <key id="325" parent="305" name="seconder">
       <UnderlyingIndexName>seconder</UnderlyingIndexName>
     </key>
-    <column id="325" parent="306" name="roll_number">
+    <column id="326" parent="306" name="roll_number">
       <DasType>char(8)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="326" parent="306" name="name">
+    <column id="327" parent="306" name="name">
       <DasType>varchar(100)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="327" parent="306" name="department">
+    <column id="328" parent="306" name="department">
       <DasType>enum(&apos;SLS&apos;, &apos;SEST&apos;, &apos;SoMS&apos;, &apos;SMS&apos;, &apos;SSS&apos;, &apos;SE&apos;, &apos;SH&apos;, &apos;SM&amp;S&apos;, &apos;SCIS&apos;, &apos;SP.SC&apos;, &apos;SNS&apos;, &apos;CIS&apos;)|0e</DasType>
       <Position>3</Position>
     </column>
-    <index id="328" parent="306" name="PRIMARY">
+    <column id="329" parent="306" name="student_type">
+      <DasType>enum(&apos;PG&apos;, &apos;Research&apos;)|0e</DasType>
+      <Position>4</Position>
+    </column>
+    <index id="330" parent="306" name="PRIMARY">
       <ColNames>roll_number</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="329" parent="306" name="PRIMARY">
+    <key id="331" parent="306" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="332" parent="307" name="token_id">
+      <DasType>char(12)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="333" parent="307" name="created_time">
+      <DasType>datetime|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="334" parent="307" name="status">
+      <DasType>enum(&apos;Active&apos;, &apos;Used&apos;, &apos;Expired&apos;)|0e</DasType>
+      <DefaultExpression>&apos;Active&apos;</DefaultExpression>
+      <Position>3</Position>
+    </column>
+    <index id="335" parent="307" name="PRIMARY">
+      <ColNames>token_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="336" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
