@@ -54,7 +54,7 @@ public class Candidate {
         }
 
         String url = props.getProperty("db.url");
-        String user = props.getProperty("db.user");
+        String user = props.getProperty("db.username");
         String password = props.getProperty("db.password");
 
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
