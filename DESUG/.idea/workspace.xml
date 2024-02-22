@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d42f10b-8775-4446-a953-b62b70f9d5f7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae99a299-3fa2-4cc0-ad8f-a6a90542584f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae99a299-3fa2-4cc0-ad8f-a6a90542584f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/Candidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/Candidate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/GenerateTokenServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/GenerateTokenServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/castVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/castVote.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +57,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -55,6 +70,9 @@
     <option name="FILTER_INFO" value="true" />
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -70,7 +88,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;Tomcat Server.Tomcat 10.1.18.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;html&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -137,6 +155,9 @@
       <updated>1708171206066</updated>
       <workItem from="1708171207147" duration="1915000" />
       <workItem from="1708175443166" duration="3396000" />
+      <workItem from="1708491661236" duration="27000" />
+      <workItem from="1708491776468" duration="6317000" />
+      <workItem from="1708498816648" duration="426000" />
     </task>
     <servers />
   </component>

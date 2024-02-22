@@ -7,7 +7,6 @@
 <body>
 <h1><%= "Hello World!" %></h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
-<a href="castVote.jsp">Cast Vote</a>
+<a href="generateToken.jsp">Generate Token</a>
 </body>
 </html>
