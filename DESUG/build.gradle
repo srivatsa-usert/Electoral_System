@@ -28,7 +28,7 @@ dependencies {
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
   implementation 'mysql:mysql-connector-java:8.0.31'
-  implementation 'com.sun.mail:jakarta.mail:1.6.2'
+//  implementation 'com.sun.mail:jakarta.mail:1.6.2'
 }
 
 test {
