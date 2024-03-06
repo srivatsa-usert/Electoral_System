@@ -10,5 +10,7 @@
 <a href="generateToken.jsp">Generate Token</a>
 <br>
 <a href="candidateRegistration.jsp">Candidate Registration</a>
+<br>
+<a href="login.jsp">Login</a>
 </body>
 </html>
