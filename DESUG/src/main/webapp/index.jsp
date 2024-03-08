@@ -7,10 +7,6 @@
 <body>
 <h1><%= "Hello World!" %></h1>
 <br>
-<a href="generateToken.jsp">Generate Token</a>
-<br>
-<a href="candidateRegistration.jsp">Candidate Registration</a>
-<br>
-<a href="login.jsp">Login</a>
+<h3><a href="login.jsp">Login</a></h3>
 </body>
 </html>
