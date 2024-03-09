@@ -3,9 +3,12 @@
 <html>
 <head>
   <title>JSP - Hello World</title>
-  <meta http-equiv="refresh" content="0; url=login.jsp">
+  <script type="text/javascript">
+    window.location.href = "home.jsp";
+  </script>
 </head>
 <body>
-<h3><a href="login.jsp">Login</a></h3>
+<!-- This will be skipped as the page redirects immediately -->
+<h3><a href="home.jsp"></a></h3>
 </body>
 </html>

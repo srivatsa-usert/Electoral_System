@@ -99,102 +99,6 @@ INSERT INTO student (roll_number, name, department, student_type) VALUES
 ('23MCMT09', 'student9', 'SCIS', 'Research'),
 ('23MCMT10', 'student10', 'SCIS', 'Research');
 
-CREATE TABLE candidate (
-    roll_number CHAR(8) PRIMARY KEY,
-    election_position VARCHAR(100),
-    manifesto TEXT,
-    election_status ENUM('Nominee', 'Won', 'Lost', 'Former'),
-    proposer char(8),
-    seconder char(8),
-    UNIQUE (roll_number),
-    UNIQUE (proposer),
-    UNIQUE (seconder),
-    FOREIGN KEY (roll_number) REFERENCES student(roll_number),
-    FOREIGN KEY (proposer) REFERENCES student(roll_number),
-    FOREIGN KEY (seconder) REFERENCES student(roll_number),
-    CHECK (roll_number <> proposer AND roll_number <> seconder AND proposer <> seconder)
-);
-
-INSERT INTO candidate (roll_number, election_position, manifesto, election_status, proposer, seconder) VALUES
-('21MCME01', 'President', 'I promise to improve student facilities on campus.', 'Nominee', '21MCME05','21MCME06'),
-('21MCME02', 'Vice President', 'I will focus on promoting student welfare initiatives.', 'Nominee', '21MCME07','21MCME08'),
-('21MCME03', 'Sports Secretary', 'I pledge to manage funds transparently for the benefit of all.', 'Nominee', '21MCME09','21MCME10'),
-('21MCME04', 'General Secretary', 'I aim to enhance communication channels between students and faculty.', 'Nominee', '21MCME11','21MCME12');
-
-INSERT INTO candidate (roll_number, election_position, manifesto, election_status, proposer, seconder) VALUES
-('20MCME01', 'Cultural Secretary', 'I promise to improve student facilities on campus.', 'Nominee', '20MCME05','20MCME06'),
-('20MCME02', 'Vice President', 'I will focus on promoting student welfare initiatives.', 'Nominee', '20MCME07','20MCME08'),
-('20MCME03', 'Sports Secretary', 'I pledge to manage funds transparently for the benefit of all.', 'Nominee', '20MCME09','20MCME10'),
-('20MCME04', 'Joint Secretary', 'I aim to enhance communication channels between students and faculty.', 'Nominee', '20MCME11','20MCME12');
-
-INSERT INTO candidate (roll_number, election_position, manifesto, election_status, proposer, seconder) VALUES
-('19MCME01', 'President', 'I promise to improve student facilities on campus.', 'Nominee', '19MCME05','19MCME06'),
-('19MCME02', 'Vice President', 'I will focus on promoting student welfare initiatives.', 'Nominee', '19MCME07','19MCME08'),
-('19MCME03', 'Sports Secretary', 'I pledge to manage funds transparently for the benefit of all.', 'Nominee', '19MCME09','19MCME10'),
-('19MCME04', 'Joint Secretary', 'I aim to enhance communication channels between students and faculty.', 'Nominee', '19MCME11','19MCME12');
-
-INSERT INTO candidate (roll_number, election_position, manifesto, election_status, proposer, seconder) VALUES
-('22MCMT01', 'Cultural Secretary', 'I promise to improve student facilities on campus.', 'Nominee', '22MCMT05','22MCMT06'),
-('22MCMT02', 'General Secretary', 'I will focus on promoting student welfare initiatives.', 'Nominee', '22MCMT07','22MCMT08'),
-('22MCMT03', 'Cultural Secretary', 'I pledge to manage funds transparently for the benefit of all.', 'Nominee', '22MCMT09','22MCMT10');
-
-INSERT INTO candidate (roll_number, election_position, manifesto, election_status, proposer, seconder) VALUES
-('23MCMT01', 'General Secretary', 'I promise to improve student facilities on campus.', 'Nominee', '23MCMT05','23MCMT06'),
-('23MCMT02', 'Cultural Secretary', 'I will focus on promoting student welfare initiatives.', 'Nominee', '23MCMT07','23MCMT08'),
-('23MCMT03', 'General Secretary', 'I pledge to manage funds transparently for the benefit of all.', 'Nominee', '23MCMT09','23MCMT10');
-
-CREATE TABLE token (
-	token_id CHAR(12) PRIMARY KEY,
-    created_time DATETIME NOT NULL,
-    status ENUM('Active', 'Used', 'Expired') DEFAULT 'Active'
-);
-
-SELECT * FROM token;
-
-CREATE TABLE vote (
-	token_id VARCHAR(50) PRIMARY KEY
-);
-
-CREATE TABLE student (
-    roll_number CHAR(8) PRIMARY KEY,
-    name VARCHAR(100),
-    department ENUM('SLS', 'SEST', 'SoMS', 'SMS', 'SSS', 'SE', 'SH', 'SM&S', 'SCIS', 'SP.SC', 'SNS', 'CIS'),
-    student_type ENUM('PG', 'Research')
-);
-
-create database DESUG;
-
-CREATE TABLE vote (
-    vote_id INT AUTO_INCREMENT PRIMARY KEY,
-    token_id CHAR(12),
-    president_roll CHAR(8),
-    vicepresident_roll CHAR(8),
-    generalsecretary_roll CHAR(8),
-    culturalsecretary_roll CHAR(8),
-    jointsecretary_roll CHAR(8),
-    sportssecretary_roll CHAR(8),
-    sch_board_member CHAR(8),
-    sch_councillor1_roll CHAR(8),
-    sch_councillor2_roll CHAR(8),
-    sch_councillor3_roll CHAR(8),
-    FOREIGN KEY (token_id) REFERENCES token(token_id),
-    FOREIGN KEY (president_roll) REFERENCES candidate(roll_number),
-    FOREIGN KEY (vicepresident_roll) REFERENCES candidate(roll_number),
-    FOREIGN KEY (generalsecretary_roll) REFERENCES candidate(roll_number),
-    FOREIGN KEY (culturalsecretary_roll) REFERENCES candidate(roll_number),
-    FOREIGN KEY (jointsecretary_roll) REFERENCES candidate(roll_number),
-    FOREIGN KEY (sportssecretary_roll) REFERENCES candidate(roll_number),
-    FOREIGN KEY (sch_board_member) REFERENCES candidate(roll_number),
-    FOREIGN KEY (sch_councillor1_roll) REFERENCES candidate(roll_number),
-    FOREIGN KEY (sch_councillor2_roll) REFERENCES candidate(roll_number),
-    FOREIGN KEY (sch_councillor3_roll) REFERENCES candidate(roll_number)
-);
-
-
-use DESUG;
-
-select * from candidate;
-use DESUG;
 
 select * from student;
 
@@ -211,3 +115,63 @@ SET course = CASE
             END;
             
 SET SQL_SAFE_UPDATES = 0;
+
+
+CREATE TABLE student (
+    roll_number CHAR(8) PRIMARY KEY,
+    name VARCHAR(100),
+    department ENUM('SLS', 'SEST', 'SoMS', 'SMS', 'SSS', 'SE', 'SH', 'SM&S', 'SCIS', 'SP.SC', 'SNS', 'CIS'),
+    student_type ENUM('PG', 'Research')
+);
+
+CREATE TABLE nominations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    candidate_roll_number CHAR(8) NOT NULL,
+    position_id INT,
+    proposer_roll_number CHAR(8) NOT NULL,
+    seconder_roll_number CHAR(8) NOT NULL,
+    name_on_ballot_paper VARCHAR(255) NOT NULL,
+    date_of_birth DATE,
+    age INT,
+    category VARCHAR(50),
+    fathers_name VARCHAR(255),
+    mobile_number VARCHAR(10),
+    email VARCHAR(255),
+    residential_address TEXT,
+    FOREIGN KEY (candidate_roll_number) REFERENCES student(roll_number),
+    FOREIGN KEY (position_id) REFERENCES positions(id),
+    FOREIGN KEY (proposer_roll_number) 
+    REFERENCES student(roll_number),
+    FOREIGN KEY (seconder_roll_number) REFERENCES student(roll_number)
+);
+
+CREATE TABLE positions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    position_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE age_rule (
+    academic_programme VARCHAR(20),
+    min_age INT,
+    max_age INT,
+    PRIMARY KEY (academic_programme)
+);
+
+INSERT INTO age_rule (academic_programme, min_age, max_age)
+VALUES ('UG', 17, 22),
+       ('PG', NULL, 25),
+       ('PhD', NULL, 28);
+
+
+select * from student;
+
+INSERT INTO positions (position_name) VALUES ('President');
+INSERT INTO positions (position_name) VALUES ('Vice-President');
+INSERT INTO positions (position_name) VALUES ('General Secretary');
+INSERT INTO positions (position_name) VALUES ('Joint Secretary');
+INSERT INTO positions (position_name) VALUES ('Cultural Secretary');
+INSERT INTO positions (position_name) VALUES ('Sports Secretary');
+INSERT INTO positions (position_name) VALUES ('School Board Member');
+INSERT INTO positions (position_name) VALUES ('Councillor');
+
+show tables;
