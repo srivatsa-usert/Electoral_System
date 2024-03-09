@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>JAI BALAYYA</h1>
+<%--    <h1>JAI BALAYYA</h1>--%>
 
     <div>
         <h2><a href="candidateRegistration.jsp"> File Your Nomination Here! </a></h2>

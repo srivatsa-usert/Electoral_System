@@ -154,3 +154,60 @@ SELECT * FROM token;
 CREATE TABLE vote (
 	token_id VARCHAR(50) PRIMARY KEY
 );
+
+CREATE TABLE student (
+    roll_number CHAR(8) PRIMARY KEY,
+    name VARCHAR(100),
+    department ENUM('SLS', 'SEST', 'SoMS', 'SMS', 'SSS', 'SE', 'SH', 'SM&S', 'SCIS', 'SP.SC', 'SNS', 'CIS'),
+    student_type ENUM('PG', 'Research')
+);
+
+create database DESUG;
+
+CREATE TABLE vote (
+    vote_id INT AUTO_INCREMENT PRIMARY KEY,
+    token_id CHAR(12),
+    president_roll CHAR(8),
+    vicepresident_roll CHAR(8),
+    generalsecretary_roll CHAR(8),
+    culturalsecretary_roll CHAR(8),
+    jointsecretary_roll CHAR(8),
+    sportssecretary_roll CHAR(8),
+    sch_board_member CHAR(8),
+    sch_councillor1_roll CHAR(8),
+    sch_councillor2_roll CHAR(8),
+    sch_councillor3_roll CHAR(8),
+    FOREIGN KEY (token_id) REFERENCES token(token_id),
+    FOREIGN KEY (president_roll) REFERENCES candidate(roll_number),
+    FOREIGN KEY (vicepresident_roll) REFERENCES candidate(roll_number),
+    FOREIGN KEY (generalsecretary_roll) REFERENCES candidate(roll_number),
+    FOREIGN KEY (culturalsecretary_roll) REFERENCES candidate(roll_number),
+    FOREIGN KEY (jointsecretary_roll) REFERENCES candidate(roll_number),
+    FOREIGN KEY (sportssecretary_roll) REFERENCES candidate(roll_number),
+    FOREIGN KEY (sch_board_member) REFERENCES candidate(roll_number),
+    FOREIGN KEY (sch_councillor1_roll) REFERENCES candidate(roll_number),
+    FOREIGN KEY (sch_councillor2_roll) REFERENCES candidate(roll_number),
+    FOREIGN KEY (sch_councillor3_roll) REFERENCES candidate(roll_number)
+);
+
+
+use DESUG;
+
+select * from candidate;
+use DESUG;
+
+select * from student;
+
+show create table student;
+
+ALTER TABLE student ADD COLUMN subject VARCHAR(100) DEFAULT 'CS';
+
+ALTER TABLE student ADD COLUMN course VARCHAR(100);
+
+UPDATE student
+SET course = CASE 
+                WHEN student_type = 'PG' THEN 'IMTECH'
+                WHEN student_type = 'Research' THEN 'MTECH'
+            END;
+            
+SET SQL_SAFE_UPDATES = 0;

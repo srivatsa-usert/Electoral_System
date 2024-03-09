@@ -3,10 +3,9 @@
 <html>
 <head>
   <title>JSP - Hello World</title>
+  <meta http-equiv="refresh" content="0; url=login.jsp">
 </head>
 <body>
-<h1><%= "Hello World!" %></h1>
-<br>
 <h3><a href="login.jsp">Login</a></h3>
 </body>
 </html>

@@ -6,11 +6,46 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
+
+<%
+    session = request.getSession();
+    String candidateRegNumber = "";
+
+    // Check if session is not null and if username attribute is present
+    if (session != null && session.getAttribute("username") != null) {
+        // Get the registration number from session attribute "username"
+        candidateRegNumber = (String) session.getAttribute("username");
+    }
+%>
 <html>
 <head>
     <title>Candidate Registration</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        fetchCandidateDetails('<%= candidateRegNumber %>');
+    });
+
+    function fetchCandidateDetails(candidateRegNumber) {
+        // AJAX request to fetch details
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "fetchDetails?registrationNumber=" + candidateRegNumber, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText);
+                // Populate form fields with candidate details
+                document.getElementById("candidateRegistrationNumber").value = "<%= candidateRegNumber %>";
+                document.getElementById("candidateName").value = response.name;
+                document.getElementById("candidatesDepartment").value = response.department;
+                document.getElementById("candidatesCourseAndSubject").value = response.course + "-" + response.subject;
+                // You can populate other fields as needed
+            }
+        };
+        xhr.send();
+    }
+</script>
 <body class="bg-gray-100">
 <h1 class="text-3xl font-bold text-center mt-8">Nomination Form</h1>
 
@@ -80,7 +115,7 @@
         <input id="proposerName" name="proposerName" type="text" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" disabled>
         <br>
         <label for="proposerRegistrationNumber" class="block mt-4">PROPOSER'S Registration Number:</label>
-        <input id="proposerRegistrationNumber" name="proposerRegistrationNumber" type="text" minlength="8" maxlength="8" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        <input id="proposerRegistrationNumber" name="proposerRegistrationNumber" type="text" minlength="8" maxlength="8" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 " onchange="fetchProposerDetails()">
         <br>
         <label for="proposersDepartment" class="block mt-4">PROPOSER's Department/School:</label>
         <input id="proposersDepartment" name="proposersDepartment" type="text" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" disabled>
@@ -94,7 +129,7 @@
         <input id="seconderName" name="seconderName" type="text" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" disabled>
         <br>
         <label for="seconderRegistrationNumber" class="block mt-4">SECONDER'S Registration Number:</label>
-        <input id="seconderRegistrationNumber" name="seconderRegistrationNumber" type="text" minlength="8" maxlength="8" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        <input id="seconderRegistrationNumber" name="seconderRegistrationNumber" type="text" minlength="8" maxlength="8" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" onchange="fetchSeconderDetails()">
         <br>
         <label for="secondersDepartment" class="block mt-4">SECONDER's Department/School:</label>
         <input id="secondersDepartment" name="secondersDepartment" type="text" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" disabled>
@@ -104,5 +139,43 @@
         <!-- signature of seconder -->
     </div>
 </form>
+
+<script>
+    function fetchProposerDetails() {
+        let proposerRegNumber = document.getElementById("proposerRegistrationNumber").value;
+
+        // AJAX request
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "fetchDetails?registrationNumber=" + proposerRegNumber, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText);
+                document.getElementById("proposerName").value = response.name;
+                document.getElementById("proposersDepartment").value = response.department;
+                document.getElementById("proposersCourseAndSubject").value = response.course + "-" + response.subject;
+            }
+        };
+        xhr.send();
+    }
+
+    function fetchSeconderDetails() {
+        let seconderRegNumber = document.getElementById("seconderRegistrationNumber").value;
+
+        // AJAX request
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "fetchDetails?registrationNumber=" + seconderRegNumber, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText);
+                document.getElementById("seconderName").value = response.name;
+                document.getElementById("secondersDepartment").value = response.department;
+                document.getElementById("secondersCourseAndSubject").value = response.course + "-" + response.subject;
+            }
+        };
+        xhr.send();
+    }
+
+</script>
+
 </body>
 </html>
