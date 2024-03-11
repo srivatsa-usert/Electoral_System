@@ -8,6 +8,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,8 +59,8 @@ public class FetchDetails extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
-            // SQL query to fetch details based on registration number
-            String sql = "SELECT name, department, course, subject FROM student WHERE roll_number = ?";
+            // SQL query to fetch details based on registration number including DOB
+            String sql = "SELECT name, department, course, subject, DOB FROM student WHERE roll_number = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, registrationNumber);
             rs = stmt.executeQuery();
@@ -69,12 +73,14 @@ public class FetchDetails extends HttpServlet {
                 String department = rs.getString("department");
                 String course = rs.getString("course");
                 String subject = rs.getString("subject");
+                Date dob = java.sql.Date.valueOf(rs.getString("DOB"));
 
                 out.println("{");
                 out.println("\"name\": \"" + name + "\",");
                 out.println("\"department\": \"" + department + "\",");
                 out.println("\"course\": \"" + course + "\",");
-                out.println("\"subject\": \"" + subject + "\"");
+                out.println("\"subject\": \"" + subject + "\",");
+                out.println("\"dob\": \"" + dob + "\"");
                 out.println("}");
             } else {
                 // If no record found

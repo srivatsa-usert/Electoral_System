@@ -31,7 +31,7 @@
 <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
     <div class="bg-gray-800 rounded-lg p-8">
         <h2 class="text-2xl font-bold mb-4">Login</h2>
-        <form>
+        <form method="post" action="LoginServlet">
             <div class="mb-4">
                 <label for="username" class="block text-white">Username</label>
                 <input type="text" id="username" name="username" class="block w-full bg-gray-700 border border-gray-600 rounded-md p-2 text-white">

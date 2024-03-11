@@ -175,3 +175,8 @@ INSERT INTO positions (position_name) VALUES ('School Board Member');
 INSERT INTO positions (position_name) VALUES ('Councillor');
 
 show tables;
+
+select * from student;
+
+ALTER TABLE student
+ADD COLUMN DOB DATE NOT NULL DEFAULT '2000-01-01';

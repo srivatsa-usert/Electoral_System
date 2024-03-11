@@ -38,9 +38,11 @@
                 // Populate form fields with candidate details
                 document.getElementById("candidateRegistrationNumber").value = "<%= candidateRegNumber %>";
                 document.getElementById("candidateName").value = response.name;
+                document.getElementById("nameOnBallotPaper").value = response.name;
                 document.getElementById("candidatesDepartment").value = response.department;
+                document.getElementById("dateOfBirth").value = response.dob;
+                document.getElementById("dateOfBirth").disabled = true;
                 document.getElementById("candidatesCourseAndSubject").value = response.course + "-" + response.subject;
-                // You can populate other fields as needed
             }
         };
         xhr.send();
