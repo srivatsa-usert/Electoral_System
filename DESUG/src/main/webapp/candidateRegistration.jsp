@@ -26,6 +26,7 @@
 <script>
     window.addEventListener('DOMContentLoaded', function () {
         fetchCandidateDetails('<%= candidateRegNumber %>');
+        console.log('<%= session %>');
     });
 
     function fetchCandidateDetails(candidateRegNumber) {
@@ -43,6 +44,23 @@
                 document.getElementById("dateOfBirth").value = response.dob;
                 document.getElementById("dateOfBirth").disabled = true;
                 document.getElementById("candidatesCourseAndSubject").value = response.course + "-" + response.subject;
+                document.getElementById("semesterNumber").value = response.semester;
+
+                let dob = response.dob;
+
+                // Calculate the age
+                let today = new Date();
+                let birthDate = new Date(dob);
+                let age = today.getFullYear() - birthDate.getFullYear();
+                let monthDiff = today.getMonth() - birthDate.getMonth();
+
+                // If the birth month is greater than the current month or if it's the same month but the birth date is greater, subtract one year
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+
+                // Set the calculated age in the Age field
+                document.getElementById("age").value = age;
             }
         };
         xhr.send();
@@ -76,13 +94,13 @@
         <input id="nameOnBallotPaper" name="nameOnBallotPaper" type="text" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
         <br>
         <label for="dateOfBirth" class="block mt-4">Date of Birth</label>
-        <input id="dateOfBirth" name="dateOfBirth" type="date" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        <input id="dateOfBirth" name="dateOfBirth" type="date" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" disabled>
         <br>
         <label for="age" class="block mt-4">Age</label>
-        <input id="age" name="age" type="number" min="17" max="28" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        <input id="age" name="age" type="number" min="17" max="28" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" disabled>
         <br>
         <label for="categoryOfTheCandidate" class="block mt-4">Category of the Candidate:</label>
-        <select id="categoryOfTheCandidate" name="categoryOfTheCandidate" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        <select id="categoryOfTheCandidate" name="categoryOfTheCandidate" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" >
             <option selected disabled>--category--</option>
             <option value="gen">General</option>
             <option value="obc">OBC</option>

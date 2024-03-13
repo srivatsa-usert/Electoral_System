@@ -9,9 +9,62 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
+<style>
+    /* Style The Dropdown Button */
+    .dropbtn {
+        cursor: pointer;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        right: 0;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {background-color: #f1f1f1}
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Fill the window */
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        flex: 1;
+    }
+
+</style>
+
 <body class="bg-black font-sans text-white">
-
-
 
 <!-- Navigation -->
 <nav class="bg-gray-800 p-6 flex justify-between items-center">
@@ -26,6 +79,13 @@
     </div>
     <div>
         <button id="loginButton" class="text-white hover:text-gray-200">Login</button>
+        <div class="dropdown">
+            <button id="otherButton" class="dropbtn hidden ml-4 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"></button>
+            <div class="dropdown-content">
+                <a href="#">Profile</a>
+                <a href="logout">Logout</a>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -49,6 +109,29 @@
     </div>
 </div>
 
+<!-- Main Content -->
+<main class="flex-grow max-w-7xl mx-auto px-4 py-12">
+
+    <h1 class="text-4xl font-bold mb-8">Welcome to Our Website</h1>
+
+    <p class="text-lg mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mauris nec nisi
+        ultricies blandit. Cras euismod dolor ut nisi faucibus lacinia. Donec vestibulum, orci in tempor
+        consectetur, nulla enim fermentum odio, ac dictum nisi nulla nec nisi.</p>
+
+    <p class="text-lg mb-6">Nullam eget lectus magna. Sed ac odio vel nisl efficitur auctor. Suspendisse sit amet
+        pretium ipsum. Ut consequat libero eget nunc vehicula, non volutpat enim sodales.</p>
+
+    <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Learn More</a>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-6">
+    <div class="max-w-7xl mx-auto text-center">
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+</footer>
+
 <script>
     const loginButton = document.getElementById('loginButton');
     const loginModal = document.getElementById('loginModal');
@@ -63,30 +146,25 @@
             loginModal.classList.add('hidden');
         }
     });
+
+    window.addEventListener('load', function() {
+
+        const loginButton = document.getElementById('loginButton');
+        const otherButton = document.getElementById('otherButton');
+        let username = '<%= session.getAttribute("username") %>';
+        console.log(username);
+
+        if(username != "null" && username != "NULL"){
+            loginButton.classList.add('hidden');
+            otherButton.classList.remove('hidden');
+
+            otherButton.innerText = username;
+        }
+
+    });
+
+
 </script>
-
-<!-- Main Content -->
-<div class="max-w-7xl mx-auto px-4 py-12">
-
-    <h1 class="text-4xl font-bold mb-8">Welcome to Our Website</h1>
-
-    <p class="text-lg mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mauris nec nisi
-        ultricies blandit. Cras euismod dolor ut nisi faucibus lacinia. Donec vestibulum, orci in tempor
-        consectetur, nulla enim fermentum odio, ac dictum nisi nulla nec nisi.</p>
-
-    <p class="text-lg mb-6">Nullam eget lectus magna. Sed ac odio vel nisl efficitur auctor. Suspendisse sit amet
-        pretium ipsum. Ut consequat libero eget nunc vehicula, non volutpat enim sodales.</p>
-
-    <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Learn More</a>
-
-</div>
-
-<!-- Footer -->
-<footer class="bg-gray-900 text-white py-6">
-    <div class="max-w-7xl mx-auto text-center">
-        <p>&copy; 2024 Your Company. All rights reserved.</p>
-    </div>
-</footer>
 
 </body>
 
