@@ -11,6 +11,8 @@
 
 <body class="bg-black font-sans text-white">
 
+
+
 <!-- Navigation -->
 <nav class="bg-gray-800 p-6 flex justify-between items-center">
     <div>

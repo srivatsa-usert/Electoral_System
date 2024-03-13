@@ -61,16 +61,23 @@ public class LoginServlet extends HttpServlet {
             conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
             // SQL query to check credentials
-            String sql = "SELECT * FROM student WHERE roll_number = ?";
+            String sql = "SELECT name, roll_number FROM student WHERE roll_number = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
 //            stmt.setString(2, password);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                // If user exists, redirect to home.jsp
+                // If user exists, retrieve the name and roll number
+                String name = rs.getString("name");
+                String rollNumber = rs.getString("roll_number");
+
+                // Create a session and store name and roll number
                 HttpSession session = request.getSession();
-                session.setAttribute("username", username);
+                session.setAttribute("name", name);
+                session.setAttribute("username", rollNumber);
+
+                // Redirect to home.jsp
                 response.sendRedirect("home.jsp");
             } else {
                 // If user does not exist, show error message
