@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <!-- Include Tailwind CSS -->
+    <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
@@ -71,10 +71,10 @@
     <div>
         <a href="#" class="text-white font-bold text-xl">Your Logo</a>
         <ul class="flex mt-4">
-            <li class="mr-6"><a href="#" class="text-white hover:text-gray-200">Home</a></li>
+            <li class="mr-6"><a href="home.jsp" class="text-white hover:text-gray-200">Home</a></li>
             <li class="mr-6"><a href="#" class="text-white hover:text-gray-200">About</a></li>
             <li class="mr-6"><a href="candidateRegistration.jsp" class="text-white hover:text-gray-200">File Nominations</a></li>
-            <li><a href="#" class="text-white hover:text-gray-200">Contact</a></li>
+            <li class="mr-6"><a href="forYou.jsp" class="text-white hover:text-gray-200">For You</a></li>
         </ul>
     </div>
     <div>
@@ -89,7 +89,7 @@
     </div>
 </nav>
 
-<!-- Modal -->
+<!-- Login Modal -->
 <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
     <div class="bg-gray-800 rounded-lg p-8">
         <h2 class="text-2xl font-bold mb-4">Login</h2>
@@ -114,12 +114,17 @@
 
     <h1 class="text-4xl font-bold mb-8">Welcome to Our Website</h1>
 
-    <p class="text-lg mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mauris nec nisi
-        ultricies blandit. Cras euismod dolor ut nisi faucibus lacinia. Donec vestibulum, orci in tempor
-        consectetur, nulla enim fermentum odio, ac dictum nisi nulla nec nisi.</p>
-
-    <p class="text-lg mb-6">Nullam eget lectus magna. Sed ac odio vel nisl efficitur auctor. Suspendisse sit amet
-        pretium ipsum. Ut consequat libero eget nunc vehicula, non volutpat enim sodales.</p>
+    <p class="text-lg mb-6">
+        Elections to the Students' Union for the year 20XX - 20XX will be conducted as per the details mentioned below:
+    </p>
+    <p class="text-lg mb-6">
+        Elections will take place for the positions of President, Vice-President, General Secretary,
+        Joint Secretary', Cultural Secretary, Sports Secretary, Councillors from respective Schools
+        and School Board Members.
+        While all eligible voters will vote for Office Bearers and the students of respective
+        schools will vote for positions of Councillors and School Board Members of
+        respective Schools.
+    </p>
 
     <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Learn More</a>
 

@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="jakarta.servlet.http.HttpSession" %>
 
 <%
     session = request.getSession();
@@ -70,7 +69,7 @@
 <h1 class="text-3xl font-bold text-center mt-8">Nomination Form</h1>
 
 <form id="nominationForm" name="nominationForm" class="mx-auto max-w-lg mt-8 bg-white p-8 rounded-lg shadow-lg">
-    <div class="nomination form">
+    <div class="nomination_form">
         <label for="nameOfThePosition" class="block mt-4">Name of the Position:</label>
         <select id="nameOfThePosition" name="nameofThePosition" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
             <option selected disabled>--position--</option>
@@ -158,9 +157,67 @@
         <input id="secondersCourseAndSubject" name="secondersCourseAndSubject" type="text" class="block w-full mt-1 border-black-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" disabled>
         <!-- signature of seconder -->
     </div>
+
+    <button id="proceedButton" type="button" onclick="proceed()" class="block w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm focus:outline-none focus:bg-blue-600">Proceed</button>
+
+    <div id="undertakingModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white rounded-lg p-8">
+            <h2 class="text-2xl font-bold mb-4">UNDERTAKING BY THE CANDIDATE FILING THE NOMINATION</h2>
+                Registration Number:
+                have filed my nomination for the
+                Course / Subject:
+                post of
+                I hereby undertake :
+                That the Proposer & Seconder Of my nomination are full-time duly registered students Of the
+                1.
+                University,
+                2.
+                That I do not have any criminal case filed against me in any police station / criminal record
+                and have not been subjected to any disciplinary action by the University.
+                That I have 75% of attendance upto 3 October, 2023 and that academic arrears if
+                3.
+                any, are as per the norms Of the university,
+                That I am not pursuing a second programme / course in this University at the same level.
+                4.
+                That I will diligently follow without fail all regulations issued down by the Returning
+                5.
+                Officers from time to time.
+                That my supporters or I shall not cause any disturbance on the University campus or outside
+                6.
+                in any manner during the entire election process.
+                That my supporters & I shall follow the Code of Conduct in letter & spirit.
+                7.
+                That my supporters or I shall not stall any officials involved in the election process from
+                8.
+                carrying out his/ her duties.
+                That I shall follow all regulations issued in connection with a) Campaigning b) Open
+                9.
+                Dais c) Polling & d) Counting of votes.
+                IO. That I will personally ensure that any campaign materials belonging to me are removed
+                soon after polling of votes & before the counting begins.
+                11. That I Shall limit spending on campaigning to Rs. 7,000/- only.
+                12. That I shall not resort to any unfair means or inducements during the entire election
+                process to attract votes.
+                13. That I shall not contain myself and my supporters from consumption of intoxicating
+                substances in any form during the entire election process.
+                14. That I shall submit detailed accounts with bills duly audited to the Office of the Dean of
+                Students' Welfare within two weeks from the declaration of results.
+                15. That the details furnished by me are true in respect of all details.
+                I fully understand that I would be held responsible and my candidature and / or election
+                to office, would be nullified for failing to follow norms laid down by the Returning
+                Officers. The Returning Officers have the authority to cancel my candidature/ nullify my
+                election to office if any Of the information furnished is found to be incorrect.
+            <br>
+            <label for="agreeCheckbox">I agree to the terms and conditions</label>
+            <input type="checkbox" id="agreeCheckbox" onchange="toggleCheckbox()">
+        </div>
+    </div>
 </form>
 
 <script>
+    const nomination = document.getElementById("nomination");
+    const undertaking = document.getElementById("undertaking");
+
     function fetchProposerDetails() {
         let proposerRegNumber = document.getElementById("proposerRegistrationNumber").value;
 
@@ -195,6 +252,27 @@
         xhr.send();
     }
 
+    function proceed() {
+        // Display the modal
+        document.getElementById("undertakingModal").classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById("undertakingModal").classList.add('hidden');
+    }
+
+    function toggleCheckbox() {
+        var modal = document.getElementById("undertakingModal");
+        var checkbox = document.getElementById("agreeCheckbox");
+        if (modal.scrollTop === (modal.scrollHeight - modal.offsetHeight)) {
+            checkbox.disabled = false;
+        } else {
+            checkbox.disabled = true;
+        }
+    }
+
+    // Event listener for scrolling in the modal
+    document.getElementById("undertakingModal").addEventListener("scroll", toggleCheckbox);
 </script>
 
 </body>
