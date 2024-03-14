@@ -83,7 +83,7 @@
             <button id="otherButton" class="dropbtn hidden ml-4 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"></button>
             <div class="dropdown-content">
                 <a href="#">Profile</a>
-                <a href="logout">Logout</a>
+                <a href="logout" >Logout</a>
             </div>
         </div>
     </div>
@@ -135,6 +135,8 @@
 <script>
     const loginButton = document.getElementById('loginButton');
     const loginModal = document.getElementById('loginModal');
+    const fileRegistrationLink = document.querySelector('a[href="candidateRegistration.jsp"]');
+    const otherButton = document.getElementById('otherButton');
 
     loginButton.addEventListener('click', () => {
         loginModal.classList.remove('hidden');
@@ -147,24 +149,33 @@
         }
     });
 
-    window.addEventListener('load', function() {
-
-        const loginButton = document.getElementById('loginButton');
-        const otherButton = document.getElementById('otherButton');
+    fileRegistrationLink.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default behavior of link
         let username = '<%= session.getAttribute("username") %>';
         console.log(username);
 
-        if(username != "null" && username != "NULL"){
-            loginButton.classList.add('hidden');
-            otherButton.classList.remove('hidden');
-
-            otherButton.innerText = username;
+        if (username && username !== "null" && username !== "NULL") {
+            // User is logged in, allow file registration
+            window.location.href = "candidateRegistration.jsp";
+        } else {
+            // User is not logged in, open login modal
+            loginModal.classList.remove('hidden');
         }
-
     });
 
+    window.addEventListener('load', function() {
+        let username = '<%= session.getAttribute("username") %>';
+        console.log(username);
 
+        if (username && username !== "null" && username !== "NULL") {
+            // User is logged in
+            loginButton.classList.add('hidden');
+            otherButton.classList.remove('hidden');
+            otherButton.innerText = username;
+        }
+    });
 </script>
+
 
 </body>
 
