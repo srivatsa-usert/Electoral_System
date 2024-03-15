@@ -11,8 +11,12 @@
 <div class="bg-white p-8 rounded shadow-md w-96">
     <h2 class="text-2xl mb-4">Login</h2>
     <form action="LoginServlet" method="post">
-        <input type="text" name="username" placeholder="Username" required class="w-full px-4 py-2 mb-4 border border-gray-300 rounded">
-        <input type="password" name="password" placeholder="Password" class="w-full px-4 py-2 mb-4 border border-gray-300 rounded" hidden>
+        <label>
+            <input type="text" name="username" placeholder="Username" required class="w-full px-4 py-2 mb-4 border border-gray-300 rounded">
+        </label>
+        <label>
+            <input type="password" name="password" placeholder="Password" class="w-full px-4 py-2 mb-4 border border-gray-300 rounded" hidden>
+        </label>
         <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Login</button>
     </form>
 </div>

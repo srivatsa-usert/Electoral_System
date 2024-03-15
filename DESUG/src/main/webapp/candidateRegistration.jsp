@@ -5,7 +5,7 @@
   Time: 21:37
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
     session = request.getSession();
@@ -71,7 +71,7 @@
                 let age = today.getFullYear() - birthDate.getFullYear();
                 let monthDiff = today.getMonth() - birthDate.getMonth();
 
-                // If the birth month is greater than the current month or if it's the same month but the birth date is greater, subtract one year
+                // If the birth month is greater than the current month or if it's the same month but the birthdate is greater, subtract one year
                 if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
                     age--;
                 }
@@ -189,7 +189,7 @@
             <!-- Close button -->
             <button class="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-900" onclick="closeModal(event)">
                 <svg class="h-6 w-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM5 5a.75.75 0 011.061 1.061L6.061 6l3.938 3.939L13.937 6l.002-.001a.75.75 0 111.06 1.061l-.001.002L10.06 10l3.939 3.938a.75.75 0 11-1.061 1.061L9 11.062l-3.938 3.939a.75.75 0 01-1.061-1.061L7.062 10 3.124 6.062A.748.748 0 013 5.999L3 6l.001-.001A.75.75 0 015 5z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM5 5a.75.75 0 011.061 1.061L6.061 6l3.938 3.939L13.937 6l.002-.001a.75.75 0 111.06 1.061l-.001.002L10.06 10l3.939 3.938a.75.75 0 11-1.061 1.061L9 11.062l-3.938 3.939a.75.75 0 01-1.061-1.061L7.062 10 3.124 6.062A.748.748 0 013 5.999L3 6l.001-.001A.75.75 0 015 5z" clip-rule="evenodd"></path>
                 </svg>
             </button>
             <hr>
@@ -198,7 +198,7 @@
                 <ol class="ml-4 mr-4">
                     <li>That the Proposer & Seconder Of my nomination are full-time duly registered students Of the University,</li>
                     <li>That I do not have any criminal case filed against me in any police station / criminal record and have not been subjected to any disciplinary action by the University.</li>
-                    <li>That I have 75% of attendance upto 3 October, 2023 and that academic arrears if any, are as per the norms Of the university,</li>
+                    <li>That I have 75% of attendance upto 3 October 2023 and that academic arrears if any, are as per the norms Of the university,</li>
                     <li>That I am not pursuing a second programme / course in this University at the same level.</li>
                     <li>That I will diligently follow without fail all regulations issued down by the Returning Officers from time to time.</li>
                     <li>That my supporters or I shall not cause any disturbance on the University campus or outside in any manner during the entire election process.</li>
@@ -280,11 +280,11 @@
         }
     }
 
-    function showRegNumberMismatchAlert(message) {
+    function showRegNumberMismatchAlert() {
         const alertDiv = document.createElement("div");
         alertDiv.classList.add("fixed", "inset-0", "flex", "items-center", "justify-center", "bg-black", "bg-opacity-50");
 
-        const alertContent = `
+        alertDiv.innerHTML = `
             <div class="bg-white p-8 rounded-lg shadow-lg">
                 <h2 class="text-2xl font-bold mb-4">Alert</h2>
                 <p>Same Registration numbers are allowed.</p>
@@ -293,8 +293,6 @@
                 </div>
             </div>
         `;
-
-        alertDiv.innerHTML = alertContent;
         document.body.appendChild(alertDiv);
 
         const okButton = document.getElementById("okButton");
@@ -314,13 +312,9 @@
     }
 
     function toggleCheckbox() {
-        var modal = document.getElementById("undertakingModal");
-        var checkbox = document.getElementById("agreeCheckbox");
-        if (modal.scrollTop === (modal.scrollHeight - modal.offsetHeight)) {
-            checkbox.disabled = false;
-        } else {
-            checkbox.disabled = true;
-        }
+        let modal = document.getElementById("undertakingModal");
+        let checkbox = document.getElementById("agreeCheckbox");
+        checkbox.disabled = modal.scrollTop !== (modal.scrollHeight - modal.offsetHeight);
     }
 
     // Event listener for scrolling in the modal
@@ -359,7 +353,7 @@
         const alertDiv = document.createElement("div");
         alertDiv.classList.add("fixed", "inset-0", "flex", "items-center", "justify-center", "bg-black", "bg-opacity-50");
 
-        const alertContent = `
+        alertDiv.innerHTML = `
         <div class="bg-white p-8 rounded-lg shadow-lg">
             <h2 class="text-2xl font-bold mb-4">Age Regulation</h2>
             <p>The Age in the form not eligible for nomination.</p>
@@ -368,8 +362,6 @@
             </div>
         </div>
     `;
-
-        alertDiv.innerHTML = alertContent;
         document.body.appendChild(alertDiv);
     }
 

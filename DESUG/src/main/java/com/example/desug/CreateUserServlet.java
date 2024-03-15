@@ -1,7 +1,6 @@
 package com.example.desug;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -13,12 +12,10 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/CreateUserServlet")
 public class CreateUserServlet extends HttpServlet {
@@ -36,7 +33,7 @@ public class CreateUserServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         Properties props = getConnectionData();
 
         // Database connection parameters
@@ -103,7 +100,7 @@ public class CreateUserServlet extends HttpServlet {
             // Get the hash's bytes
             byte[] bytes = md.digest();
 
-            // This bytes[] has bytes in decimal format;
+            // These bytes[] has bytes in decimal format;
             // Convert it to hexadecimal format
             StringBuilder sb = new StringBuilder();
             for (byte b : bytes) {

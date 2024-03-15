@@ -27,7 +27,7 @@
         position: absolute;
         background-color: #f9f9f9;
         min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         z-index: 1;
         right: 0;
     }
@@ -74,7 +74,7 @@
             <li class="mr-6"><a href="home.jsp" class="text-white hover:text-gray-200">Home</a></li>
             <li class="mr-6"><a href="#" class="text-white hover:text-gray-200">About</a></li>
             <li class="mr-6"><a href="candidateRegistration.jsp" class="text-white hover:text-gray-200">File Nominations</a></li>
-            <li class="mr-6"><a href="forYou.jsp" class="text-white hover:text-gray-200">For You</a></li>
+            <li class="mr-6"><a href="#" class="text-white hover:text-gray-200">For You</a></li>
         </ul>
     </div>
     <div>

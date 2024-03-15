@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/checkAge")
 public class CheckAgeServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // Retrieve age parameter from request
         int age = 0; // Default age value
         String ageParam = request.getParameter("age");
@@ -126,14 +125,16 @@ public class CheckAgeServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        if(academicProgram.equals("PG")){
-            academicProgram = "PG";
-        }
-        else if(academicProgram.equals("UG")){
-            academicProgram = "UG";
-        }
-        else if(academicProgram.equals("Research")){
-            academicProgram = "PhD";
+        switch (academicProgram) {
+            case "PG":
+                academicProgram = "PG";
+                break;
+            case "UG":
+                academicProgram = "UG";
+                break;
+            case "Research":
+                academicProgram = "PhD";
+                break;
         }
         System.out.println(academicProgram);
         return academicProgram;

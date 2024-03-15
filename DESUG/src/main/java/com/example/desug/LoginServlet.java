@@ -1,6 +1,5 @@
 package com.example.desug;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -15,8 +14,6 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -114,7 +111,7 @@ public class LoginServlet extends HttpServlet {
             // Get the hash's bytes
             byte[] bytes = md.digest();
 
-            // This bytes[] has bytes in decimal format;
+            // These bytes[] has bytes in decimal format;
             // Convert it to hexadecimal format
             StringBuilder sb = new StringBuilder();
             for (byte b : bytes) {
