@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -43,6 +45,8 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        String passwordHash = hashPassword(password);
+
         Properties props = getConnectionData();
 
         // Database connection parameters
@@ -61,20 +65,18 @@ public class LoginServlet extends HttpServlet {
             conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
             // SQL query to check credentials
-            String sql = "SELECT name, roll_number FROM student WHERE roll_number = ?";
+            String sql = "SELECT username FROM login WHERE username = ? and password = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
-//            stmt.setString(2, password);
+            stmt.setString(2, passwordHash);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
                 // If user exists, retrieve the name and roll number
-                String name = rs.getString("name");
-                String rollNumber = rs.getString("roll_number");
+                String rollNumber = rs.getString("username");
 
                 // Create a session and store name and roll number
                 HttpSession session = request.getSession();
-                session.setAttribute("name", name);
                 session.setAttribute("username", rollNumber);
 
                 // Redirect to home.jsp
@@ -84,7 +86,7 @@ public class LoginServlet extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Invalid username or password');");
-                out.println("location='login.jsp';");
+                out.println("location='home.jsp';");
                 out.println("</script>");
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -98,6 +100,32 @@ public class LoginServlet extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private String hashPassword(String password) {
+        try {
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            // Add password bytes to digest
+            md.update(password.getBytes());
+
+            // Get the hash's bytes
+            byte[] bytes = md.digest();
+
+            // This bytes[] has bytes in decimal format;
+            // Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for (byte b : bytes) {
+                sb.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
+            }
+
+            // Return the hashed password
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

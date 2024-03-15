@@ -97,11 +97,11 @@
         <form method="post" action="LoginServlet">
             <div class="mb-4">
                 <label for="username" class="block text-white">Username</label>
-                <input type="text" id="username" name="username" class="block w-full bg-gray-700 border border-gray-600 rounded-md p-2 text-white">
+                <input type="text" id="username" name="username" class="block w-full bg-gray-700 border border-gray-600 rounded-md p-2 text-white" required>
             </div>
-            <div class="mb-4" hidden>
+            <div class="mb-4">
                 <label for="password" class="block text-white">Password</label>
-                <input type="password" id="password" name="password" class="block w-full bg-gray-700 border border-gray-600 rounded-md p-2 text-white">
+                <input type="password" id="password" name="password" class="block w-full bg-gray-700 border border-gray-600 rounded-md p-2 text-white" required>
             </div>
             <div class="text-right">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Login</button>

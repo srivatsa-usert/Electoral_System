@@ -186,3 +186,13 @@ update student set DOB = '2003-03-13' Where roll_number = '21MCME07';
 
 ALTER TABLE student
 ADD COLUMN semester int NOT NULL DEFAULT 1;
+
+
+CREATE TABLE login (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(8) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    FOREIGN KEY (username) REFERENCES student(roll_number)
+);
+
+select * from login;

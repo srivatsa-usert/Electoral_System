@@ -196,7 +196,6 @@
             <!-- Undertaking content -->
             <div class="undertaking-scroll-container">
                 <ol class="ml-4 mr-4">
-                    <!-- List items go here -->
                     <li>That the Proposer & Seconder Of my nomination are full-time duly registered students Of the University,</li>
                     <li>That I do not have any criminal case filed against me in any police station / criminal record and have not been subjected to any disciplinary action by the University.</li>
                     <li>That I have 75% of attendance upto 3 October, 2023 and that academic arrears if any, are as per the norms Of the university,</li>
@@ -233,39 +232,75 @@
 <script>
     const nomination = document.getElementById("nomination");
     const undertaking = document.getElementById("undertaking");
+    const candidateRegistrationNumber = "<%= candidateRegNumber %>";
 
     function fetchProposerDetails() {
-        let proposerRegNumber = document.getElementById("proposerRegistrationNumber").value;
+        const proposerRegNumber = document.getElementById("proposerRegistrationNumber").value;
 
-        // AJAX request
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "fetchDetails?registrationNumber=" + proposerRegNumber, true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                let response = JSON.parse(xhr.responseText);
-                document.getElementById("proposerName").value = response.name;
-                document.getElementById("proposersDepartment").value = response.department;
-                document.getElementById("proposersCourseAndSubject").value = response.course + "-" + response.subject;
-            }
-        };
-        xhr.send();
+        if (proposerRegNumber !== candidateRegistrationNumber && proposerRegNumber !== document.getElementById("seconderRegistrationNumber").value) {
+            // AJAX request
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "fetchDetails?registrationNumber=" + proposerRegNumber, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let response = JSON.parse(xhr.responseText);
+                    document.getElementById("proposerName").value = response.name;
+                    document.getElementById("proposersDepartment").value = response.department;
+                    document.getElementById("proposersCourseAndSubject").value = response.course + "-" + response.subject;
+                }
+            };
+            xhr.send();
+        }
+        else {
+            showRegNumberMismatchAlert("Proposer's and Candidate's Registration numbers cannot be the same.");
+            document.getElementById("proposerRegistrationNumber").value = '';
+        }
     }
 
     function fetchSeconderDetails() {
         let seconderRegNumber = document.getElementById("seconderRegistrationNumber").value;
 
-        // AJAX request
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "fetchDetails?registrationNumber=" + seconderRegNumber, true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                let response = JSON.parse(xhr.responseText);
-                document.getElementById("seconderName").value = response.name;
-                document.getElementById("secondersDepartment").value = response.department;
-                document.getElementById("secondersCourseAndSubject").value = response.course + "-" + response.subject;
-            }
-        };
-        xhr.send();
+        if (seconderRegNumber !== candidateRegistrationNumber && seconderRegNumber !== document.getElementById("proposerRegistrationNumber").value) {
+            // AJAX request
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "fetchDetails?registrationNumber=" + seconderRegNumber, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let response = JSON.parse(xhr.responseText);
+                    document.getElementById("seconderName").value = response.name;
+                    document.getElementById("secondersDepartment").value = response.department;
+                    document.getElementById("secondersCourseAndSubject").value = response.course + "-" + response.subject;
+                }
+            };
+            xhr.send();
+        }
+        else {
+            showRegNumberMismatchAlert("Seconder's and Candidate's Registration numbers cannot be the same.");
+            document.getElementById("seconderRegistrationNumber").value = '';
+        }
+    }
+
+    function showRegNumberMismatchAlert(message) {
+        const alertDiv = document.createElement("div");
+        alertDiv.classList.add("fixed", "inset-0", "flex", "items-center", "justify-center", "bg-black", "bg-opacity-50");
+
+        const alertContent = `
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4">Alert</h2>
+                <p>Same Registration numbers are allowed.</p>
+                <div class="mt-4 flex justify-center space-x-4">
+                    <button id="okButton" class="px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm focus:outline-none focus:bg-blue-600">OK</button>
+                </div>
+            </div>
+        `;
+
+        alertDiv.innerHTML = alertContent;
+        document.body.appendChild(alertDiv);
+
+        const okButton = document.getElementById("okButton");
+        okButton.addEventListener("click", function() {
+            alertDiv.remove();
+        });
     }
 
     function proceed() {
