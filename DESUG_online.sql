@@ -176,7 +176,13 @@ INSERT INTO positions (position_name) VALUES ('Councillor');
 
 show tables;
 
+use DESUG;
 select * from student;
 
 ALTER TABLE student
 ADD COLUMN DOB DATE NOT NULL DEFAULT '2000-01-01';
+
+update student set DOB = '2003-03-13' Where roll_number = '21MCME07';
+
+ALTER TABLE student
+ADD COLUMN semester int NOT NULL DEFAULT 1;

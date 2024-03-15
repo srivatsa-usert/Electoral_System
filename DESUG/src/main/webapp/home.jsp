@@ -83,6 +83,7 @@
             <button id="otherButton" class="dropbtn hidden ml-4 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"></button>
             <div class="dropdown-content">
                 <a href="#">Profile</a>
+                <a href="getNotifications">Notifications</a>
                 <a href="logout" >Logout</a>
             </div>
         </div>
