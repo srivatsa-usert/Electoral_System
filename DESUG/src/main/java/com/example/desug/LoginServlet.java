@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
         return props;
     }
 
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         String username = request.getParameter("username");
@@ -87,7 +86,8 @@ public class LoginServlet extends HttpServlet {
                 out.println("</script>");
             }
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(LoginServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
         } finally {
             // Closing resources
             try {
@@ -95,7 +95,8 @@ public class LoginServlet extends HttpServlet {
                 if (stmt != null) stmt.close();
                 if (conn != null) conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                Logger lgr = Logger.getLogger(LoginServlet.class.getName());
+                lgr.log(Level.SEVERE, e.getMessage(), e);
             }
         }
     }
@@ -121,7 +122,8 @@ public class LoginServlet extends HttpServlet {
             // Return the hashed password
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(LoginServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             return null;
         }
     }
