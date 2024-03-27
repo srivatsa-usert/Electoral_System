@@ -74,7 +74,7 @@
             <li class="mr-6"><a href="home.jsp" class="text-white hover:text-gray-200">Home</a></li>
             <li class="mr-6"><a href="#" class="text-white hover:text-gray-200">About</a></li>
             <li class="mr-6"><a href="candidateRegistration.jsp" class="text-white hover:text-gray-200">File Nominations</a></li>
-            <li class="mr-6"><a href="#" class="text-white hover:text-gray-200">For You</a></li>
+            <li class="mr-6"><a href="mail.jsp" class="text-white hover:text-gray-200">Mail</a></li>
         </ul>
     </div>
     <div>
@@ -84,6 +84,7 @@
             <div class="dropdown-content">
                 <a href="#">Profile</a>
                 <a href="getNotifications">Notifications</a>
+                <a href="changePassword.jsp">Change Password</a>
                 <a href="logout" >Logout</a>
             </div>
         </div>
@@ -103,7 +104,11 @@
                 <label for="password" class="block text-white">Password</label>
                 <input type="password" id="password" name="password" class="block w-full bg-gray-700 border border-gray-600 rounded-md p-2 text-white" required>
             </div>
-            <div class="text-right">
+            <div class="flex justify-between items-center mt-4">
+                <a href="forgotPassword.jsp" class="text-blue-500 font-bold">Forgot Password?</a>
+            </div>
+
+            <div class="text-right mt-4">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Login</button>
             </div>
         </form>
