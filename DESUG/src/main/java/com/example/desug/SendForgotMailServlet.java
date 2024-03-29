@@ -1,0 +1,159 @@
+package com.example.desug;
+
+import jakarta.mail.*;
+import jakarta.mail.internet.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.SecureRandom;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+@WebServlet("/sendForgotMailServlet")
+public class SendForgotMailServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    private static Properties getConnectionData() {
+        Properties props = new Properties();
+        try {
+            InputStream inputStream = LoginServlet.class.getClassLoader().getResourceAsStream("db.properties");
+            props.load(inputStream);
+        } catch (IOException ioe) {
+            Logger lgr = Logger.getLogger(LoginServlet.class.getName());
+            lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
+        }
+        return props;
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Generate a random 8-digit verification code
+        String verificationCode = generateVerificationCode();
+
+        // Construct the email address using registration number
+        String registrationNumber = request.getParameter("regNumber");
+        String to = registrationNumber + "@uohyd.ac.in";
+
+        String subject = "Verification Code";
+        String messageText = "Your verification code is: " + verificationCode;
+
+        // Sender's email address
+        String from = "21mcme06@uohyd.ac.in"; // Replace with your Gmail address
+
+        // Database connection parameters
+        Properties dbProps = getConnectionData();
+        String jdbcUrl = dbProps.getProperty("db.url");
+        String dbUser = dbProps.getProperty("db.username");
+        String dbPassword = dbProps.getProperty("db.password");
+
+        // JDBC variables
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            // Establishing database connection
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
+
+            // Insert verification code tuple into the database
+            String sql = "INSERT INTO verification_codes (username, verification_code, sent_time, expiry_time) VALUES (?, ?, ?, ?)";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, registrationNumber);
+            stmt.setString(2, verificationCode);
+
+
+            // Calculate expiry time as current time + 5 minutes
+            LocalDateTime sentTime = LocalDateTime.now();
+            LocalDateTime expiryTime = LocalDateTime.now().plusMinutes(5);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            stmt.setString(3,sentTime.format(formatter));
+            stmt.setString(4, expiryTime.format(formatter));
+
+            // Execute SQL statement
+            stmt.executeUpdate();
+
+            // Send email
+            sendEmail(from, to, subject, messageText);
+
+            response.getWriter().println("Verification code sent successfully.");
+        } catch (SQLException | ClassNotFoundException | MessagingException e) {
+            Logger lgr = Logger.getLogger(SendForgotMailServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+            response.getWriter().println("Error: unable to send verification code.");
+        } finally {
+            // Closing resources
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                Logger lgr = Logger.getLogger(SendForgotMailServlet.class.getName());
+                lgr.log(Level.SEVERE, e.getMessage(), e);
+            }
+        }
+    }
+
+    // Method to generate a random 8-digit verification code
+    private String generateVerificationCode() {
+        SecureRandom random = new SecureRandom();
+        int numDigits = 8;
+        StringBuilder sb = new StringBuilder(numDigits);
+        for (int i = 0; i < numDigits; i++) {
+            sb.append(random.nextInt(10));
+        }
+        return sb.toString();
+    }
+
+    // Method to send email
+    private void sendEmail(String from, String to, String subject, String messageText) throws MessagingException {
+        // Sender's email address
+        final String username = "21mcme06@uohyd.ac.in"; // Replace with your Gmail username
+        final String password = "duikkfhyeclrmvoq"; // Replace with your Gmail password
+
+        // Gmail SMTP server details
+        String host = "smtp.gmail.com";
+        int port = 587;
+
+        // Set properties
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", port);
+
+        // Create session with authentication
+        Session session = Session.getInstance(props,
+                new jakarta.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        // Create MimeMessage object
+        MimeMessage message = new MimeMessage(session);
+
+        // Set From: header field
+        message.setFrom(new InternetAddress(from));
+
+        // Set To: header field
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+        // Set Subject: header field
+        message.setSubject(subject);
+
+        // Now set the actual message
+        message.setText(messageText);
+
+        // Send message
+        Transport.send(message);
+    }
+}
