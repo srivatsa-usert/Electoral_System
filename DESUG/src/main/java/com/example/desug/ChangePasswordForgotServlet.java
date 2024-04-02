@@ -39,7 +39,8 @@ public class ChangePasswordForgotServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String username = request.getParameter("username");
+
+        String username = request.getParameter("registrationNumber");
         String verificationCode = request.getParameter("verificationCode");
         String newPassword = request.getParameter("newPassword");
         String confirmPassword = request.getParameter("confirmPassword");
@@ -98,6 +99,7 @@ public class ChangePasswordForgotServlet extends HttpServlet {
                 out.println("alert('Password changed successfully');");
                 out.println("location='home.jsp';");
                 out.println("</script>");
+                // Redirect only after showing the alert
             } else {
                 // No rows affected, likely username not found
                 PrintWriter out = response.getWriter();
@@ -106,6 +108,7 @@ public class ChangePasswordForgotServlet extends HttpServlet {
                 out.println("location='forgotPassword.jsp';");
                 out.println("</script>");
             }
+
         } catch (SQLException | ClassNotFoundException e) {
             Logger lgr = Logger.getLogger(ChangePasswordForgotServlet.class.getName());
             lgr.log(Level.SEVERE, e.getMessage(), e);
@@ -120,7 +123,6 @@ public class ChangePasswordForgotServlet extends HttpServlet {
             }
         }
 
-        response.sendRedirect("home.jsp");
     }
 
     private boolean verifyVerificationCode(String username, String verificationCode) {
