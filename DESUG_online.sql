@@ -196,3 +196,46 @@ CREATE TABLE login (
 );
 
 select * from login;
+
+
+CREATE TABLE elections (
+    election_id INT AUTO_INCREMENT PRIMARY KEY,
+    election_name VARCHAR(255) NOT NULL,
+    nomination_start_datetime DATETIME NOT NULL,
+    nomination_end_datetime DATETIME NOT NULL,
+    scrutiny_list_datetime DATETIME NOT NULL,
+    withdrawal_start_datetime DATETIME NOT NULL,
+    withdrawal_end_datetime DATETIME NOT NULL,
+    final_list_datetime DATETIME NOT NULL,
+    campaign_start_date DATE NOT NULL,
+    campaign_end_date DATE NOT NULL,
+    polling_agents_datetime DATETIME NOT NULL,
+    no_campaign_datetime DATETIME NOT NULL,
+    polling_date DATE NOT NULL,
+    polling_start_time TIME NOT NULL,
+    polling_end_time TIME NOT NULL,
+    results_datetime DATETIME NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE office_bearers (
+    election_id INT NOT NULL,
+    position VARCHAR(255) NOT NULL,
+    PRIMARY KEY (election_id, position),
+    FOREIGN KEY (election_id) REFERENCES elections(election_id)
+);
+
+CREATE TABLE school_boards_councillors (
+    election_id INT NOT NULL,
+    school_name VARCHAR(255) NOT NULL,
+    num_board_members INT NOT NULL,
+    num_councillors INT NOT NULL,
+    PRIMARY KEY (election_id, school_name),
+    FOREIGN KEY (election_id) REFERENCES elections(election_id)
+);
+
+
+use DESUG;
+SELECT * FROM elections;
+SELECT * FROM office_bearers;
+SELECT * FROM school_boards_councillors;
