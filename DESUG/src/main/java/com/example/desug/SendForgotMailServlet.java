@@ -71,7 +71,6 @@ public class SendForgotMailServlet extends HttpServlet {
             stmt.setString(1, registrationNumber);
             stmt.setString(2, verificationCode);
 
-
             // Calculate expiry time as current time + 5 minutes
             LocalDateTime sentTime = LocalDateTime.now();
             LocalDateTime expiryTime = LocalDateTime.now().plusMinutes(5);

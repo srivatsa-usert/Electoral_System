@@ -40,7 +40,7 @@
 </head>
 <body>
 <h2>Forgot Password</h2>
-<form action="changePasswordForgotServlet" method="post" >
+<form action="forgotPasswordServlet" method="post" >
     <label for="registrationNumber">Registration Number:</label><br>
     <input required type="text" id="registrationNumber" name="registrationNumber"><br><br>
 
