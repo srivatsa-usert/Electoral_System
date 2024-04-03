@@ -75,11 +75,11 @@ public class AddNewElectionServlet extends HttpServlet {
         for (String paramName : request.getParameterMap().keySet()) {
             if (paramName.startsWith("name-of-school-")) {
                 String schoolName = request.getParameter(paramName);
-                int numberOfMembers = Integer.parseInt(request.getParameter("number-of-members-" + paramName.split("-")[2]));
-                int numberOfCouncillors = Integer.parseInt(request.getParameter("number-of-councillors-" + paramName.split("-")[2]));
+                int numberOfMembers = Integer.parseInt(request.getParameter("number-of-school-board-members-" + paramName.split("-")[3]));
+                int numberOfCouncillors = Integer.parseInt(request.getParameter("number-of-councillors-" + paramName.split("-")[3]));
 
                 if ("other".equals(schoolName)) {
-                    schoolName = request.getParameter("other-school-name-" + paramName.split("-")[2]);
+                    schoolName = request.getParameter("other-school-name-" + paramName.split("-")[3]);
                 }
 
                 schoolNames.add(schoolName);
@@ -110,7 +110,7 @@ public class AddNewElectionServlet extends HttpServlet {
 
             // SQL query to insert data into elections table
             String sql = "INSERT INTO elections (election_name, nomination_start_datetime, nomination_end_datetime, scrutiny_list_datetime, withdrawal_start_datetime, withdrawal_end_datetime, final_list_datetime, campaign_start_date, campaign_end_date, polling_agents_datetime, no_campaign_datetime, polling_date, polling_start_time, polling_end_time, results_datetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, electionName);
             stmt.setString(2, nominationStartDateTime);
             stmt.setString(3, nominationEndDateTime);
@@ -164,7 +164,7 @@ public class AddNewElectionServlet extends HttpServlet {
                     PrintWriter out = response.getWriter();
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('New election added successfully');");
-                    out.println("location='your_success_page.jsp';");
+                    out.println("location='electionChairHome.jsp';");
                     out.println("</script>");
                 }
             }

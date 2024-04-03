@@ -113,77 +113,77 @@
                         <!-- election name -->
                         <div class="mb-5">
                             <label for="election-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Election Name: </label>
-                            <input type="text" id="election-name" name="election-name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="text" id="election-name" name="election-name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- nomination start date and time -->
                         <div class="mb-5">
                             <label for="nomination-start-date-time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomination Start Date & Time: </label>
-                            <input type="datetime-local" id="nomination-start-date-time" name="nomination-start-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="datetime-local" id="nomination-start-date-time" name="nomination-start-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- nomination end date and time -->
                         <div class="mb-5">
                             <label for="nomination-end-date-time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomination End Date & Time: </label>
-                            <input type="datetime-local" id="nomination-end-date-time" name="nomination-end-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="datetime-local" id="nomination-end-date-time" name="nomination-end-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- scrutiny & list of valid nominations date and time -->
                         <div class="mb-5">
                             <label for="scrutiny-list-date-time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Scrutiny & List of Valid Nominations Date & Time: </label>
-                            <input type="datetime-local" id="scrutiny-list-date-time" name="scrutiny-list-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="datetime-local" id="scrutiny-list-date-time" name="scrutiny-list-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- withdrawal of nominations start date and time -->
                         <div class="mb-5">
                             <label for="withdrawal-start-date-time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Withdrawal of Nominations Start Date & Time: </label>
-                            <input type="datetime-local" id="withdrawal-start-date-time" name="withdrawal-start-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="datetime-local" id="withdrawal-start-date-time" name="withdrawal-start-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- withdrawal of nominations end date and time -->
                         <div class="mb-5">
                             <label for="withdrawal-end-date-time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Withdrawal of Nominations End Date & Time: </label>
-                            <input type="datetime-local" id="withdrawal-end-date-time" name="withdrawal-end-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="datetime-local" id="withdrawal-end-date-time" name="withdrawal-end-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- announcement of final list of candidates date and time -->
                         <div class="mb-5">
                             <label for="final-list-date-time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Announcement of Final List of Candidates Date & Time: </label>
-                            <input type="datetime-local" id="final-list-date-time" name="final-list-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="datetime-local" id="final-list-date-time" name="final-list-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- campaigning start date -->
                         <div class="mb-5">
                             <label for="campaign-start-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Campaigning Start Date: </label>
-                            <input type="date" id="campaign-start-date" name="campaign-start-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="date" id="campaign-start-date" name="campaign-start-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- campaigning end date -->
                         <div class="mb-5">
                             <label for="campaign-end-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Campaigning End Date: </label>
-                            <input type="date" id="campaign-end-date" name="campaign-end-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="date" id="campaign-end-date" name="campaign-end-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- last date and time for submission of details of polling and counting agents -->
                         <div class="mb-5">
                             <label for="polling-counting-agents-date-time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Date & Time for Submission of Details of Polling and Counting Agents: </label>
-                            <input type="datetime-local" id="polling-counting-agents-date-time" name="polling-counting-agents-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="datetime-local" id="polling-counting-agents-date-time" name="polling-counting-agents-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- no campaign date and time -->
                         <div class="mb-5">
                             <label for="no-campaign-date-time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No Campaign Date & Time: </label>
-                            <input type="datetime-local" id="no-campaign-date-time" name="no-campaign-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="datetime-local" id="no-campaign-date-time" name="no-campaign-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- polling date -->
                         <div class="mb-5">
                             <label for="polling-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Polling Date: </label>
-                            <input type="date" id="polling-date" name="polling-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="date" id="polling-date" name="polling-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- polling start time -->
                         <div class="mb-5">
                             <label for="polling-start-time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Polling Start Time: </label>
-                            <input type="time" id="polling-start-time" name="polling-start-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="time" id="polling-start-time" name="polling-start-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- polling end time -->
                         <div class="mb-5">
                             <label for="polling-end-time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Polling End Time: </label>
-                            <input type="time" id="polling-end-time" name="polling-end-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="time" id="polling-end-time" name="polling-end-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                         <!-- results date and time -->
                         <div class="mb-5">
                             <label for="results-date-time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Results Date & Time: </label>
-                            <input type="datetime-local" id="results-date-time" name="results-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <input type="datetime-local" id="results-date-time" name="results-date-time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                         </div>
                     </div>
                 </div>
@@ -202,7 +202,7 @@
                         <div id="office-bearers-container">
                             <div class="office-bearer-input mb-3">
                                 <label for="office-bearers-0" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                                <select id="office-bearers-0" name="office-bearers-0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <select id="office-bearers-0" name="office-bearers-0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                                     <option value="" selected disabled>Choose an option</option>
                                     <option value="president">President</option>
                                     <option value="vice-president">Vice President</option>
@@ -233,7 +233,7 @@
                         <div id="school-board-members-councillors-container">
                             <div class="school-board-members-councillors-input mb-3">
                                 <label for="name-of-school-0" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                                <select id="name-of-school-0" name="name-of-school-0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <select id="name-of-school-0" name="name-of-school-0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                                     <option value="" selected disabled>Choose an option</option>
                                     <option value="school-of-life-sciences">School of Life Sciences</option>
                                     <option value="school-of-engineering-science-and-technology">School of Engineering Science and Technology</option>
@@ -252,9 +252,9 @@
                                 </select>
                                 <input type="text" id="other-school-name-0" name="other-school-name-0" class="hidden other-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter other school">
                                 <label for="number-of-school-board-members-0" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of School Board Members: </label>
-                                <input type="number" id="number-of-school-board-members-0" name="number-of-school-board-members-0" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <input type="number" id="number-of-school-board-members-0" name="number-of-school-board-members-0" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                                 <label for="number-of-councillors-0" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Councillors: </label>
-                                <input type="number" id="number-of-councillors-0" name="number-of-councillors-0" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <input type="number" id="number-of-councillors-0" name="number-of-councillors-0" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                             </div>
                         </div>
                         <button id="add-btn2" class="add-btn bg-blue-500 text-white px-4 py-2 rounded-md ml-2">+</button>
@@ -361,8 +361,8 @@
         const selectElement = newInput.querySelector('select');
         const inputElement = newInput.querySelector('input');
 
-        selectElement.name = `office-bearers-${officeBearerIndex}`;
-        inputElement.name = `other-position-${officeBearerIndex}`;
+        selectElement.name = 'office-bearers-'+officeBearerIndex;
+        inputElement.name = 'other-position-'+officeBearerIndex;
 
         // Increment index for the next set of fields
         officeBearerIndex++;
@@ -402,20 +402,23 @@
 
         // Set unique names for select and input elements
         const selectElement = newInput.querySelector('select');
-        const inputElement = newInput.querySelector('input');
-        const inputElement2 = newInput.querySelector('input');
-        const inputElement3 = newInput.querySelector('input');
+        const inputElement = newInput.querySelector('#number-of-school-board-members-0');
+        const inputElement2 = newInput.querySelector('#number-of-councillors-0');
+        const inputElement3 = newInput.querySelector('#other-school-name-0');
 
-        selectElement.name = `name-of-school-${schoolBoardMemberIndex}`;
-        inputElement.name = `number-of-school-board-members-${schoolBoardMemberIndex}`;
-        inputElement2.name = `number-of-councillors-${schoolBoardMemberIndex}`;
-        inputElement3.name = `other-school-${schoolBoardMemberIndex}`;
+        selectElement.name = 'name-of-school-' + schoolBoardMemberIndex;
+        inputElement.name = 'number-of-school-board-members-' + schoolBoardMemberIndex;
+        inputElement2.name = 'number-of-councillors-' + schoolBoardMemberIndex;
+        inputElement3.name = 'other-school-' + schoolBoardMemberIndex;
 
         // Increment index for the next set of fields
         schoolBoardMemberIndex++;
 
         // Clear the selected value
         selectElement.selectedIndex = 0;
+        inputElement.value = '';
+        inputElement2.value = '';
+        inputElement3.value = '';
 
         // Append the new input to the container
         container2.appendChild(newInput);
