@@ -34,6 +34,7 @@
             document.documentElement.classList.remove('dark')
         }
     </script>
+
 </head>
 <style>
     /* Style for scrollbar */
@@ -163,148 +164,234 @@
         </div>
     </nav>
 
+    <!-- Script to toggle the user menu -->
+    <script>
+        const loginButton = document.getElementById('loginButton');
+        const loginModal = document.getElementById('authentication-modal');
+        const userMenuButton = document.getElementById('user-menu-button');
+
+        window.addEventListener('load', function() {
+            let username = '<%= session.getAttribute("username") %>';
+            console.log(username);
+
+            if (username && username !== "null" && username !== "NULL") {
+                // User is logged in, then hide login button and show user menu button
+                loginButton.classList.add('hidden');
+                userMenuButton.classList.remove('hidden');
+                // userMenuButton.innerText = username;
+            }
+        });
+    </script>
+
     <!-- Main content -->
     <div class="flex-grow p-6 bg-white dark:bg-gray-800">
-        <h1 class="text-4xl font-bold mb-8 dark:text-white">Nomination Form</h1>
 
-        <!-- Nomination Form -->
-        <form id="nominationForm" name="nominationForm" method="post" action="submitNomination" >
-            <div class="nomination_form">
-                <label for="nameOfThePosition" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the Position:</label>
-                <select id="nameOfThePosition" name="nameofThePosition" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    <option value="" selected disabled>--position--</option>
-                    <option value="president">President</option>
-                    <option value="vice-president">Vice-President</option>
-                    <option value="general-secretary">General Secretary</option>
-                    <option value="joint-secretary">Joint Secretary</option>
-                    <option value="cultural-secretary">Cultural Secretary</option>
-                    <option value="sports-secretary">Sports Secretary</option>
-                    <option value="school-board-member">School Board Member</option>
-                    <option value="councillor">Councillor</option>
-                </select>
-                <br>
-                <label for="candidateRegistrationNumber" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Registration Number:</label>
-                <input id="candidateRegistrationNumber" name="candidateRegistrationNumber" type="text" minlength="8" maxlength="8" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <label for="candidateName" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the Candidate in BLOCK LETTERS<i>(as displayed on the Reg./ Semester ID Card)</i>:</label>
-                <input id="candidateName" name="candidateName" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <label for="nameOnBallotPaper" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the Candidate to be displayed on the Ballot Paper in BLOCK LETTERS:</label>
-                <input id="nameOnBallotPaper" name="nameOnBallotPaper" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                <br>
-                <label for="dateOfBirth" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth:</label>
-                <input id="dateOfBirth" name="dateOfBirth" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <label for="age" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Age:</label>
-                <input id="age" name="age" type="number" min="17" max="28" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <label for="categoryOfTheCandidate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category of the Candidate:</label>
-                <select id="categoryOfTheCandidate" name="categoryOfTheCandidate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    <option value="" selected disabled>--category--</option>
-                    <option value="gen">General</option>
-                    <option value="obc">OBC</option>
-                    <option value="ews">EWS</option>
-                    <option value="sc">SC</option>
-                    <option value="st">ST</option>
-                    <option value="pwd">PWD</option>
-                </select>
-                <br>
-                <label for="fathersName" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Father's Name:</label>
-                <input id="fathersName" name="fathersName" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                <br>
-                <label for="candidatesDepartment" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Department/School:</label>
-                <input id="candidatesDepartment" name="candidatesDepartment" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <label for="candidatesCourseAndSubject" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Course &amp; Subject:</label>
-                <input id="candidatesCourseAndSubject" name="candidatesCourseAndSubject" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <label for="semesterNumber" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Semester Number:</label>
-                <input id="semesterNumber" name="semesterNumber" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <label for="mobileNumber" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Mobile Number:</label>
-                <input id="mobileNumber" name="mobileNumber" type="number" minlength="10" maxlength="10" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                <br>
-                <label for="email" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Email ID:</label>
-                <input id="email" name="email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                <br>
-                <label for="residentialAddress" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Residential Address:</label>
-                <textarea id="residentialAddress" name="residentialAddress" rows="3" cols="50" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
-                <br>
-                <label for="proposerName" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the PROPOSER:</label>
-                <input id="proposerName" name="proposerName" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <label for="proposerRegistrationNumber" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">PROPOSER'S Registration Number:</label>
-                <input id="proposerRegistrationNumber" name="proposerRegistrationNumber" type="text" minlength="8" maxlength="8" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="fetchProposerDetails()" required>
-                <br>
-                <label for="proposersDepartment" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">PROPOSER's Department/School:</label>
-                <input id="proposersDepartment" name="proposersDepartment" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <label for="proposersCourseAndSubject" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">PROPOSER's Course &amp; Subject:</label>
-                <input id="proposersCourseAndSubject" name="proposersCourseAndSubject" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <!-- signature of proposer -->
-                <br>
-                <label for="seconderName" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the SECONDER:</label>
-                <input id="seconderName" name="seconderName" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <label for="seconderRegistrationNumber" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">SECONDER'S Registration Number:</label>
-                <input id="seconderRegistrationNumber" name="seconderRegistrationNumber" type="text" minlength="8" maxlength="8" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="fetchSeconderDetails()" required>
-                <br>
-                <label for="secondersDepartment" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">SECONDER's Department/School:</label>
-                <input id="secondersDepartment" name="secondersDepartment" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                <br>
-                <label for="secondersCourseAndSubject" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">SECONDER's Course &amp; Subject:</label>
-                <input id="secondersCourseAndSubject" name="secondersCourseAndSubject" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
 
-                <button id="proceedButton" type="button" onclick="proceed()" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Proceed</button>
-                <!-- signature of seconder -->
-            </div>
+        <h1 class="text-4xl font-bold mb-8 dark:text-white">File Nomination</h1>
 
-            <!-- Undertaking Modal -->
-            <div id="undertakingModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                <div class="bg-white rounded-lg p-2 max-w-md mx-4 overflow-y-auto max-h-[80vh]">
-                    <h2 class="text-2xl font-bold mb-4">UNDERTAKING BY THE CANDIDATE FILING THE NOMINATION</h2>
-                    <!-- Close button -->
-                    <button class="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-900" onclick="closeModal(event)">
-                        <svg class="h-6 w-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM5 5a.75.75 0 011.061 1.061L6.061 6l3.938 3.939L13.937 6l.002-.001a.75.75 0 111.06 1.061l-.001.002L10.06 10l3.939 3.938a.75.75 0 11-1.061 1.061L9 11.062l-3.938 3.939a.75.75 0 01-1.061-1.061L7.062 10 3.124 6.062A.748.748 0 013 5.999L3 6l.001-.001A.75.75 0 015 5z" clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                    <hr>
-                    <!-- Undertaking content -->
-                    <div class="undertaking-scroll-container">
-                        <p> <strong> I, _____, Registration Number: ________ Course/Subject: ________ have filed my nomination </strong> for the post of ________ </p>
-                        <h3> I hereby undertake: </h3>
-                        <ol class="ml-4 mr-4">
-                            <li>That the Proposer & Seconder Of my nomination are full-time duly registered students Of the University,</li>
-                            <li>That I do not have any criminal case filed against me in any police station / criminal record and have not been subjected to any disciplinary action by the University.</li>
-                            <li>That I have 75% of attendance upto 3 October 2023 and that academic arrears if any, are as per the norms Of the university,</li>
-                            <li>That I am not pursuing a second programme / course in this University at the same level.</li>
-                            <li>That I will diligently follow without fail all regulations issued down by the Returning Officers from time to time.</li>
-                            <li>That my supporters or I shall not cause any disturbance on the University campus or outside in any manner during the entire election process.</li>
-                            <li>That my supporters & I shall follow the Code of Conduct in letter & spirit.</li>
-                            <li>That my supporters or I shall not stall any officials involved in the election process from carrying out his/ her duties.</li>
-                            <li>That I shall follow all regulations issued in connection with a) Campaigning b) Open Dais c) Polling & d) Counting of votes.</li>
-                            <li>That I will personally ensure that any campaign materials belonging to me are removed soon after polling of votes & before the counting begins.</li>
-                            <li>That I Shall limit spending on campaigning to Rs. 7,000/- only.</li>
-                            <li>That I shall not resort to any unfair means or inducements during the entire election process to attract votes.</li>
-                            <li>That I shall not contain myself and my supporters from consumption of intoxicating substances in any form during the entire election process.</li>
-                            <li>That I shall submit detailed accounts with bills duly audited to the Office of the Dean of Students' Welfare within two weeks from the declaration of results.</li>
-                            <li>That the details furnished by me are true in respect of all details.</li>
-                        </ol>
-                        <hr>
-                        <p><strong>"I fully understand that I would be held responsible and my candidature and / or election to office, would be nullified for failing to follow norms laid down by the Returning Officers. The Returning Officers have the authority to cancel my candidature / nullify my election to office if any of the information furnished is found to be incorrect."</strong></p>
-                        <!-- Checkbox for agreement -->
-                        <label for="agreeCheckbox"><strong>I AGREE <%--TO THE TERMS AND CONDITIONS--%></strong></label>
-                        <input type="checkbox" id="agreeCheckbox" onchange="toggleCheckbox()" required>
-                        <hr>
-                        <button id="submitButton" type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
-                    </div>
-                    <hr>
+
+        <div id="accordion-collapse" data-accordion="collapse">
+            <h2 id="accordion-collapse-heading-1">
+                <button  type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
+                    <span>Nomination Form</span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                    </svg>
+                </button>
+            </h2>
+            <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                    <!-- Nomination Form -->
+                    <form id="nominationForm" name="nominationForm" method="post" action="submitNomination" >
+                        <div class="nomination_form">
+                            <label for="nameOfThePosition" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the Position:</label>
+                            <select id="nameOfThePosition" name="nameofThePosition" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <option value="" selected disabled>--position--</option>
+                            </select>
+                            <br>
+                            <label for="candidateRegistrationNumber" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Registration Number:</label>
+                            <input id="candidateRegistrationNumber" name="candidateRegistrationNumber" type="text" minlength="8" maxlength="8" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <label for="candidateName" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the Candidate in BLOCK LETTERS<i>(as displayed on the Reg./ Semester ID Card)</i>:</label>
+                            <input id="candidateName" name="candidateName" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <label for="nameOnBallotPaper" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the Candidate to be displayed on the Ballot Paper in BLOCK LETTERS:</label>
+                            <input id="nameOnBallotPaper" name="nameOnBallotPaper" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <br>
+                            <label for="dateOfBirth" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth:</label>
+                            <input id="dateOfBirth" name="dateOfBirth" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <label for="age" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Age:</label>
+                            <input id="age" name="age" type="number" min="17" max="28" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <label for="categoryOfTheCandidate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category of the Candidate:</label>
+                            <select id="categoryOfTheCandidate" name="categoryOfTheCandidate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <option value="" selected disabled>--category--</option>
+                                <option value="gen">General</option>
+                                <option value="obc">OBC</option>
+                                <option value="ews">EWS</option>
+                                <option value="sc">SC</option>
+                                <option value="st">ST</option>
+                                <option value="pwd">PWD</option>
+                            </select>
+                            <br>
+                            <label for="fathersName" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Father's Name:</label>
+                            <input id="fathersName" name="fathersName" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <br>
+                            <label for="candidatesDepartment" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Department/School:</label>
+                            <input id="candidatesDepartment" name="candidatesDepartment" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <label for="candidatesCourseAndSubject" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Course &amp; Subject:</label>
+                            <input id="candidatesCourseAndSubject" name="candidatesCourseAndSubject" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <label for="semesterNumber" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Semester Number:</label>
+                            <input id="semesterNumber" name="semesterNumber" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <label for="mobileNumber" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Mobile Number:</label>
+                            <input id="mobileNumber" name="mobileNumber" type="number" minlength="10" maxlength="10" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <br>
+                            <label for="email" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Email ID:</label>
+                            <input id="email" name="email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <br>
+                            <label for="residentialAddress" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Residential Address:</label>
+                            <textarea id="residentialAddress" name="residentialAddress" rows="3" cols="50" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+                            <br>
+                            <label for="proposerName" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the PROPOSER:</label>
+                            <input id="proposerName" name="proposerName" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <label for="proposerRegistrationNumber" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">PROPOSER'S Registration Number:</label>
+                            <input id="proposerRegistrationNumber" name="proposerRegistrationNumber" type="text" minlength="8" maxlength="8" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="fetchProposerDetails()" required>
+                            <br>
+                            <label for="proposersDepartment" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">PROPOSER's Department/School:</label>
+                            <input id="proposersDepartment" name="proposersDepartment" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <label for="proposersCourseAndSubject" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">PROPOSER's Course &amp; Subject:</label>
+                            <input id="proposersCourseAndSubject" name="proposersCourseAndSubject" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <!-- signature of proposer -->
+                            <br>
+                            <label for="seconderName" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the SECONDER:</label>
+                            <input id="seconderName" name="seconderName" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <label for="seconderRegistrationNumber" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">SECONDER'S Registration Number:</label>
+                            <input id="seconderRegistrationNumber" name="seconderRegistrationNumber" type="text" minlength="8" maxlength="8" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="fetchSeconderDetails()" required>
+                            <br>
+                            <label for="secondersDepartment" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">SECONDER's Department/School:</label>
+                            <input id="secondersDepartment" name="secondersDepartment" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            <br>
+                            <label for="secondersCourseAndSubject" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">SECONDER's Course &amp; Subject:</label>
+                            <input id="secondersCourseAndSubject" name="secondersCourseAndSubject" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+
+                            <button id="proceedButton" type="button" onclick="proceed()" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Proceed</button>
+                            <!-- signature of seconder -->
+                        </div>
+
+                        <!-- Undertaking Modal -->
+                        <div id="undertakingModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                            <div class="bg-white rounded-lg p-2 max-w-md mx-4 overflow-y-auto max-h-[80vh]">
+                                <h2 class="text-2xl font-bold mb-4">UNDERTAKING BY THE CANDIDATE FILING THE NOMINATION</h2>
+                                <!-- Close button -->
+                                <button class="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-900" onclick="closeModal(event)">
+                                    <svg class="h-6 w-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM5 5a.75.75 0 011.061 1.061L6.061 6l3.938 3.939L13.937 6l.002-.001a.75.75 0 111.06 1.061l-.001.002L10.06 10l3.939 3.938a.75.75 0 11-1.061 1.061L9 11.062l-3.938 3.939a.75.75 0 01-1.061-1.061L7.062 10 3.124 6.062A.748.748 0 013 5.999L3 6l.001-.001A.75.75 0 015 5z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                                <hr>
+                                <!-- Undertaking content -->
+                                <div class="undertaking-scroll-container">
+                                    <p> <strong> I, _____, Registration Number: ________ Course/Subject: ________ have filed my nomination </strong> for the post of ________ </p>
+                                    <h3> I hereby undertake: </h3>
+                                    <ol class="ml-4 mr-4">
+                                        <li>That the Proposer & Seconder Of my nomination are full-time duly registered students Of the University,</li>
+                                        <li>That I do not have any criminal case filed against me in any police station / criminal record and have not been subjected to any disciplinary action by the University.</li>
+                                        <li>That I have 75% of attendance upto 3 October 2023 and that academic arrears if any, are as per the norms Of the university,</li>
+                                        <li>That I am not pursuing a second programme / course in this University at the same level.</li>
+                                        <li>That I will diligently follow without fail all regulations issued down by the Returning Officers from time to time.</li>
+                                        <li>That my supporters or I shall not cause any disturbance on the University campus or outside in any manner during the entire election process.</li>
+                                        <li>That my supporters & I shall follow the Code of Conduct in letter & spirit.</li>
+                                        <li>That my supporters or I shall not stall any officials involved in the election process from carrying out his/ her duties.</li>
+                                        <li>That I shall follow all regulations issued in connection with a) Campaigning b) Open Dais c) Polling & d) Counting of votes.</li>
+                                        <li>That I will personally ensure that any campaign materials belonging to me are removed soon after polling of votes & before the counting begins.</li>
+                                        <li>That I Shall limit spending on campaigning to Rs. 7,000/- only.</li>
+                                        <li>That I shall not resort to any unfair means or inducements during the entire election process to attract votes.</li>
+                                        <li>That I shall not contain myself and my supporters from consumption of intoxicating substances in any form during the entire election process.</li>
+                                        <li>That I shall submit detailed accounts with bills duly audited to the Office of the Dean of Students' Welfare within two weeks from the declaration of results.</li>
+                                        <li>That the details furnished by me are true in respect of all details.</li>
+                                    </ol>
+                                    <hr>
+                                    <p><strong>"I fully understand that I would be held responsible and my candidature and / or election to office, would be nullified for failing to follow norms laid down by the Returning Officers. The Returning Officers have the authority to cancel my candidature / nullify my election to office if any of the information furnished is found to be incorrect."</strong></p>
+                                    <!-- Checkbox for agreement -->
+                                    <label for="agreeCheckbox"><strong>I AGREE <%--TO THE TERMS AND CONDITIONS--%></strong></label>
+                                    <input type="checkbox" id="agreeCheckbox" onchange="toggleCheckbox()" required>
+                                    <hr>
+                                    <button id="submitButton" type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 </div>
             </div>
-        </form>
-    </div>
+
+            <!-- Enclosures -->
+            <h2 id="accordion-collapse-heading-2">
+                <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
+                    <span>Enclosures</span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                    </svg>
+                </button>
+            </h2>
+            <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="candidateSemesterRegistrationCard">Upload Candidate Semester Registration Card</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="candidateSemesterRegistrationCard" type="file">
+                </div>
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="proposerSemesterRegistrationCard">Upload Proposer Semester Registration Card</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proposerSemesterRegistrationCard" type="file">
+                </div>
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="seconderSemesterRegistrationCard">Upload Seconder Semester Registration Card</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="seconderSemesterRegistrationCard" type="file">
+                </div>
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="proofOfDob">Upload Proof for Date of Birth</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proofOfDob" type="file">
+                </div>
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="certificateOfAttendanceAcademicRecord">Upload Certificate of Attendance & Academic Record</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="certificateOfAttendanceAcademicRecord" type="file">
+                </div>
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="categoryCertificate">Upload Certificate of Category</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="categoryCertificate" type="file">
+                </div>
+
+
+            </div>
+            <h2 id="accordion-collapse-heading-3">
+                <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
+                    <span>What are the differences between Flowbite and Tailwind UI?</span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                    </svg>
+                </button>
+            </h2>
+            <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
+                <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.</p>
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.</p>
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
+                    <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
+                        <li><a href="https://flowbite.com/pro/" class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
+                        <li><a href="https://tailwindui.com/" rel="nofollow" class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
 
     <!-- Footer -->
     <footer class="bg-white shadow dark:bg-gray-800">
@@ -327,25 +414,6 @@
             </ul>
         </div>
     </footer>
-
-    <!-- Script to toggle the user menu -->
-    <script>
-        const loginButton = document.getElementById('loginButton');
-        const loginModal = document.getElementById('authentication-modal');
-        const userMenuButton = document.getElementById('user-menu-button');
-
-        window.addEventListener('load', function() {
-            let username = '<%= session.getAttribute("username") %>';
-            console.log(username);
-
-            if (username && username !== "null" && username !== "NULL") {
-                // User is logged in, then hide login button and show user menu button
-                loginButton.classList.add('hidden');
-                userMenuButton.classList.remove('hidden');
-                // userMenuButton.innerText = username;
-            }
-        });
-    </script>
 
     <script>
         const nomination = document.getElementById("nomination");
@@ -491,6 +559,8 @@
         function redirectToHome() {
             window.location.href = "home.jsp";
         }
+
+
     </script>
 
     <!-- Script to toggle between light and dark mode -->
@@ -523,5 +593,64 @@
             }
         });
     </script>
+    <script>
+        // Create a new XMLHttpRequest object
+        const xhr = new XMLHttpRequest();
+
+        // Configure the request
+        xhr.open('GET', 'positions', true);
+
+        // Set up event handler for when the request completes
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // Parse JSON response
+                const data = JSON.parse(xhr.responseText);
+
+                // Get the select element
+                const select = document.getElementById('nameOfThePosition');
+
+                // Add options to the select element
+                data.forEach(position => {
+                    const option = document.createElement('option');
+                    option.value = position;
+                    option.text = position;
+                    select.appendChild(option);
+                });
+            } else {
+                console.error('Request failed with status:', xhr.status);
+            }
+        };
+
+        // Set up event handler for when an error occurs
+        xhr.onerror = function() {
+            console.error('Request failed');
+        };
+
+        // Send the request
+        xhr.send();
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get all accordion buttons
+            const accordionButtons = document.querySelectorAll('[data-accordion-target]');
+
+            // Add click event listener to each accordion button
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Get the target accordion body
+                    const targetId = button.getAttribute('data-accordion-target');
+                    const accordionBody = document.querySelector(targetId);
+
+                    // Toggle the visibility of the accordion body
+                    accordionBody.classList.toggle('hidden');
+
+                    // Update the aria-expanded attribute to reflect the current state
+                    const isExpanded = accordionBody.classList.contains('hidden') ? 'false' : 'true';
+                    button.setAttribute('aria-expanded', isExpanded);
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

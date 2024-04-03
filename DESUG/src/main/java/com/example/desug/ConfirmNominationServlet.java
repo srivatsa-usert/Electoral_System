@@ -1,0 +1,108 @@
+package com.example.desug;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet("/confirmNomination")
+public class ConfirmNominationServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    private static Properties getConnectionData() {
+        Properties props = new Properties();
+        try {
+            InputStream inputStream = ConfirmNominationServlet.class.getClassLoader().getResourceAsStream("db.properties");
+            props.load(inputStream);
+        } catch (IOException ioe) {
+            Logger lgr = Logger.getLogger(ConfirmNominationServlet.class.getName());
+            lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
+        }
+        return props;
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get the confirmation status (accept/reject)
+        String confirmation = request.getParameter("confirmation");
+        // Get the candidate registration number
+        String registrationNumber = request.getParameter("candidate");
+        String nominationId = request.getParameter("nomination_id");
+
+        Properties props = getConnectionData();
+
+        // Database connection parameters
+        String jdbcUrl = props.getProperty("db.url");
+        String dbUser = props.getProperty("db.username");
+        String dbPassword = props.getProperty("db.password");
+
+        // JDBC variables
+        Connection conn = null;
+
+        try {
+            // Establishing connection
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
+
+            // Check if the confirmation is for accepting the nomination
+                // SQL query to check if the registration number corresponds to a proposer
+                String sqlCheckProposer = "SELECT COUNT(*) FROM candidate_nomination WHERE proposer_registration_number = ?";
+                PreparedStatement pstmtCheckProposer = conn.prepareStatement(sqlCheckProposer);
+                pstmtCheckProposer.setString(1, registrationNumber);
+                ResultSet proposerResult = pstmtCheckProposer.executeQuery();
+
+                // SQL query to check if the registration number corresponds to a seconder
+                String sqlCheckSeconder = "SELECT COUNT(*) FROM candidate_nomination WHERE seconder_registration_number = ?";
+                PreparedStatement pstmtCheckSeconder = conn.prepareStatement(sqlCheckSeconder);
+                pstmtCheckSeconder.setString(1, registrationNumber);
+                ResultSet seconderResult = pstmtCheckSeconder.executeQuery();
+
+                // Check if the registration number corresponds to a proposer
+                if (proposerResult.next() && proposerResult.getInt(1) > 0) {
+                    // Update proposer status
+                    String sqlUpdateProposerStatus = "UPDATE nomination_status SET proposer_status = ? WHERE nomination_id = ?";
+                    PreparedStatement pstmtUpdateProposerStatus = conn.prepareStatement(sqlUpdateProposerStatus);
+                    pstmtUpdateProposerStatus.setString(1, confirmation);
+                    pstmtUpdateProposerStatus.setString(2, nominationId);
+                    int rowsUpdated = pstmtUpdateProposerStatus.executeUpdate();
+                    // Handle the result as needed
+                } else if (seconderResult.next() && seconderResult.getInt(1) > 0) {
+                    // Update seconder status
+                    String sqlUpdateSeconderStatus = "UPDATE nomination_status SET seconder_status = ? WHERE nomination_id = ?";
+                    PreparedStatement pstmtUpdateSeconderStatus = conn.prepareStatement(sqlUpdateSeconderStatus);
+                    pstmtUpdateSeconderStatus.setString(1, confirmation);
+                    pstmtUpdateSeconderStatus.setString(2, nominationId);
+                    int rowsUpdated = pstmtUpdateSeconderStatus.executeUpdate();
+                    // Handle the result as needed
+                } else {
+                    // Handle the case where the registration number does not match any records
+                }
+
+            // Redirect to a success page after processing confirmation
+            response.sendRedirect("success.jsp");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            // Redirect to an error page if an exception occurs
+            response.sendRedirect("error.jsp");
+        } finally {
+            // Closing resources
+            try {
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
