@@ -49,6 +49,8 @@ public class SubmitNominationServlet extends HttpServlet {
         String proposerRegistrationNumber = request.getParameter("proposerRegistrationNumber");
         String seconderRegistrationNumber = request.getParameter("seconderRegistrationNumber");
 
+        /*System.out.println(registrationNumber + " - " + age);*/
+
         Properties props = getConnectionData();
 
         // Database connection parameters
