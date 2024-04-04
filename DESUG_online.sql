@@ -238,4 +238,13 @@ CREATE TABLE school_boards_councillors (
 use DESUG;
 SELECT * FROM elections;
 SELECT * FROM office_bearers;
+
+drop table positions;
 SELECT * FROM school_boards_councillors;
+
+show tables;
+select * from candidate_nomination;
+show create table candidate_nomination;
+
+select * from nomination_status;
+show create table nomination_status;

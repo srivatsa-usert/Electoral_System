@@ -57,15 +57,17 @@ public class ConfirmNominationServlet extends HttpServlet {
 
             // Check if the confirmation is for accepting the nomination
                 // SQL query to check if the registration number corresponds to a proposer
-                String sqlCheckProposer = "SELECT COUNT(*) FROM candidate_nomination WHERE proposer_registration_number = ?";
+                String sqlCheckProposer = "SELECT COUNT(*) FROM candidate_nomination WHERE proposer_registration_number = ? AND id = ?";
                 PreparedStatement pstmtCheckProposer = conn.prepareStatement(sqlCheckProposer);
                 pstmtCheckProposer.setString(1, registrationNumber);
+                pstmtCheckProposer.setString(2, nominationId);
                 ResultSet proposerResult = pstmtCheckProposer.executeQuery();
 
                 // SQL query to check if the registration number corresponds to a seconder
-                String sqlCheckSeconder = "SELECT COUNT(*) FROM candidate_nomination WHERE seconder_registration_number = ?";
+                String sqlCheckSeconder = "SELECT COUNT(*) FROM candidate_nomination WHERE seconder_registration_number = ? and id = ?";
                 PreparedStatement pstmtCheckSeconder = conn.prepareStatement(sqlCheckSeconder);
                 pstmtCheckSeconder.setString(1, registrationNumber);
+                pstmtCheckSeconder.setString(2, nominationId);
                 ResultSet seconderResult = pstmtCheckSeconder.executeQuery();
 
                 // Check if the registration number corresponds to a proposer

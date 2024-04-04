@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +38,15 @@ public class PositionsRetrievalServlet extends HttpServlet {
             Connection conn = null;
             PreparedStatement pstmt = null;
             ResultSet positionResult = null;
+
+            HttpSession session = request.getSession();
+            String candidateRegNumber = "";
+
+            // Check if session is not null and if username attribute is present
+            if (session != null && session.getAttribute("username") != null) {
+                // Get the registration number from session attribute "username"
+                candidateRegNumber = (String) session.getAttribute("username");
+            }
 
             Properties props = getConnectionData();
 
