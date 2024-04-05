@@ -257,3 +257,5 @@ DROP FOREIGN KEY "login_ibfk_1";
 ALTER TABLE "login"
 ADD COLUMN "type" ENUM('Student', 'Dean', 'Hod', 'ElectionChair') NOT NULL DEFAULT 'Student';
 
+desc UploadedFiles;
+select * from UploadedFiles;

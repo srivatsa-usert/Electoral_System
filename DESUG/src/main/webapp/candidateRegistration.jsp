@@ -154,7 +154,7 @@
             line2.classList.remove('bg-gray-200','dark:bg-gray-700');
             line2.classList.add('bg-blue-700','dark:bg-blue-600');
             document.getElementById("enclosuresFormContainer").classList.add('hidden');
-
+            document.getElementById("deanApprovalFormContainer").classList.remove('hidden');
         }
         if (status >= 3) {
             circle3.classList.remove('bg-gray-200','dark:bg-gray-700');
@@ -317,8 +317,6 @@
                 <h3 class="font-medium text-gray-900 dark:text-white">Election Chair Approval</h3>
             </div>
     </ol>
-
-
 
 
     <!-- Nomination Form -->
@@ -485,32 +483,36 @@
             <div class="enclosures_form">
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="candidateSemesterRegistrationCard">Upload Candidate Semester Registration Card</label>
-                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="candidateSemesterRegistrationCard" type="file">
+                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="candidateSemesterRegistrationCard" name="candidateSemesterRegistrationCard" type="file">
                 </div>
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="proposerSemesterRegistrationCard">Upload Proposer Semester Registration Card</label>
-                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proposerSemesterRegistrationCard" type="file">
+                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proposerSemesterRegistrationCard" name="proposerSemesterRegistrationCard" type="file">
                 </div>
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="seconderSemesterRegistrationCard">Upload Seconder Semester Registration Card</label>
-                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="seconderSemesterRegistrationCard" type="file">
+                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="seconderSemesterRegistrationCard" name="seconderSemesterRegistrationCard" type="file">
                 </div>
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="proofOfDob">Upload Proof for Date of Birth</label>
-                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proofOfDob" type="file">
+                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proofOfDob" name="proofOfDob" type="file">
                 </div>
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="certificateOfAttendanceAcademicRecord">Upload Certificate of Attendance & Academic Record</label>
-                    <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="certificateOfAttendanceAcademicRecord" type="file">
+                    <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="certificateOfAttendanceAcademicRecord" name="certificateOfAttendanceAcademicRecord" type="file">
                 </div>
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="categoryCertificate">Upload Certificate of Category</label>
-                    <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="categoryCertificate" type="file">
+                    <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="categoryCertificate" name="categoryCertificate" type="file">
                 </div>
             </div>
             <button id="submitEnclosuresButton" type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
         </form>
     </div>
+
+    <!-- Dean Approval -->
+    <div id="deanApprovalFormContainer" class="hidden">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination is under process.</h1>
 </div>
 
 <!-- Footer -->

@@ -129,7 +129,7 @@ public class ConfirmNominationServlet extends HttpServlet {
 
         if (oppositeStatusResult.next() && oppositeStatusResult.getString(1).equalsIgnoreCase("yes")) {
             // Both roles have confirmed, send email to dean
-            sendMailToDean("21mcme06@uohyd.ac.in", "Nomination Confirmation", "Both the proposer and seconder have confirmed the nomination for nomination ID: " + nominationId);
+            sendMailToDean("21mcme08@uohyd.ac.in", "Nomination Confirmation", "Both the proposer and seconder have confirmed the nomination for nomination ID: " + nominationId);
             // Change to dean mail later
         }
     }
