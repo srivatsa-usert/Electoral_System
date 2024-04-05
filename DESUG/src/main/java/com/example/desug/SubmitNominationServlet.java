@@ -69,7 +69,7 @@ public class SubmitNominationServlet extends HttpServlet {
             conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
             // SQL query to insert data into candidate_nomination table
-            String sqlNomination = "INSERT INTO candidate_nomination (position, registration_number, name_on_ballot_paper, age, category, fathers_name, mobile_number, email, residential_address, proposer_registration_number, seconder_registration_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlNomination = "INSERT INTO candidate_nomination (position, registration_number, name_on_ballot_paper, age, category, fathers_name, mobile_number, email, residential_address, proposer_registration_number, seconder_registration_number, election_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1))";
             pstmtNomination = conn.prepareStatement(sqlNomination, PreparedStatement.RETURN_GENERATED_KEYS);
 
             // Set parameters for the nomination SQL query
@@ -100,7 +100,7 @@ public class SubmitNominationServlet extends HttpServlet {
             }
 
             // SQL query to insert data into nomination_status table
-            String sqlStatus = "INSERT INTO nomination_status (nomination_id, status) VALUES (?, 'Pending')";
+            String sqlStatus = "INSERT INTO nomination_status (nomination_id, status) VALUES (?, '1')";
             pstmtStatus = conn.prepareStatement(sqlStatus);
             pstmtStatus.setInt(1, nomination_id);
 
@@ -175,7 +175,7 @@ public class SubmitNominationServlet extends HttpServlet {
                 // Send email to seconder
                 sendEmail(seconderEmail, "Nomination Approval Confirmation", messageToSeconder);
 
-                response.sendRedirect("home.jsp"); // Redirect to a success page
+                response.sendRedirect("candidateRegistration.jsp"); // Redirect to a success page
             } else {
                 // Failed to insert data
                 response.sendRedirect("error.jsp"); // Redirect to an error page

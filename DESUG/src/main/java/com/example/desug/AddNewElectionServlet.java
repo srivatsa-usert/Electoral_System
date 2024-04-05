@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -109,7 +111,7 @@ public class AddNewElectionServlet extends HttpServlet {
             conn.setAutoCommit(false);
 
             // SQL query to insert data into elections table
-            String sql = "INSERT INTO elections (election_name, nomination_start_datetime, nomination_end_datetime, scrutiny_list_datetime, withdrawal_start_datetime, withdrawal_end_datetime, final_list_datetime, campaign_start_date, campaign_end_date, polling_agents_datetime, no_campaign_datetime, polling_date, polling_start_time, polling_end_time, results_datetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO elections (election_name, nomination_start_datetime, nomination_end_datetime, scrutiny_list_datetime, withdrawal_start_datetime, withdrawal_end_datetime, final_list_datetime, campaign_start_date, campaign_end_date, polling_agents_datetime, no_campaign_datetime, polling_date, polling_start_time, polling_end_time, results_datetime, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, electionName);
             stmt.setString(2, nominationStartDateTime);
@@ -126,6 +128,10 @@ public class AddNewElectionServlet extends HttpServlet {
             stmt.setString(13, pollingStartTime);
             stmt.setString(14, pollingEndTime);
             stmt.setString(15, resultsDateTime);
+
+            LocalDateTime createdAt = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            stmt.setString(16,createdAt.format(formatter));
 
             int rowsInserted = stmt.executeUpdate();
 

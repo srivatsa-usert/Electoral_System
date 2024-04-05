@@ -51,25 +51,19 @@ public class CreateUserServlet extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
-            // SQL query to get all roll_numbers from student table
-            String sql = "SELECT roll_number FROM student";
-            stmt = conn.prepareStatement(sql);
-            rs = stmt.executeQuery();
 
             // Loop through each roll_number
-            while (rs.next()) {
-                String rollNumber = rs.getString("roll_number");
 
                 // Generate hashed password based on the roll_number
-                String hashedPassword = hashPassword(rollNumber);
+                String hashedPassword = hashPassword("ec");
 
                 // Insert username and hashed password into login table
-                String insertSql = "INSERT INTO login (username, password) VALUES (?, ?)";
+                String insertSql = "INSERT INTO login (username, password, type) VALUES (?, ?, ?)";
                 PreparedStatement insertStmt = conn.prepareStatement(insertSql);
-                insertStmt.setString(1, rollNumber);
+                insertStmt.setString(1, "ec");
                 insertStmt.setString(2, hashedPassword);
+                insertStmt.setString(3, "ElectionChair");
                 insertStmt.executeUpdate();
-            }
 
             // Redirect to success page or perform other actions if needed
             response.sendRedirect("home.jsp");

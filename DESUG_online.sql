@@ -248,3 +248,12 @@ show create table candidate_nomination;
 
 select * from nomination_status;
 show create table nomination_status;
+
+show create table login;
+select * from login;
+ALTER TABLE "login"
+DROP FOREIGN KEY "login_ibfk_1";
+
+ALTER TABLE "login"
+ADD COLUMN "type" ENUM('Student', 'Dean', 'Hod', 'ElectionChair') NOT NULL DEFAULT 'Student';
+

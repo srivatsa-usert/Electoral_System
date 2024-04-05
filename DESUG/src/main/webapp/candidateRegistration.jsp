@@ -10,11 +10,13 @@
 <%
     session = request.getSession();
     String candidateRegNumber = "";
+    String status = "0";
 
     // Check if session is not null and if username attribute is present
     if (session != null && session.getAttribute("username") != null) {
         // Get the registration number from session attribute "username"
         candidateRegNumber = (String) session.getAttribute("username");
+        status = (String) session.getAttribute("status");
     }
 %>
 <html>
@@ -43,7 +45,7 @@
         }
 
         /* Additional CSS styles */
-        #undertakingModal ol {
+        #undertaking-modal ol {
             padding-left: 20px;
             list-style-type: decimal;
             margin-bottom: 10px; /* Add margin to separate list from checkbox and submit button */
@@ -107,6 +109,65 @@
         };
         xhr.send();
     }
+
+    document.addEventListener("DOMContentLoaded", function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "getCandidateStatus", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        let status = response.status;
+                        // Update CSS classes based on status
+                        updateCircleStyles(status);
+                    } else {
+                        console.error("Error occurred while fetching candidate status: " + xhr.status);
+                    }
+                }
+            };
+            xhr.send();
+    });
+
+    function updateCircleStyles(status) {
+        const circle1 = document.getElementById("circle1");
+        const circle2 = document.getElementById("circle2");
+        const circle3 = document.getElementById("circle3");
+        const circle4 = document.getElementById("circle4");
+        const line1 = document.getElementById("line1");
+        const line2 = document.getElementById("line2");
+        const line3 = document.getElementById("line3");
+
+
+
+        // Update CSS classes based on status
+        if (status >= 1) {
+            circle1.classList.remove('bg-gray-200','dark:bg-gray-700');
+            circle1.classList.add('bg-blue-700','dark:bg-blue-600');
+            line1.classList.remove('bg-gray-200','dark:bg-gray-700');
+            line1.classList.add('bg-blue-700','dark:bg-blue-600');
+            document.getElementById("nominationsFormContainer").classList.add('hidden');
+            document.getElementById("enclosuresFormContainer").classList.remove('hidden');
+        }
+        if (status >= 2) {
+            circle2.classList.remove('bg-gray-200','dark:bg-gray-700');
+            circle2.classList.add('bg-blue-700','dark:bg-blue-600');
+            line2.classList.remove('bg-gray-200','dark:bg-gray-700');
+            line2.classList.add('bg-blue-700','dark:bg-blue-600');
+            document.getElementById("enclosuresFormContainer").classList.add('hidden');
+
+        }
+        if (status >= 3) {
+            circle3.classList.remove('bg-gray-200','dark:bg-gray-700');
+            circle3.classList.add('bg-blue-700','dark:bg-blue-600');
+            line3.classList.remove('bg-gray-200','dark:bg-gray-700');
+            line3.classList.add('bg-blue-700','dark:bg-blue-600');
+        }
+        if (status >= 4) {
+            circle4.classList.remove('bg-gray-200','dark:bg-gray-700');
+            circle4.classList.add('bg-blue-700','dark:bg-blue-600');
+        }
+    }
+
 </script>
 
 <body class="flex flex-col min-h-screen">
@@ -199,16 +260,20 @@
 <div class="flex-grow p-6 bg-white dark:bg-gray-800">
 
     <%--<h1 class="text-3xl font-bold text-gray-900 dark:text-white">File Nomination</h1> <br>--%>
-    <!-- Progress bar -->
+<%--   for blue region     <div class="z-10 flex items-center justify-center w-9 h-9 bg-blue-700 rounded-full dark:bg-blue-600 shrink-0">--%>
+<%--   for grey region     <div class="z-10 flex items-center justify-center w-9 h-9 bg-gray-200 rounded-full dark:bg-gray-700 shrink-0">--%>
+
+
+        <!-- Progress bar -->
     <ol class="flex items-center justify-center">
         <li class="relative w-full mb-6">
             <div class="flex items-center">
-                <div class="z-10 flex items-center justify-center w-9 h-9 bg-blue-700 rounded-full dark:bg-blue-600 shrink-0">
-                    <svg class="w-6 h-6 text-blue-700 dark:text-blue-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                <div id="circle1" class="z-10 flex items-center justify-center w-9 h-9 bg-gray-200 rounded-full dark:bg-gray-700 shrink-0">
+                    <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                         <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
                     </svg>
                 </div>
-                <div class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                <div id="line1" class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
             </div>
             <div class="mt-3">
                 <h3 class="font-medium text-gray-900 dark:text-white">File Nomination</h3>
@@ -216,12 +281,12 @@
         </li>
         <li class="relative w-full mb-6">
             <div class="flex items-center">
-                <div class="z-10 flex items-center justify-center w-9 h-9 bg-blue-700 rounded-full dark:bg-blue-600 shrink-0">
-                    <svg class="w-6 h-6 text-blue-700 dark:text-blue-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                <div id="circle2" class="z-10 flex items-center justify-center w-9 h-9 bg-gray-200 rounded-full dark:bg-gray-700 shrink-0">
+                    <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                         <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
                     </svg>
                 </div>
-                <div class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                <div id="line2" class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
             </div>
             <div class="mt-3">
                 <h3 class="font-medium text-gray-900 dark:text-white">Upload Enclosures</h3>
@@ -229,12 +294,12 @@
         </li>
         <li class="relative w-full mb-6">
             <div class="flex items-center">
-                <div class="z-10 flex items-center justify-center w-9 h-9 bg-gray-200 rounded-full dark:bg-gray-700 shrink-0">
-                    <svg class="w-6 h-6 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                <div id="circle3" class="z-10 flex items-center justify-center w-9 h-9 bg-gray-200 rounded-full dark:bg-gray-700 shrink-0">
+                    <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                         <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
                     </svg>
                 </div>
-                <div class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                <div id="line3" class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
             </div>
             <div class="mt-3">
                 <h3 class="font-medium text-gray-900 dark:text-white">Dean Approval</h3>
@@ -242,8 +307,8 @@
         </li>
         <li class="relative w-full mb-6">
             <div class="flex items-center">
-                <div class="z-10 flex items-center justify-center w-9 h-9 bg-gray-200 rounded-full dark:bg-gray-700 shrink-0">
-                    <svg class="w-6 h-6 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                <div id="circle4" class="z-10 flex items-center justify-center w-9 h-9 bg-gray-200 rounded-full dark:bg-gray-700 shrink-0">
+                    <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                         <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
                     </svg>
                 </div>
@@ -252,6 +317,9 @@
                 <h3 class="font-medium text-gray-900 dark:text-white">Election Chair Approval</h3>
             </div>
     </ol>
+
+
+
 
     <!-- Nomination Form -->
     <div id="nominationsFormContainer" class="">
@@ -417,19 +485,19 @@
             <div class="enclosures_form">
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="candidateSemesterRegistrationCard">Upload Candidate Semester Registration Card</label>
-                    <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="candidateSemesterRegistrationCard" type="file">
+                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="candidateSemesterRegistrationCard" type="file">
                 </div>
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="proposerSemesterRegistrationCard">Upload Proposer Semester Registration Card</label>
-                    <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proposerSemesterRegistrationCard" type="file">
+                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proposerSemesterRegistrationCard" type="file">
                 </div>
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="seconderSemesterRegistrationCard">Upload Seconder Semester Registration Card</label>
-                    <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="seconderSemesterRegistrationCard" type="file">
+                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="seconderSemesterRegistrationCard" type="file">
                 </div>
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="proofOfDob">Upload Proof for Date of Birth</label>
-                    <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proofOfDob" type="file">
+                    <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proofOfDob" type="file">
                 </div>
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="certificateOfAttendanceAcademicRecord">Upload Certificate of Attendance & Academic Record</label>
@@ -540,23 +608,23 @@
     }
 
     function proceed() {
-        document.getElementById("undertakingModal").classList.remove('hidden');
+        document.getElementById("undertaking-modal").classList.remove('hidden');
     }
 
     function closeModal() {
-        document.getElementById("undertakingModal").classList.add('hidden');
+        document.getElementById("undertaking-modal").classList.add('hidden');
         document.getElementById("agreeCheckbox").checked = false;
         event.preventDefault();
     }
 
     function toggleCheckbox() {
-        let modal = document.getElementById("undertakingModal");
+        let modal = document.getElementById("undertaking-modal");
         let checkbox = document.getElementById("agreeCheckbox");
         checkbox.disabled = modal.scrollTop !== (modal.scrollHeight - modal.offsetHeight);
     }
 
     // Event listener for scrolling in the modal
-    document.getElementById("undertakingModal").addEventListener("scroll", toggleCheckbox);
+    document.getElementById("undertaking-modal").addEventListener("scroll", toggleCheckbox);
 
     function checkCandidateEligibility(age) {
         // AJAX request to the CheckAgeServlet
@@ -680,30 +748,58 @@
 
     // Send the request
     xhr.send();
-</script>
 
-<%--<script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Get all accordion buttons
-        const accordionButtons = document.querySelectorAll('[data-accordion-target]');
+        document.getElementById("submitButton").addEventListener("click", function() {
+            // Check form validation
+            if (validateForm()) {
+                // Disable the button
+                document.getElementById("submitButton").disabled = true;
 
-        // Add click event listener to each accordion button
-        accordionButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Get the target accordion body
-                const targetId = button.getAttribute('data-accordion-target');
-                const accordionBody = document.querySelector(targetId);
-
-                // Toggle the visibility of the accordion body
-                accordionBody.classList.toggle('hidden');
-
-                // Update the aria-expanded attribute to reflect the current state
-                const isExpanded = accordionBody.classList.contains('hidden') ? 'false' : 'true';
-                button.setAttribute('aria-expanded', isExpanded);
-            });
+                // Change the button content to indicate loading
+                document.getElementById("submitButton").innerHTML = '<svg aria-hidden="true" role="status" class="inline w-4 h-4 me-3 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/></svg>Loading...';
+                document.getElementById("nominationForm").submit();
+            } else {
+                // Form validation failed, prevent form submission
+                event.preventDefault();
+                alert("Please fill in all required fields and checkboxes.");
+            }
         });
     });
-</script>--%>
+
+    function validateForm() {
+        // Get all the required input fields
+        const requiredInputs = document.querySelectorAll('input[required], select[required], textarea[required]');
+        const agreeCheckbox = document.getElementById('agreeCheckbox');
+        // Initialize a flag to track if all required fields are filled
+        let allFieldsFilled = true;
+
+        // Loop through each required input field
+        requiredInputs.forEach(input => {
+            // Check if the input field is empty
+            if (!input.value.trim()) {
+                // If it's empty, set the flag to false
+                allFieldsFilled = false;
+                // Optionally, you can add a class to highlight the empty field
+                input.classList.add('is-invalid');
+            } else {
+                // If it's not empty, remove any existing invalid class
+                input.classList.remove('is-invalid');
+            }
+        });
+
+        if (!agreeCheckbox.checked) {
+            // If it's not checked, set the flag to false
+            allFieldsFilled = false;
+        }
+
+        // Return true if all required fields are filled, otherwise false
+        return allFieldsFilled;
+    }
+
+
+</script>
+
 
 <!-- Flowbite -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
