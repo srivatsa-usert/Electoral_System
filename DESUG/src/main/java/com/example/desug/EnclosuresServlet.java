@@ -1,61 +1,66 @@
-//package com.example.desug;
-//
-//import java.io.File;
-//import java.io.IOException;
-//import java.util.List;
-//import jakarta.servlet.ServletException;
-//import jakarta.servlet.annotation.MultipartConfig;
-//import jakarta.servlet.annotation.WebServlet;
-//import jakarta.servlet.http.HttpServlet;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
-//import org.apache.commons.fileupload.FileItem;
-//import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-//import org.apache.commons.fileupload.servlet.ServletFileUpload;
-//
-//@WebServlet("/submitEnclosures")
-//@MultipartConfig
-//public class EnclosuresServlet extends HttpServlet {
-//    private static final long serialVersionUID = 1L;
-//
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String uploadFolder = "D:/sem 6/SE Lab/SE_Lab/DESUG/src/main/java/com/example/desug/enclosures";
-//
-//        // Check that we have a file upload request
-//        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-//        if (!isMultipart) {
-//            response.getWriter().println("No file uploaded");
-//            return;
-//        }
-//
-//        // Create a factory for disk-based file items
-//        DiskFileItemFactory factory = new DiskFileItemFactory();
-//
-//        // Set factory constraints
-//        factory.setSizeThreshold(4096); // Threshold size for temporarily stored files (4KB)
-//        factory.setRepository(new File(System.getProperty("java.io.tmpdir"))); // Set temporary directory
-//
-//        // Create a new file upload handler
-//        ServletFileUpload upload = new ServletFileUpload(factory);
-//
-//        try {
-//            // Parse the request
-//            List<FileItem> items = upload.parseRequest(request);
-//            for (FileItem item : items) {
-//                // Process only file upload - discard form fields
-//                if (!item.isFormField()) {
-//                    String fileName = new File(item.getName()).getName();
-//                    String filePath = uploadFolder + File.separator + fileName;
-//                    File storeFile = new File(filePath);
-//
-//                    // Save the file to disk
-//                    item.write(storeFile);
-//                }
-//            }
-//            response.getWriter().println("Files uploaded successfully");
-//        } catch (Exception e) {
-//            response.getWriter().println("File upload failed due to: " + e);
-//        }
-//    }
-//}
-//
+package com.example.desug;
+
+import java.io.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+
+import java.util.UUID;
+
+@WebServlet("/submitEnclosures")
+@MultipartConfig
+public class EnclosuresServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String uploadPath = "D:\\sem 6\\SE Lab\\SE_Lab\\DESUG\\src\\main\\java\\com\\example\\desug\\enclosures";
+
+        // Create the upload directory if it doesn't exist
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        // Get the files from the request
+        Part candidatePart = request.getPart("candidateSemesterRegistrationCard");
+        Part proposerPart = request.getPart("proposerSemesterRegistrationCard");
+        Part seconderPart = request.getPart("seconderSemesterRegistrationCard");
+        Part dobProofPart = request.getPart("proofOfDob");
+        Part attendancePart = request.getPart("certificateOfAttendanceAcademicRecord");
+        Part categoryPart = request.getPart("categoryCertificate");
+
+        // Generate UUID
+        String uuid = UUID.randomUUID().toString();
+
+        // Save files with UUID appended to filename
+        saveFile(candidatePart, uploadPath, uuid);
+        saveFile(proposerPart, uploadPath, uuid);
+        saveFile(seconderPart, uploadPath, uuid);
+        saveFile(dobProofPart, uploadPath, uuid);
+        saveFile(attendancePart, uploadPath, uuid);
+        saveFile(categoryPart, uploadPath, uuid);
+
+        // Store file paths with UUID in the database
+        // Code for storing file paths in the database goes here
+
+        // Redirect or send response
+        response.sendRedirect("candidateRegistration.jsp");
+    }
+
+    private void saveFile(Part part, String uploadPath, String uuid) throws IOException {
+        String fileName = uuid + "_" + getFileName(part);
+        part.write(uploadPath + File.separator + fileName);
+    }
+
+    private String getFileName(Part part) {
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    }
+}
