@@ -751,7 +751,7 @@
     // Send the request
     xhr.send();
 
-    document.addEventListener("DOMContentLoaded", function() {
+    /*document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("submitButton").addEventListener("click", function() {
             // Check form validation
             if (validateForm()) {
@@ -797,7 +797,7 @@
 
         // Return true if all required fields are filled, otherwise false
         return allFieldsFilled;
-    }
+    }*/
 
 
 </script>

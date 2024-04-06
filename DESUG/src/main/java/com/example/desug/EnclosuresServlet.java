@@ -91,6 +91,8 @@ public class EnclosuresServlet extends HttpServlet {
                 updateStmt.executeUpdate();
             }
 
+            response.sendRedirect("candidateRegistration.jsp");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
