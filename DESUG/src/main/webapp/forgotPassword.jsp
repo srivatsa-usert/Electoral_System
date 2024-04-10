@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
-    <!-- Include Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <!-- Include jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
             $("#getVerification").click(function() {
-                var regNumber = $("#registrationNumber").val();
+                let regNumber = $("#registrationNumber").val();
                 if (regNumber.trim() === "") {
                     alert("Please enter registration number first.");
                     return;
@@ -35,8 +34,8 @@
 
             // Password confirmation check before form submission
             $("form").submit(function(event) {
-                var newPassword = $("#newPassword").val();
-                var confirmPassword = $("#confirmPassword").val();
+                let newPassword = $("#newPassword").val();
+                let confirmPassword = $("#confirmPassword").val();
 
                 if (newPassword !== confirmPassword) {
                     alert("Passwords do not match. Please make sure your passwords match.");
@@ -47,34 +46,40 @@
     </script>
 </head>
 
-<body class="bg-gray-100 p-8">
-<div class="max-w-md mx-auto bg-white rounded p-8 shadow-md">
-    <h2 class="text-2xl font-bold mb-4">Forgot Password</h2>
-    <form action="forgotPasswordServlet" method="post">
-        <div class="mb-4">
-            <label for="registrationNumber" class="block">Registration Number:</label>
-            <input required type="text" id="registrationNumber" name="registrationNumber" class="form-input mt-1 block w-full">
-        </div>
+<body class="flex flex-col min-h-screen">
+    <!-- Header -->
+    <%@ include file="header.jsp" %>
 
-        <div class="mb-4">
-            <label for="newPassword" class="block">New Password:</label>
-            <input required type="password" id="newPassword" name="newPassword" class="form-input mt-1 block w-full">
-        </div>
+    <!-- Main Content -->
+    <div class="max-w-md mx-auto bg-white rounded p-8 shadow-md">
+        <h2 class="text-2xl font-bold mb-4">Forgot Password</h2>
+        <form action="forgotPasswordServlet" method="post">
+            <div class="mb-4">
+                <label for="registrationNumber" class="block">Registration Number:</label>
+                <input required type="text" id="registrationNumber" name="registrationNumber" class="form-input mt-1 block w-full">
+            </div>
 
-        <div class="mb-4">
-            <label for="confirmPassword" class="block">Confirm Password:</label>
-            <input required type="password" id="confirmPassword" name="confirmPassword" class="form-input mt-1 block w-full">
-        </div>
+            <div class="mb-4">
+                <label for="newPassword" class="block">New Password:</label>
+                <input required type="password" id="newPassword" name="newPassword" class="form-input mt-1 block w-full">
+            </div>
 
-        <div class="mb-4">
-            <label for="verificationCode" class="block">Verification Code:</label>
-            <input required type="text" id="verificationCode" name="verificationCode" class="form-input mt-1 block w-full">
-            <a href="#" id="getVerification" class="text-blue-500 hover:underline">Get Code</a>
-        </div>
+            <div class="mb-4">
+                <label for="confirmPassword" class="block">Confirm Password:</label>
+                <input required type="password" id="confirmPassword" name="confirmPassword" class="form-input mt-1 block w-full">
+            </div>
 
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit</button>
-    </form>
-</div>
+            <div class="mb-4">
+                <label for="verificationCode" class="block">Verification Code:</label>
+                <input required type="text" id="verificationCode" name="verificationCode" class="form-input mt-1 block w-full">
+                <a href="#" id="getVerification" class="text-blue-500 hover:underline">Get Code</a>
+            </div>
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <%@ include file="footer.jsp" %>
 </body>
-
 </html>

@@ -1,7 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generate Token</title>
+
     <script>
         function generateToken() {
             let xhr = new XMLHttpRequest();
@@ -30,9 +33,16 @@
     </script>
 </head>
 <body>
-<div id="generateTokenDiv">
-    <h2>Generate Token</h2>
-    <button onclick="generateToken()">Generate & Continue</button>
-</div>
+    <!-- Header -->
+    <%@ include file="header.jsp" %>
+
+    <!-- Main Content -->
+    <div id="generateTokenDiv">
+        <h2>Generate Token</h2>
+        <button onclick="generateToken()">Generate & Continue</button>
+    </div>
+
+    <!-- Footer -->
+    <%@ include file="footer.jsp" %>
 </body>
 </html>
