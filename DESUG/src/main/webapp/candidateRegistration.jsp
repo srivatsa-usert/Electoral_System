@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
-
 <%
     session = request.getSession();
     String candidateRegNumber = "";
@@ -17,6 +16,10 @@
         // Get the registration number from session attribute "username"
         candidateRegNumber = (String) session.getAttribute("username");
         status = (String) session.getAttribute("status");
+    }
+    else {
+        // Redirect to home page if session is null or username attribute is not present
+        response.sendRedirect("home.jsp?loginRequired=true");
     }
 %>
 <html>

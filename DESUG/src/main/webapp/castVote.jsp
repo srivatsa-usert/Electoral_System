@@ -6,6 +6,20 @@
     To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%
+    session = request.getSession();
+    String voterRegNumber = "";
+
+    // Check if session is not null and if username attribute is present
+    if (session != null && session.getAttribute("username") != null) {
+        // Get the registration number from session attribute "username"
+        voterRegNumber = (String) session.getAttribute("username");
+    }
+    else {
+        // Redirect to home page if session is null or username attribute is not present
+        response.sendRedirect("home.jsp?loginRequired=true");
+    }
+%>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -27,23 +41,26 @@
     <!-- Header -->
     <%@ include file="header.jsp" %>
 
-    <h1>Cast Your Vote</h1>
-    <div id="castVoteDiv">
-        <h2>Choose Candidate</h2>
-        <%@ page import="java.util.List" %>
-        <%@ page import="com.example.desug.Candidate" %>
-        <form id="castVoteForm" name="castVoteForm" action="">
-            <div id="selectCandidatesDiv">
-                <% List<Candidate> candidates = com.example.desug.Candidate.getCandidatesList(); %>
-                <% for (Candidate candidate : candidates) { %>
-                <div class="candidate-box">
-                    <p><%= candidate.getElectionPosition() %></p>
-                    <p><%= candidate.getRollNumber() %></p>
-                    <button type="submit" name="selectedCandidate" value="<%= candidate.getRollNumber() %>">Vote</button>
+    <!-- Main Content -->
+    <div  class="flex-grow p-6 bg-white dark:bg-gray-800">
+        <h1>Cast Your Vote</h1>
+        <div id="castVoteDiv">
+            <h2>Choose Candidate</h2>
+            <%@ page import="java.util.List" %>
+            <%@ page import="com.example.desug.Candidate" %>
+            <form id="castVoteForm" name="castVoteForm" action="">
+                <div id="selectCandidatesDiv">
+                    <% List<Candidate> candidates = com.example.desug.Candidate.getCandidatesList(); %>
+                    <% for (Candidate candidate : candidates) { %>
+                    <div class="candidate-box">
+                        <p><%= candidate.getElectionPosition() %></p>
+                        <p><%= candidate.getRollNumber() %></p>
+                        <button type="submit" name="selectedCandidate" value="<%= candidate.getRollNumber() %>">Vote</button>
+                    </div>
+                    <% } %>
                 </div>
-                <% } %>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <!-- Footer -->

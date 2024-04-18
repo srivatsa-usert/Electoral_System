@@ -1,4 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%
+    session = request.getSession();
+
+    // Check if session is not null and if username attribute is present
+    if (session != null && session.getAttribute("username") != null) {
+        // do nothing
+    }
+    else {
+        // Redirect to home page if session is null or username attribute is not present
+        response.sendRedirect("home.jsp?loginRequired=true");
+    }
+%>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -32,12 +44,12 @@
         }
     </script>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
     <!-- Header -->
     <%@ include file="header.jsp" %>
 
     <!-- Main Content -->
-    <div id="generateTokenDiv">
+    <div id="generateTokenDiv" class="flex-grow p-6 bg-white dark:bg-gray-800">
         <h2>Generate Token</h2>
         <button onclick="generateToken()">Generate & Continue</button>
     </div>

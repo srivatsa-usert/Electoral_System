@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,31 +50,28 @@
     <%@ include file="header.jsp" %>
 
     <!-- Main Content -->
-    <div class="max-w-md mx-auto bg-white rounded p-8 shadow-md">
-        <h2 class="text-2xl font-bold mb-4">Forgot Password</h2>
+    <div class="flex-grow p-6 bg-white dark:bg-gray-800">
+        <h1 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Forgot Password</h1>
         <form action="forgotPasswordServlet" method="post">
-            <div class="mb-4">
-                <label for="registrationNumber" class="block">Registration Number:</label>
-                <input required type="text" id="registrationNumber" name="registrationNumber" class="form-input mt-1 block w-full">
+            <div class="mb-6">
+                <label for="registrationNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Registration Number</label>
+                <input type="text" id="registrationNumber" name="registrationNumber" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required>
             </div>
-
-            <div class="mb-4">
-                <label for="newPassword" class="block">New Password:</label>
-                <input required type="password" id="newPassword" name="newPassword" class="form-input mt-1 block w-full">
+            <div class="mb-6">
+                <label for="newPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New Password</label>
+                <input type="password" id="newPassword" name="newPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
             </div>
-
-            <div class="mb-4">
-                <label for="confirmPassword" class="block">Confirm Password:</label>
-                <input required type="password" id="confirmPassword" name="confirmPassword" class="form-input mt-1 block w-full">
+            <div class="mb-6">
+                <label for="confirmPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
             </div>
-
-            <div class="mb-4">
-                <label for="verificationCode" class="block">Verification Code:</label>
-                <input required type="text" id="verificationCode" name="verificationCode" class="form-input mt-1 block w-full">
+            <div class="mb-6">
+                <label for="verificationCode" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Verification Code</label>
+                <input type="text" id="verificationCode" name="verificationCode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required>
                 <a href="#" id="getVerification" class="text-blue-500 hover:underline">Get Code</a>
             </div>
 
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit</button>
+            <button type="submit" class="bg-blue-700 text-white rounded-md px-4 py-2 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-600">Submit</button>
         </form>
     </div>
 

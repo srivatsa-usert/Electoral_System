@@ -6,6 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    session = request.getSession();
+
+    // Check if session is not null and if username attribute is present
+    if (session != null && session.getAttribute("username") != null) {
+        // do nothing
+    }
+    else {
+        // Redirect to home page if session is null or username attribute is not present
+        response.sendRedirect("home.jsp?loginRequired=true");
+    }
+%>
 <html>
 <head>
     <meta charset="UTF-8">

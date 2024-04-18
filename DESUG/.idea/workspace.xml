@@ -11,8 +11,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae99a299-3fa2-4cc0-ad8f-a6a90542584f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae99a299-3fa2-4cc0-ad8f-a6a90542584f.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Images/Profile_Logo" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/candidateRegistration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/candidateRegistration.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/castVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/castVote.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/certifyCandidate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/certifyCandidate.jsp" afterDir="false" />
@@ -20,11 +22,11 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/deanHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/deanHome.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/delegateWork.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/delegateWork.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/electionChairHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/electionChairHome.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/footer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/forgotPassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/forgotPassword.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/generateToken.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/generateToken.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/manageElection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/manageElection.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/success.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/success.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +79,9 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/webapp/login.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="JspContextManager">
+    <jsp-to-context jsp-file="file://$PROJECT_DIR$/src/main/webapp/header.jsp" context-file="file://$PROJECT_DIR$/src/main/webapp/castVote.jsp" />
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -122,7 +127,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -449,6 +454,11 @@
       <workItem from="1712151989407" duration="3000" />
       <workItem from="1712158098669" duration="6024000" />
       <workItem from="1712664551826" duration="19239000" />
+      <workItem from="1712940710729" duration="1185000" />
+      <workItem from="1713270302512" duration="58000" />
+      <workItem from="1713442128433" duration="978000" />
+      <workItem from="1713443199367" duration="1453000" />
+      <workItem from="1713448901570" duration="2492000" />
     </task>
     <servers />
   </component>
