@@ -36,7 +36,7 @@
                 <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
                     <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Certify Candidate</h2>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Certify a candidate for the upcoming convocation.</p>
-                    <a href="certifyCandidate.jsp" class="block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">Certify Candidate</a>
+                    <a href="getCandidateList" class="block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">Certify Candidate</a>
                 </div>
                 <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
                     <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Hola!</h2>

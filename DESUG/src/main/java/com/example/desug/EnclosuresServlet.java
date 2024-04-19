@@ -14,6 +14,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -39,7 +40,9 @@ public class EnclosuresServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String student = session.getAttribute("username").toString();
 
-        String UPLOAD_DIRECTORY = "C:\\Users\\anant\\Downloads";
+//        String UPLOAD_DIRECTORY = "C:\\Users\\anant\\Downloads";
+        String UPLOAD_DIRECTORY = "C:\\Users\\Srivatsa\\Downloads";
+
 
         Properties props = getConnectionData();
 
@@ -89,7 +92,30 @@ public class EnclosuresServlet extends HttpServlet {
                 PreparedStatement updateStmt = conn.prepareStatement(updateSql);
                 updateStmt.setString(1, (String) session.getAttribute("username"));
                 updateStmt.executeUpdate();
+
+                String checkSql = "SELECT proposer_status, seconder_status FROM nomination_status WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
+                PreparedStatement checkStmt = conn.prepareStatement(checkSql);
+                checkStmt.setString(1, (String) session.getAttribute("username")); // Set nomination ID here
+                ResultSet resultSet = checkStmt.executeQuery();
+
+                boolean proposerYes = false;
+                boolean seconderYes = false;
+                if (resultSet.next()) {
+                    proposerYes = resultSet.getString("proposer_status").equals("yes");
+                    seconderYes = resultSet.getString("seconder_status").equals("yes");
+                }
+
+                if (proposerYes && seconderYes) {
+                    // Both proposer and seconder statuses are "yes", update status to 3
+                    String updateStatusSql = "UPDATE nomination_status SET status = 3 WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
+                    PreparedStatement updateStatusStmt = conn.prepareStatement(updateStatusSql);
+                    updateStatusStmt.setString(1, (String) session.getAttribute("username")); // Set nomination ID here
+                    updateStatusStmt.executeUpdate();
+                }
+
             }
+
+
 
             response.sendRedirect("candidateRegistration.jsp");
 

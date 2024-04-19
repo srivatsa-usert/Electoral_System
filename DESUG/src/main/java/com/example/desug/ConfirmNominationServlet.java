@@ -129,8 +129,14 @@ public class ConfirmNominationServlet extends HttpServlet {
 
         if (oppositeStatusResult.next() && oppositeStatusResult.getString(1).equalsIgnoreCase("yes")) {
             // Both roles have confirmed, send email to dean
-            sendMailToDean("21mcme08@uohyd.ac.in", "Nomination Confirmation", "Both the proposer and seconder have confirmed the nomination for nomination ID: " + nominationId);
             // Change to dean mail later
+            sendMailToDean("21mcme08@uohyd.ac.in", "Nomination Confirmation", "Both the proposer and seconder have confirmed the nomination for nomination ID: " + nominationId);
+
+            // Update status to 3 for the given nomination ID if status is currently 2
+            String updateStatusSql = "UPDATE nomination_status SET status = 3 WHERE nomination_id = ? AND status = 2";
+            PreparedStatement updateStatusStmt = conn.prepareStatement(updateStatusSql);
+            updateStatusStmt.setString(1, nominationId); // Set nomination ID here
+            int rowsUpdated = updateStatusStmt.executeUpdate();
         }
     }
 

@@ -5,26 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d42f10b-8775-4446-a953-b62b70f9d5f7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/GetNominationFormsToDeanServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/certifyCandidates.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae99a299-3fa2-4cc0-ad8f-a6a90542584f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae99a299-3fa2-4cc0-ad8f-a6a90542584f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/ConfirmNominationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/ConfirmNominationServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/EnclosuresServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/EnclosuresServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/candidateRegistration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/candidateRegistration.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/castVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/castVote.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/certifyCandidate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/certifyCandidate.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/changePassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/changePassword.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/certifyCandidate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/certifyCandidateForm.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/deanHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/deanHome.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/delegateWork.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/delegateWork.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/electionChairHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/electionChairHome.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/forgotPassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/forgotPassword.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/generateToken.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/generateToken.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/manageElection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/manageElection.jsp" afterDir="false" />
     </list>
@@ -53,6 +54,12 @@
                 <item name="DESUG" type="f1a62948:ProjectNode" />
                 <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DESUG" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -63,8 +70,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>

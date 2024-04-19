@@ -151,7 +151,7 @@
                                         <option value="joint-secretary">Joint Secretary</option>
                                         <option value="cultural-secretary">Cultural Secretary</option>
                                         <option value="sports-secretary">Sports Secretary</option>
-                                        <option value="other">Other</option>
+<%--                                        <option value="other">Other</option>--%>
                                     </select>
                                     <input type="text" id="other-position-0" name="other-position-0" class="hidden other-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter other position">
                                 </div>
@@ -189,7 +189,7 @@
                                         <option value="school-of-chemistry">School of Chemistry</option>
                                         <option value="school-of-arts-and-communication">School of Arts and Communication</option>
                                         <option value="college-for-integrated-studies">College for Integrated Studies</option>
-                                        <option value="other">Other</option>
+<%--                                        <option value="other">Other</option>--%>
                                     </select>
                                     <input type="text" id="other-school-name-0" name="other-school-name-0" class="hidden other-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter other school">
                                     <label for="number-of-school-board-members-0" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of School Board Members: </label>

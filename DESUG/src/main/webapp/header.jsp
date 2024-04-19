@@ -94,7 +94,7 @@
                             <a href="deanHome.jsp" aria-current="<%= request.getRequestURI().endsWith("deanHome.jsp") ? "page" : "" %>">Home</a>
                         </li>
                         <li>
-                            <a href="certifyCandidate.jsp" aria-current="<%= request.getRequestURI().endsWith("certifyCandidate.jsp") ? "page" : "" %>">Certify Candidate</a>
+                            <a href="certifyCandidates.jsp" aria-current="<%= request.getRequestURI().endsWith("certifyCandidateForm.jsp") ? "page" : "" %>">Certify Candidate</a>
                         </li>
                     <% }
                     else { %>

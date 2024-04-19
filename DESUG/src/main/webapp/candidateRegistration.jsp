@@ -124,9 +124,12 @@
         const circle2 = document.getElementById("circle2");
         const circle3 = document.getElementById("circle3");
         const circle4 = document.getElementById("circle4");
+        const circle5 = document.getElementById("circle5");
         const line1 = document.getElementById("line1");
         const line2 = document.getElementById("line2");
         const line3 = document.getElementById("line3");
+        const line4 = document.getElementById("line4");
+
 
         // Update CSS classes based on status
         if (status >= 1) {
@@ -143,17 +146,29 @@
             line2.classList.remove('bg-gray-200','dark:bg-gray-700');
             line2.classList.add('bg-blue-700','dark:bg-blue-600');
             document.getElementById("enclosuresFormContainer").classList.add('hidden');
-            document.getElementById("deanApprovalFormContainer").classList.remove('hidden');
+            document.getElementById("proposerSeconderApprovalFormContainer").classList.remove('hidden');
         }
         if (status >= 3) {
             circle3.classList.remove('bg-gray-200','dark:bg-gray-700');
             circle3.classList.add('bg-blue-700','dark:bg-blue-600');
             line3.classList.remove('bg-gray-200','dark:bg-gray-700');
             line3.classList.add('bg-blue-700','dark:bg-blue-600');
+            document.getElementById("proposerSeconderApprovalFormContainer").classList.add('hidden');
+            document.getElementById("deanApprovalFormContainer").classList.remove('hidden');
         }
         if (status >= 4) {
             circle4.classList.remove('bg-gray-200','dark:bg-gray-700');
             circle4.classList.add('bg-blue-700','dark:bg-blue-600');
+            line4.classList.remove('bg-gray-200','dark:bg-gray-700');
+            line4.classList.add('bg-blue-700','dark:bg-blue-600');
+            document.getElementById("deanApprovalFormContainer").classList.add('hidden');
+            document.getElementById("electionChairApprovalFormContainer").classList.remove('hidden');
+        }
+        if (status >= 5) {
+            circle5.classList.remove('bg-gray-200','dark:bg-gray-700');
+            circle5.classList.add('bg-blue-700','dark:bg-blue-600');
+            document.getElementById("electionChairApprovalFormContainer").classList.add('hidden');
+            document.getElementById("finalStatusContainer").classList.remove('hidden');
         }
     }
 
@@ -227,7 +242,7 @@
                     <div id="line3" class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
                 </div>
                 <div class="mt-3">
-                    <h3 class="font-medium text-gray-900 dark:text-white">Dean Approval</h3>
+                    <h3 class="font-medium text-gray-900 dark:text-white">Proposer & Seconder Approval</h3>
                 </div>
             </li>
             <li class="relative w-full mb-6">
@@ -237,10 +252,24 @@
                             <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
                         </svg>
                     </div>
+                    <div id="line4" class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                </div>
+                <div class="mt-3">
+                    <h3 class="font-medium text-gray-900 dark:text-white">Dean Approval</h3>
+                </div>
+            </li>
+            <li class="relative w-full mb-6">
+                <div class="flex items-center">
+                    <div id="circle5" class="z-10 flex items-center justify-center w-9 h-9 bg-gray-200 rounded-full dark:bg-gray-700 shrink-0">
+                        <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                            <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
+                        </svg>
+                    </div>
                 </div>
                 <div class="mt-3">
                     <h3 class="font-medium text-gray-900 dark:text-white">Election Chair Approval</h3>
                 </div>
+            </li>
         </ol>
 
         <!-- Nomination Form -->
@@ -434,10 +463,27 @@
             </form>
         </div>
 
+        <!-- Proposer Seconder Approval -->
+        <div id="proposerSeconderApprovalFormContainer" class="hidden">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination needs to be approved by both the Proposer and Seconder.</h1>
+        </div>
+
         <!-- Dean Approval -->
         <div id="deanApprovalFormContainer" class="hidden">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination is under process.</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination requires Deans Approval.</h1>
         </div>
+
+        <!-- Election Chair Approval -->
+        <div id="electionChairApprovalFormContainer" class="hidden">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination requires Election Chair's Approval.</h1>
+        </div>
+
+        <!-- Final Status Div -->
+        <div id="finalStatusContainer" class="hidden">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination is apporoved</h1>
+        </div>
+
+    </div>
 
     <!-- Footer -->
     <%@ include file="footer.jsp" %>
