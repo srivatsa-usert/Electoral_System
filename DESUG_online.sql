@@ -259,3 +259,26 @@ ADD COLUMN "type" ENUM('Student', 'Dean', 'Hod', 'ElectionChair') NOT NULL DEFAU
 
 desc UploadedFiles;
 select * from UploadedFiles;
+
+select * from nomination_status;
+select * from student;
+select * from candidate_nomination;
+
+CREATE TABLE certification_data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    registrationNumber VARCHAR(20),
+    attendance ENUM('yes', 'no'),
+    academicArrears ENUM('yes', 'no'),
+    registeredPhd ENUM('yes', 'no'),
+    courseRequirements ENUM('yes', 'no'),
+    researchProgress ENUM('yes', 'no'),
+    DRCReport ENUM('yes', 'no'),
+    comments TEXT,
+    dateCertification DATETIME,
+    nominationId INT,
+    FOREIGN KEY (registrationNumber) REFERENCES student(roll_number),
+    FOREIGN KEY (nominationId) REFERENCES candidate_nomination(id)
+);
+
+delete from certification_data;
+update nomination_status set status = 3 where nomination_id = 34;

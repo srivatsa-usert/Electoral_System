@@ -33,7 +33,7 @@
     <div class="flex-grow p-6 bg-white dark:bg-gray-800">
         <!-- form to certify candidate with attendance and academic record -->
         <h1 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Certify Candidate</h1>
-        <form action="#" method="POST" class="space-y-4">
+        <form action="certifyCandidate" method="POST" class="space-y-4">
             <div class="flex flex-col">
                 <label for="name" class="mb-1 text-gray-800 dark:text-white">Name:</label>
                 <input type="text" id="name" name="name" class="border border-gray-300 rounded-md p-2 dark:bg-gray-700 dark:text-gray-200" required readonly>
@@ -56,119 +56,125 @@
             </div>
 
             <!-- Subheading for Integrated/PG & MPhil Students -->
-            <div class="mt-6 mb-4">
-                <h2 class="text-lg font-semibold text-gray-800 dark:text-white">FOR INTEGRATED/PG & MPHIL STUDENTS</h2>
-            </div>
-            <div class="flex flex-col space-y-2">
-                <label class="text-gray-800 dark:text-white">
-                    Is she/he a registered student?
-                </label>
-                <div class="flex space-x-4">
-                    <label>
-                        <input type="radio" name="registeredStudent" value="yes" required>
-                        Yes
-                    </label>
-                    <label>
-                        <input type="radio" name="registeredStudent" value="no" required>
-                        No
-                    </label>
+            <div class="pgStudents hidden">
+                <div class="mt-6 mb-4">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white">FOR INTEGRATED/PG & MPHIL STUDENTS</h2>
                 </div>
-            </div>
-            <div class="flex flex-col space-y-2">
-                <label class="text-gray-800 dark:text-white">
-                    Does the student have 75% attendance in the current semester as on <span class="underline">[date]</span>?
-                </label>
-                <div class="flex space-x-4">
-                    <label>
-                        <input type="radio" name="attendance" value="yes" required>
-                        Yes
+                <div class="flex flex-col space-y-2">
+                    <label class="text-gray-800 dark:text-white">
+                        Is she/he a registered student?
                     </label>
-                    <label>
-                        <input type="radio" name="attendance" value="no" required>
-                        No
-                    </label>
+                    <div class="flex space-x-4">
+                        <label>
+                            <input type="radio" name="registeredStudent" value="yes" >
+                            Yes
+                        </label>
+                        <label>
+                            <input type="radio" name="registeredStudent" value="no" >
+                            No
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <div class="flex flex-col space-y-2">
-                <label class="text-gray-800 dark:text-white">
-                    The student's academic arrears/backlogs are as per the University norms?
-                </label>
-                <div class="flex space-x-4">
-                    <label>
-                        <input type="radio" name="academicArrears" value="yes" required>
-                        Yes
+                <div class="flex flex-col space-y-2">
+                    <label class="text-gray-800 dark:text-white">
+                        Does the student have 75% attendance in the current semester as on <span class="underline">[date]</span>?
                     </label>
-                    <label>
-                        <input type="radio" name="academicArrears" value="no" required>
-                        No
+                    <div class="flex space-x-4">
+                        <label>
+                            <input type="radio" name="attendance" value="yes">
+                            Yes
+                        </label>
+                        <label>
+                            <input type="radio" name="attendance" value="no">
+                            No
+                        </label>
+                    </div>
+                </div>
+                <div class="flex flex-col space-y-2">
+                    <label class="text-gray-800 dark:text-white">
+                        The student's academic arrears/backlogs are as per the University norms?
                     </label>
+                    <div class="flex space-x-4">
+                        <label>
+                            <input type="radio" name="academicArrears" value="yes">
+                            Yes
+                        </label>
+                        <label>
+                            <input type="radio" name="academicArrears" value="no">
+                            No
+                        </label>
+                    </div>
                 </div>
             </div>
 
+
             <!-- Subheading for Ph.D. Scholars -->
-            <div class="mt-6 mb-4">
-                <h2 class="text-lg font-semibold text-gray-800 dark:text-white">FOR Ph.D. SCHOLARS</h2>
-            </div>
-            <div class="flex flex-col space-y-2">
-                <label class="text-gray-800 dark:text-white">
-                    Is she/he a registered student?
-                </label>
-                <div class="flex space-x-4">
-                    <label>
-                        <input type="radio" name="registeredPhd" value="yes" required>
-                        Yes
+            <div class="phdStudents hidden">
+                <div class="mt-6 mb-4">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white">FOR Ph.D. SCHOLARS</h2>
+                </div>
+                <div class="flex flex-col space-y-2">
+                    <label class="text-gray-800 dark:text-white">
+                        Is she/he a registered student?
                     </label>
-                    <label>
-                        <input type="radio" name="registeredPhd" value="no" required>
-                        No
+                    <div class="flex space-x-4">
+                        <label>
+                            <input type="radio" name="registeredPhd" value="yes">
+                            Yes
+                        </label>
+                        <label>
+                            <input type="radio" name="registeredPhd" value="no">
+                            No
+                        </label>
+                    </div>
+                </div>
+                <div class="flex flex-col space-y-2">
+                    <label class="text-gray-800 dark:text-white">
+                        Has the student cleared the course requirements?
                     </label>
+                    <div class="flex space-x-4">
+                        <label>
+                            <input type="radio" name="courseRequirements" value="yes">
+                            Yes
+                        </label>
+                        <label>
+                            <input type="radio" name="courseRequirements" value="no">
+                            No
+                        </label>
+                    </div>
+                </div>
+                <div class="flex flex-col space-y-2">
+                    <label class="text-gray-800 dark:text-white">
+                        Is the student's research progress satisfactory?
+                    </label>
+                    <div class="flex space-x-4">
+                        <label>
+                            <input type="radio" name="researchProgress" value="yes">
+                            Yes
+                        </label>
+                        <label>
+                            <input type="radio" name="researchProgress" value="no">
+                            No
+                        </label>
+                    </div>
+                </div>
+                <div class="flex flex-col space-y-2">
+                    <label class="text-gray-800 dark:text-white">
+                        Is the latest DRC report attached?
+                    </label>
+                    <div class="flex space-x-4">
+                        <label>
+                            <input type="radio" name="DRCReport" value="yes">
+                            Yes
+                        </label>
+                        <label>
+                            <input type="radio" name="DRCReport" value="no">
+                            No
+                        </label>
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-col space-y-2">
-                <label class="text-gray-800 dark:text-white">
-                    Has the student cleared the course requirements?
-                </label>
-                <div class="flex space-x-4">
-                    <label>
-                        <input type="radio" name="courseRequirements" value="yes" required>
-                        Yes
-                    </label>
-                    <label>
-                        <input type="radio" name="courseRequirements" value="no" required>
-                        No
-                    </label>
-                </div>
-            </div>
-            <div class="flex flex-col space-y-2">
-                <label class="text-gray-800 dark:text-white">
-                    Is the student's research progress satisfactory?
-                </label>
-                <div class="flex space-x-4">
-                    <label>
-                        <input type="radio" name="researchProgress" value="yes" required>
-                        Yes
-                    </label>
-                    <label>
-                        <input type="radio" name="researchProgress" value="no" required>
-                        No
-                    </label>
-                </div>
-            </div>
-            <div class="flex flex-col space-y-2">
-                <label class="text-gray-800 dark:text-white">
-                    Is the latest DRC report attached?
-                </label>
-                <div class="flex space-x-4">
-                    <label>
-                        <input type="radio" name="DRCReport" value="yes" required>
-                        Yes
-                    </label>
-                    <label>
-                        <input type="radio" name="DRCReport" value="no" required>
-                        No
-                    </label>
-                </div>
-            </div>
+
 
             <div class="flex flex-col">
                 <label for="comments" class="mb-1 text-gray-800 dark:text-white">Comments if any, HoD/Dean:</label>
@@ -204,6 +210,30 @@
                     document.getElementById("programmeOfStudy").value = response.course;
                     document.getElementById("subject").value = response.subject;
                     document.getElementById("semester").value = response.semester;
+
+                    // Remove 'hidden' class based on student type
+                    if (response.studentType === "PG") {
+                        document.querySelector(".pgStudents").classList.remove("hidden");
+                        // Add 'required' attribute to radio buttons in pgStudents section
+                        document.querySelectorAll(".pgStudents input[type='radio']").forEach(function(radioButton) {
+                            radioButton.setAttribute("required", "required");
+                        });
+                        // Remove 'required' attribute from radio buttons in phdStudents section
+                        document.querySelectorAll(".phdStudents input[type='radio']").forEach(function(radioButton) {
+                            radioButton.removeAttribute("required");
+                        });
+                    } else if (response.studentType === "Research") {
+                        document.querySelector(".phdStudents").classList.remove("hidden");
+                        // Add 'required' attribute to radio buttons in phdStudents section
+                        document.querySelectorAll(".phdStudents input[type='radio']").forEach(function(radioButton) {
+                            radioButton.setAttribute("required", "required");
+                        });
+                        // Remove 'required' attribute from radio buttons in pgStudents section
+                        document.querySelectorAll(".pgStudents input[type='radio']").forEach(function(radioButton) {
+                            radioButton.removeAttribute("required");
+                        });
+                    }
+
                 }
             };
             xhr.send();

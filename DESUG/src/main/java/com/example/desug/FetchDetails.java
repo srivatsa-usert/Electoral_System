@@ -56,7 +56,7 @@ public class FetchDetails extends HttpServlet {
             conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
             // SQL query to fetch details based on registration number including DOB
-            String sql = "SELECT name, department, course, subject, DOB, semester FROM student WHERE roll_number = ?";
+            String sql = "SELECT name, department, course, subject, DOB, semester, student_type FROM student WHERE roll_number = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, registrationNumber);
             rs = stmt.executeQuery();
@@ -71,6 +71,7 @@ public class FetchDetails extends HttpServlet {
                 String subject = rs.getString("subject");
                 Date dob = java.sql.Date.valueOf(rs.getString("DOB"));
                 int semester = rs.getInt("semester");
+                String studentType = rs.getString("student_type");
 
                 out.println("{");
                 out.println("\"name\": \"" + name + "\",");
@@ -78,7 +79,8 @@ public class FetchDetails extends HttpServlet {
                 out.println("\"course\": \"" + course + "\",");
                 out.println("\"subject\": \"" + subject + "\",");
                 out.println("\"dob\": \"" + dob + "\",");
-                out.println("\"semester\": " + semester);
+                out.println("\"semester\": " + semester + ",");
+                out.println("\"studentType\": \"" + studentType + "\"");
                 out.println("}");
             } else {
                 // If no record found
