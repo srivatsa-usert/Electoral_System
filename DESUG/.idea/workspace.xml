@@ -18,8 +18,12 @@
       <change beforePath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/CertifyCandidateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/CertifyCandidateServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/FetchDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/FetchDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/EnclosuresServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/EnclosuresServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/GetNominationFormsToDeanServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/GetNominationForms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/candidateRegistration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/candidateRegistration.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/certifyCandidateForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/certifyCandidateForm.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/certifyCandidates.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/certifyCandidates.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DESUG_online.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../DESUG_online.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -372,7 +376,8 @@
               </StagingTargetModelImpl>
             </list>
           </option>
-          <option name="transportHostId" />
+          <option name="transportHostId" value="" />
+          <host-id />
         </data>
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
@@ -407,7 +412,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -460,6 +466,14 @@
       <workItem from="1713443199367" duration="1453000" />
       <workItem from="1713448901570" duration="2492000" />
       <workItem from="1713598435061" duration="838000" />
+      <workItem from="1713866625030" duration="1194000" />
+      <workItem from="1713894838873" duration="9000" />
+      <workItem from="1713934367891" duration="8073000" />
+      <workItem from="1713964244330" duration="2376000" />
+      <workItem from="1713967352878" duration="7151000" />
+      <workItem from="1714026885225" duration="2506000" />
+      <workItem from="1714050493859" duration="6642000" />
+      <workItem from="1714069812393" duration="3787000" />
     </task>
     <servers />
   </component>

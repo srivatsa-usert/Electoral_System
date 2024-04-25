@@ -40,9 +40,8 @@ public class EnclosuresServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String student = session.getAttribute("username").toString();
 
-//        String UPLOAD_DIRECTORY = "C:\\Users\\anant\\Downloads";
-        String UPLOAD_DIRECTORY = "C:\\Users\\Srivatsa\\Downloads";
-
+        String UPLOAD_DIRECTORY = "C:\\Users\\anant\\Downloads\\Nominations";
+//        String UPLOAD_DIRECTORY = "C:\\Users\\Srivatsa\\Downloads";
 
         Properties props = getConnectionData();
 
@@ -114,8 +113,6 @@ public class EnclosuresServlet extends HttpServlet {
                 }
 
             }
-
-
 
             response.sendRedirect("candidateRegistration.jsp");
 

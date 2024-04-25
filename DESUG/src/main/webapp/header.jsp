@@ -51,16 +51,16 @@
                 <!-- Dropdown menu -->
                 <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
                     <div class="px-4 py-3">
-                        <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                        <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                        <span class="block text-sm text-gray-900 dark:text-white"><%= username %></span>
+                        <%--<span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>--%>
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
-                        <li>
+                        <%--<li>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200">Dashboard</a>
                         </li>
                         <li>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200">Settings</a>
-                        </li>
+                        </li>--%>
                         <li>
                             <a href="changePassword.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200">Change Password</a>
                         </li>
@@ -83,6 +83,9 @@
                             <a href="electionChairHome.jsp" aria-current="<%= request.getRequestURI().endsWith("electionChairHome.jsp") ? "page" : "" %>">Home</a>
                         </li>
                         <li>
+                            <a href="approveCandidates.jsp" aria-current="<%= request.getRequestURI().endsWith("approveCandidates.jsp") ? "page" : "" %>">Approve Candidate</a>
+                        </li>
+                        <li>
                             <a href="manageElection.jsp" aria-current="<%= request.getRequestURI().endsWith("manageElection.jsp") ? "page" : "" %>">Manage Election</a>
                         </li>
                         <li>
@@ -94,7 +97,7 @@
                             <a href="deanHome.jsp" aria-current="<%= request.getRequestURI().endsWith("deanHome.jsp") ? "page" : "" %>">Home</a>
                         </li>
                         <li>
-                            <a href="certifyCandidates.jsp" aria-current="<%= request.getRequestURI().endsWith("certifyCandidateForm.jsp") ? "page" : "" %>">Certify Candidate</a>
+                            <a href="certifyCandidates.jsp" aria-current="<%= request.getRequestURI().endsWith("certifyCandidates.jsp") ? "page" : "" %>">Certify Candidate</a>
                         </li>
                     <% }
                     else { %>
@@ -105,9 +108,6 @@
                             <a href="candidateRegistration.jsp" aria-current="<%= request.getRequestURI().endsWith("candidateRegistration.jsp") ? "page" : "" %>">File Nomination</a>
                         </li>
                     <% } %>
-                    <li>
-                        <a href="#">Hola!</a>
-                    </li>
                     <%-- old list items --%>
                     <%--<li>
                         <a href="home.jsp" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
@@ -153,7 +153,7 @@
                     <form class="space-y-4" action="LoginServlet" method="post">
                         <div>
                             <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                            <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+                            <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="##XXXX##" required />
                         </div>
                         <div>
                             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>

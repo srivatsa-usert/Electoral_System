@@ -26,11 +26,30 @@
 </head>
 
 <body class="flex flex-col min-h-screen">
+    <%@ page import="com.example.desug.FileServlet" %>
+
     <!-- Header -->
     <%@ include file="header.jsp" %>
 
     <!-- Main Content -->
     <div class="flex-grow p-6 bg-white dark:bg-gray-800">
+        <!-- link to view certificate, if uploaded by the candidate -->
+        <div id="fileLinks" class="flex items-center space-x-2 mt-4">
+            <!-- AJAX responses will be inserted here -->
+            <div id="checkBoxDiv" class="hidden flex items-center space-x-2 mt-4">
+                <input type="checkbox" id="validateCertificate" class="form-checkbox h-5 w-5 text-blue-600 dark:text-blue-500">
+                <label for="validateCertificate" class="text-gray-800 dark:text-white">I hereby certify that the uploaded certificate is valid.</label>
+            </div>;
+        </div>
+        <br>
+
+        <!-- alert box to show when check box is ticked -->
+        <div class="hidden flex bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert" id="alertBox">
+            <strong class="font-bold">All fields are filled on successful certificate validation.</strong>
+            <span class="block sm:inline"> Add comments and change fields, if necessary.</span>
+            <br>
+        </div>
+
         <!-- form to certify candidate with attendance and academic record -->
         <h1 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Certify Candidate</h1>
         <form action="certifyCandidate" method="POST" class="space-y-4">
@@ -65,12 +84,12 @@
                         Is she/he a registered student?
                     </label>
                     <div class="flex space-x-4">
-                        <label>
-                            <input type="radio" name="registeredStudent" value="yes" >
+                        <label class="text-gray-800 dark:text-white">
+                            <input type="radio" name="registeredStudent" value="yes">
                             Yes
                         </label>
-                        <label>
-                            <input type="radio" name="registeredStudent" value="no" >
+                        <label class="text-gray-800 dark:text-white">
+                            <input type="radio" name="registeredStudent" value="no">
                             No
                         </label>
                     </div>
@@ -80,11 +99,11 @@
                         Does the student have 75% attendance in the current semester as on <span class="underline">[date]</span>?
                     </label>
                     <div class="flex space-x-4">
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="attendance" value="yes">
                             Yes
                         </label>
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="attendance" value="no">
                             No
                         </label>
@@ -95,11 +114,11 @@
                         The student's academic arrears/backlogs are as per the University norms?
                     </label>
                     <div class="flex space-x-4">
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="academicArrears" value="yes">
                             Yes
                         </label>
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="academicArrears" value="no">
                             No
                         </label>
@@ -118,11 +137,11 @@
                         Is she/he a registered student?
                     </label>
                     <div class="flex space-x-4">
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="registeredPhd" value="yes">
                             Yes
                         </label>
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="registeredPhd" value="no">
                             No
                         </label>
@@ -133,11 +152,11 @@
                         Has the student cleared the course requirements?
                     </label>
                     <div class="flex space-x-4">
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="courseRequirements" value="yes">
                             Yes
                         </label>
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="courseRequirements" value="no">
                             No
                         </label>
@@ -148,11 +167,11 @@
                         Is the student's research progress satisfactory?
                     </label>
                     <div class="flex space-x-4">
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="researchProgress" value="yes">
                             Yes
                         </label>
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="researchProgress" value="no">
                             No
                         </label>
@@ -163,11 +182,11 @@
                         Is the latest DRC report attached?
                     </label>
                     <div class="flex space-x-4">
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="DRCReport" value="yes">
                             Yes
                         </label>
-                        <label>
+                        <label class="text-gray-800 dark:text-white">
                             <input type="radio" name="DRCReport" value="no">
                             No
                         </label>
@@ -192,6 +211,7 @@
     <!-- Footer -->
     <%@ include file="footer.jsp" %>
 
+    <!-- script to show/hide sections based on student type -->
     <script>
         window.addEventListener('DOMContentLoaded', function () {
             fetchCandidateDetails('<%= request.getParameter("registrationId") %>');
@@ -240,6 +260,78 @@
         }
     </script>
 
+    <!-- script to select 'Yes' in visible radio buttons and fill current datetime in date of certification automatically, when check box is ticked -->
+    <script>
+        document.getElementById("validateCertificate").addEventListener("change", function() {
+            if (this.checked) {
+                document.getElementById("dateCertification").value = new Date().toISOString().slice(0, 16);
+                document.querySelectorAll("input[type='radio']").forEach(function(radioButton) {
+                    if (radioButton.value === "yes") {
+                        radioButton.checked = true;
+                    }
+                });
+            }
+            else {
+                document.getElementById("dateCertification").value = "";
+                document.querySelectorAll("input[type='radio']").forEach(function(radioButton) {
+                    radioButton.checked = false;
+                });
+            }
+        });
+    </script>
+
+    <!-- script to show alert box when check box is ticked -->
+    <script>
+        document.getElementById("validateCertificate").addEventListener("change", function() {
+            if (this.checked) {
+                document.getElementById("alertBox").classList.remove("hidden");
+            } else {
+                document.getElementById("alertBox").classList.add("hidden");
+            }
+        });
+    </script>
+
+    <!-- script to show uploaded certificate link using AJAX -->
+    <script>
+        // Function to check filepath using AJAX
+        function checkFilePath(filePathKey, registrationId) {
+            let text;
+            if (filePathKey === "attendance_file_path") {
+                text = "View Candidate's Certificate of Attendance & Academic Record";
+            }
+
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        let response = JSON.parse(xhr.responseText);
+                        let filepath = response.filepath;
+                        if (filepath) {
+                            let fileLinksDiv = document.getElementById('fileLinks');
+                            let htmlToAdd = '<div class="flex items-center space-x-2 mt-4">' +
+                                '<a href="viewFile.jsp?filepath=' + filepath + '" target="_blank" ' +
+                                'class="text-blue-700 hover:underline dark:text-blue-500 dark:hover:underline">' + text + '</a>' +
+                                '</div>';
+                            // Insert the new HTML at the start of fileLinksDiv
+                            fileLinksDiv.insertAdjacentHTML('afterbegin', htmlToAdd);
+
+                            // Remove the hidden div of checkbox
+                            let hiddenDiv = document.getElementById('checkBoxDiv');
+                            hiddenDiv.classList.remove('hidden');
+                        } else {
+                            console.error('Empty filepath received.');
+                        }
+                    } else {
+                        console.error('Error checking filepath: ' + xhr.status);
+                    }
+                }
+            };
+            xhr.open('GET', 'file?registrationId=' + registrationId + '&filePathKey=' + filePathKey, true);
+            xhr.send();
+        }
+
+        checkFilePath('attendance_file_path', '<%= request.getParameter("registrationId") %>');
+    </script>
 
 </body>
 </html>

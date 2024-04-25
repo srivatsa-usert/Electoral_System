@@ -142,4 +142,3 @@ public class CertifyCandidateServlet extends HttpServlet {
         }
     }
 }
-

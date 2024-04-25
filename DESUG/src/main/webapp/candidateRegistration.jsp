@@ -436,27 +436,27 @@
                 <div class="enclosures_form">
                     <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="candidateSemesterRegistrationCard">Upload Candidate Semester Registration Card</label>
-                        <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="candidateSemesterRegistrationCard" name="candidateSemesterRegistrationCard" type="file">
+                        <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="candidateSemesterRegistrationCard" name="candidateSemesterRegistrationCard" type="file" accept=".pdf">
                     </div>
                     <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="proposerSemesterRegistrationCard">Upload Proposer Semester Registration Card</label>
-                        <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proposerSemesterRegistrationCard" name="proposerSemesterRegistrationCard" type="file">
+                        <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proposerSemesterRegistrationCard" name="proposerSemesterRegistrationCard" type="file" accept=".pdf">
                     </div>
                     <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="seconderSemesterRegistrationCard">Upload Seconder Semester Registration Card</label>
-                        <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="seconderSemesterRegistrationCard" name="seconderSemesterRegistrationCard" type="file">
+                        <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="seconderSemesterRegistrationCard" name="seconderSemesterRegistrationCard" type="file" accept=".pdf">
                     </div>
                     <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="proofOfDob">Upload Proof for Date of Birth</label>
-                        <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proofOfDob" name="proofOfDob" type="file">
+                        <input required class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="proofOfDob" name="proofOfDob" type="file" accept=".pdf">
                     </div>
                     <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="certificateOfAttendanceAcademicRecord">Upload Certificate of Attendance & Academic Record</label>
-                        <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="certificateOfAttendanceAcademicRecord" name="certificateOfAttendanceAcademicRecord" type="file">
+                        <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="certificateOfAttendanceAcademicRecord" name="certificateOfAttendanceAcademicRecord" type="file" accept=".pdf">
                     </div>
                     <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="categoryCertificate">Upload Certificate of Category</label>
-                        <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="categoryCertificate" name="categoryCertificate" type="file">
+                        <input class="form-input block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="categoryCertificate" name="categoryCertificate" type="file" accept=".pdf">
                     </div>
                 </div>
                 <button id="submitEnclosuresButton" type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
@@ -465,22 +465,22 @@
 
         <!-- Proposer Seconder Approval -->
         <div id="proposerSeconderApprovalFormContainer" class="hidden">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination needs to be approved by both the Proposer and Seconder.</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination needs to be approved by the Proposer and the Seconder.</h1>
         </div>
 
         <!-- Dean Approval -->
         <div id="deanApprovalFormContainer" class="hidden">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination requires Deans Approval.</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination is under Deans Approval process.</h1>
         </div>
 
         <!-- Election Chair Approval -->
         <div id="electionChairApprovalFormContainer" class="hidden">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination requires Election Chair's Approval.</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination is under Election Chair's Approval process.</h1>
         </div>
 
         <!-- Final Status Div -->
         <div id="finalStatusContainer" class="hidden">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination is apporoved</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Your Nomination has been approved! Congratulations!!</h1>
         </div>
 
     </div>

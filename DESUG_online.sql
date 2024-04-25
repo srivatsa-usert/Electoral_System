@@ -182,7 +182,7 @@ select * from student;
 ALTER TABLE student
 ADD COLUMN DOB DATE NOT NULL DEFAULT '2000-01-01';
 
-update student set DOB = '2003-03-13' Where roll_number = '21MCME07';
+update student set name = 'T Bharath Simha Reddy' Where roll_number = '21MCME05';
 
 ALTER TABLE student
 ADD COLUMN semester int NOT NULL DEFAULT 1;
@@ -280,5 +280,7 @@ CREATE TABLE certification_data (
     FOREIGN KEY (nominationId) REFERENCES candidate_nomination(id)
 );
 
-delete from certification_data;
-update nomination_status set status = 3 where nomination_id = 34;
+update nomination_status set proposer_status = 'yes', seconder_status = 'yes', status = 3 where nomination_id = 36;
+
+ALTER TABLE nomination_status
+MODIFY status ENUM('1', '2', '3', '4', '5');
