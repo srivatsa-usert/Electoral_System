@@ -5,26 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d42f10b-8775-4446-a953-b62b70f9d5f7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae99a299-3fa2-4cc0-ad8f-a6a90542584f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae99a299-3fa2-4cc0-ad8f-a6a90542584f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/CertifyCandidateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/CertifyCandidateServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/EnclosuresServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/EnclosuresServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/GetNominationFormsToDeanServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/GetNominationForms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/candidateRegistration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/candidateRegistration.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/certifyCandidateForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/certifyCandidateForm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/certifyCandidates.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/certifyCandidates.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DESUG_online.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../DESUG_online.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -473,7 +454,8 @@
       <workItem from="1713967352878" duration="7151000" />
       <workItem from="1714026885225" duration="2506000" />
       <workItem from="1714050493859" duration="6642000" />
-      <workItem from="1714069812393" duration="3787000" />
+      <workItem from="1714069812393" duration="3943000" />
+      <workItem from="1714096793894" duration="2189000" />
     </task>
     <servers />
   </component>
