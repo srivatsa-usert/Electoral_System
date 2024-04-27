@@ -280,7 +280,11 @@ CREATE TABLE certification_data (
     FOREIGN KEY (nominationId) REFERENCES candidate_nomination(id)
 );
 
-update nomination_status set proposer_status = 'yes', seconder_status = 'yes', status = 3 where nomination_id = 36;
+update nomination_status set seconder_status = null where nomination_id = 39;
 
 ALTER TABLE nomination_status
 MODIFY status ENUM('1', '2', '3', '4', '5');
+
+ALTER TABLE nomination_status
+MODIFY proposer_status ENUM('yes', 'no') DEFAULT NULL,
+MODIFY seconder_status ENUM('yes', 'no') DEFAULT NULL;

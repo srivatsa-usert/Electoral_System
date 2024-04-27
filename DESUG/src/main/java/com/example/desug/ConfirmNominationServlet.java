@@ -74,30 +74,56 @@ public class ConfirmNominationServlet extends HttpServlet {
 
                 // Check if the registration number corresponds to a proposer
                 if (proposerResult.next() && proposerResult.getInt(1) > 0) {
-                    // Update proposer status
-                    String sqlUpdateProposerStatus = "UPDATE nomination_status SET proposer_status = ? WHERE nomination_id = ?";
-                    PreparedStatement pstmtUpdateProposerStatus = conn.prepareStatement(sqlUpdateProposerStatus);
-                    pstmtUpdateProposerStatus.setString(1, confirmation);
-                    pstmtUpdateProposerStatus.setString(2, nominationId);
-                    int rowsUpdated = pstmtUpdateProposerStatus.executeUpdate();
+                    // Check if already confirmed
+                    String sqlCheckProposerStatus = "SELECT proposer_status FROM nomination_status WHERE nomination_id = ?";
+                    PreparedStatement pstmtCheckProposerStatus = conn.prepareStatement(sqlCheckProposerStatus);
+                    pstmtCheckProposerStatus.setString(1, nominationId);
+                    ResultSet proposerStatusResult = pstmtCheckProposerStatus.executeQuery();
 
-                    if (confirmation.equalsIgnoreCase("yes")) {
-                        checkAndUpdateStatus(conn, nominationId, "proposer");
+                    if (proposerStatusResult.next() && proposerStatusResult.getString(1) != null) {
+                        // Redirect to an error page if the proposer has already confirmed
+                        response.sendRedirect("error.jsp?error=already_confirmed");
+                        return;
+                    }
+                    else {
+                        // Update proposer status
+                        String sqlUpdateProposerStatus = "UPDATE nomination_status SET proposer_status = ? WHERE nomination_id = ?";
+                        PreparedStatement pstmtUpdateProposerStatus = conn.prepareStatement(sqlUpdateProposerStatus);
+                        pstmtUpdateProposerStatus.setString(1, confirmation);
+                        pstmtUpdateProposerStatus.setString(2, nominationId);
+                        int rowsUpdated = pstmtUpdateProposerStatus.executeUpdate();
+
+                        if (confirmation.equalsIgnoreCase("yes")) {
+                            checkAndUpdateStatus(conn, nominationId, "proposer");
+                        }
                     }
                 } else if (seconderResult.next() && seconderResult.getInt(1) > 0) {
-                    // Update seconder status
-                    String sqlUpdateSeconderStatus = "UPDATE nomination_status SET seconder_status = ? WHERE nomination_id = ?";
-                    PreparedStatement pstmtUpdateSeconderStatus = conn.prepareStatement(sqlUpdateSeconderStatus);
-                    pstmtUpdateSeconderStatus.setString(1, confirmation);
-                    pstmtUpdateSeconderStatus.setString(2, nominationId);
-                    int rowsUpdated = pstmtUpdateSeconderStatus.executeUpdate();
+                    // Check if already confirmed
+                    String sqlCheckSeconderStatus = "SELECT seconder_status FROM nomination_status WHERE nomination_id = ?";
+                    PreparedStatement pstmtCheckSeconderStatus = conn.prepareStatement(sqlCheckSeconderStatus);
+                    pstmtCheckSeconderStatus.setString(1, nominationId);
+                    ResultSet seconderStatusResult = pstmtCheckSeconderStatus.executeQuery();
 
-                    if (confirmation.equalsIgnoreCase("yes")) {
-                        checkAndUpdateStatus(conn, nominationId, "seconder");
+                    if (seconderStatusResult.next() && seconderStatusResult.getString(1) != null) {
+                        // Redirect to an error page if the seconder has already confirmed
+                        response.sendRedirect("error.jsp?error=already_confirmed");
+                        return;
                     }
-                } else {
+                    else {
+                        // Update seconder status
+                        String sqlUpdateSeconderStatus = "UPDATE nomination_status SET seconder_status = ? WHERE nomination_id = ?";
+                        PreparedStatement pstmtUpdateSeconderStatus = conn.prepareStatement(sqlUpdateSeconderStatus);
+                        pstmtUpdateSeconderStatus.setString(1, confirmation);
+                        pstmtUpdateSeconderStatus.setString(2, nominationId);
+                        int rowsUpdated = pstmtUpdateSeconderStatus.executeUpdate();
+
+                        if (confirmation.equalsIgnoreCase("yes")) {
+                            checkAndUpdateStatus(conn, nominationId, "seconder");
+                        }
+                    }
+                }/* else {
                     // Handle the case where the registration number does not match any records
-                }
+                }*/
 
             // Redirect to a success page after processing confirmation
             response.sendRedirect("success.jsp");
@@ -106,7 +132,7 @@ public class ConfirmNominationServlet extends HttpServlet {
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             // Redirect to an error page if an exception occurs
-            response.sendRedirect("error.jsp");
+            response.sendRedirect("error.jsp?error=exception");
         } finally {
             // Closing resources
             try {
@@ -127,7 +153,7 @@ public class ConfirmNominationServlet extends HttpServlet {
         pstmtCheckOppositeStatus.setString(1, nominationId);
         ResultSet oppositeStatusResult = pstmtCheckOppositeStatus.executeQuery();
 
-        if (oppositeStatusResult.next() && oppositeStatusResult.getString(1).equalsIgnoreCase("yes")) {
+        if (oppositeStatusResult.next() && oppositeStatusResult.getString(1) != null && oppositeStatusResult.getString(1).equalsIgnoreCase("yes")) {
             // Both roles have confirmed, send email to dean
             // Change to dean mail later
             sendMailToDean("21mcme08@uohyd.ac.in", "Nomination Confirmation", "Both the proposer and seconder have confirmed the nomination for nomination ID: " + nominationId);
