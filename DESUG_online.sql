@@ -263,6 +263,8 @@ select * from UploadedFiles;
 select * from nomination_status;
 select * from student;
 select * from candidate_nomination;
+show create table nomination_status;
+show create table candidate_nomination;
 
 CREATE TABLE certification_data (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -283,8 +285,21 @@ CREATE TABLE certification_data (
 update nomination_status set seconder_status = null where nomination_id = 39;
 
 ALTER TABLE nomination_status
-MODIFY status ENUM('1', '2', '3', '4', '5');
+MODIFY status ENUM('1', '2', '3','3.5', '4','4.5', '5','5.5');
 
 ALTER TABLE nomination_status
 MODIFY proposer_status ENUM('yes', 'no') DEFAULT NULL,
 MODIFY seconder_status ENUM('yes', 'no') DEFAULT NULL;
+
+select * from nomination_status;
+update nomination_status set status = '3' where nomination_id = 29;
+
+show tables;
+select * from certification_data;
+show create table certification_data;
+ALTER TABLE certification_data CHANGE registeredPhd registeredStudent ENUM('yes', 'no') DEFAULT NULL;
+update certification_data set registeredStudent = 'no' where id = 11;
+
+delete from certification_data where id = 10;
+
+

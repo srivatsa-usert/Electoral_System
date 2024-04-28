@@ -120,6 +120,8 @@
     });
 
     function updateCircleStyles(status) {
+        let url;
+        let xhr;
         const circle1 = document.getElementById("circle1");
         const circle2 = document.getElementById("circle2");
         const circle3 = document.getElementById("circle3");
@@ -155,6 +157,56 @@
             line3.classList.add('bg-blue-700','dark:bg-blue-600');
             document.getElementById("proposerSeconderApprovalFormContainer").classList.add('hidden');
             document.getElementById("deanApprovalFormContainer").classList.remove('hidden');
+
+            if(status >3.4 && status < 3.6){
+                circle3.classList.remove('bg-blue-700','dark:bg-blue-600');
+                circle3.classList.add('bg-red-700','dark:bg-red-600');
+                document.getElementById("tick3").classList.add('hidden');
+                document.getElementById("cross3").classList.remove('hidden');
+                line3.classList.remove('bg-blue-700','dark:bg-blue-600');
+                line3.classList.add('bg-gray-200','dark:bg-gray-700');
+                document.getElementById("proposerSeconderApprovalFormContainer").classList.remove('hidden');
+                document.getElementById("deanApprovalFormContainer").classList.add('hidden');
+
+                xhr = new XMLHttpRequest();
+                url = 'rejectedcandidates?status=3.5'; // Set request parameter to 3.5
+                xhr.open('GET', url, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            // Request successful, parse JSON response
+                            var response = JSON.parse(xhr.responseText);
+
+                            // Construct HTML for rejected candidates list
+                            var html = '<h1 class="text-2xl font-bold text-gray-900 dark:text-white">Rejected by Candidates:</h1>';
+                            if (Object.keys(response).length === 0) {
+                                // If no rejected candidates, display appropriate message
+                                html += '<p>No candidates have been rejected.</p>';
+                            } else {
+                                // Add proposer and seconder registration numbers to the list
+                                html += '<ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">';
+                                if (response.hasOwnProperty('proposer_registration_number')) {
+                                    html += '<li>Proposer Registration Number: ' + response.proposer_registration_number + '</li>';
+                                }
+                                if (response.hasOwnProperty('seconder_registration_number')) {
+                                    html += '<li>Seconder Registration Number: ' + response.seconder_registration_number + '</li>';
+                                }
+                                html += '</ul>';
+                            }
+
+                            // Update proposerSeconderApprovalFormContainer with the constructed HTML
+                            document.getElementById("proposerSeconderApprovalFormContainer").innerHTML = html;
+                        } else {
+                            // Request failed, handle error
+                            console.error('Failed to fetch rejected candidates.');
+                        }
+                    }
+                };
+                xhr.send();
+
+
+
+            }
         }
         if (status >= 4) {
             circle4.classList.remove('bg-gray-200','dark:bg-gray-700');
@@ -163,12 +215,86 @@
             line4.classList.add('bg-blue-700','dark:bg-blue-600');
             document.getElementById("deanApprovalFormContainer").classList.add('hidden');
             document.getElementById("electionChairApprovalFormContainer").classList.remove('hidden');
+
+            if (status > 4.4 && status < 4.6) {
+                circle4.classList.remove('bg-blue-700', 'dark:bg-blue-600');
+                circle4.classList.add('bg-red-700', 'dark:bg-red-600');
+                document.getElementById("tick4").classList.add('hidden');
+                document.getElementById("cross4").classList.remove('hidden');
+                line4.classList.remove('bg-blue-700', 'dark:bg-blue-600');
+                line4.classList.add('bg-gray-200', 'dark:bg-gray-700');
+                document.getElementById("deanApprovalFormContainer").classList.remove('hidden');
+                document.getElementById("electionChairApprovalFormContainer").classList.add('hidden');
+
+                // Set up the XMLHttpRequest and send the request
+                xhr = new XMLHttpRequest();
+                url = 'rejectedcandidates?status=4.5'; // Set request parameter to 4.5
+                xhr.open('GET', url, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            // Request successful, parse JSON response
+                            var response = JSON.parse(xhr.responseText);
+
+                            // Process the response
+                            if (Object.keys(response).length > 0) {
+                                // If there are rejected candidates, construct the list
+                                var html = '<h1 class="text-2xl font-bold text-gray-900 dark:text-white">Deans Form details:</h1><ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">';
+
+                                // Iterate through the rejected candidates and add them to the list
+                                if (response.hasOwnProperty('attendance')) {
+                                    html += '<li>Attendance: ' + response.attendance + '</li>';
+                                }
+                                if (response.hasOwnProperty('academicArrears')) {
+                                    html += '<li>Academic Arrears: ' + response.academicArrears + '</li>';
+                                }
+                                if (response.hasOwnProperty('registeredStudent')) {
+                                    html += '<li>Registered Student: ' + response.registeredStudent + '</li>';
+                                }
+                                if (response.hasOwnProperty('courseRequirements')) {
+                                    html += '<li>Cleared Course Requirements : ' + response.courseRequirements + '</li>';
+                                }
+                                if (response.hasOwnProperty('researchProgress')) {
+                                    html += '<li>Is Students Research Progress Satisfactory: ' + response.researchProgress + '</li>';
+                                }
+                                if (response.hasOwnProperty('DRCReport')) {
+                                    html += '<li>Is the latest DRC report attached: ' + response.DRCReport + '</li>';
+                                }
+
+                                html += '</ul>';
+
+                                // Update the container with the constructed HTML
+                                document.getElementById("deanApprovalFormContainer").innerHTML = html;
+                            } else {
+                                // If there are no rejected candidates, display a message
+                                document.getElementById("deanApprovalFormContainer").innerHTML = '<h1 class="text-2xl font-bold text-gray-900 dark:text-white">No candidates have been rejected.</h1>';
+                            }
+                        } else {
+                            // Request failed, handle error
+                            console.error('Failed to fetch rejected candidates.');
+                        }
+                    }
+                };
+
+                // Send the XMLHttpRequest
+                xhr.send();
+            }
+
         }
         if (status >= 5) {
             circle5.classList.remove('bg-gray-200','dark:bg-gray-700');
             circle5.classList.add('bg-blue-700','dark:bg-blue-600');
             document.getElementById("electionChairApprovalFormContainer").classList.add('hidden');
             document.getElementById("finalStatusContainer").classList.remove('hidden');
+
+            if(status >5.4 && status < 5.6){
+                circle5.classList.remove('bg-blue-700','dark:bg-blue-600');
+                circle5.classList.add('bg-red-700','dark:bg-red-600');
+                document.getElementById("tick5").classList.add('hidden');
+                document.getElementById("cross5").classList.remove('hidden');
+                document.getElementById("electionChairApprovalFormContainer").classList.remove('hidden');
+                document.getElementById("finalStatusContainer").classList.add('hidden');
+            }
         }
     }
 
@@ -213,6 +339,7 @@
                             <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
                         </svg>
                     </div>
+
                     <div id="line1" class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
                 </div>
                 <div class="mt-3">
@@ -235,8 +362,11 @@
             <li class="relative w-full mb-6">
                 <div class="flex items-center">
                     <div id="circle3" class="z-10 flex items-center justify-center w-9 h-9 bg-gray-200 rounded-full dark:bg-gray-700 shrink-0">
-                        <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <svg id="tick3" class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                             <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
+                        </svg>
+                        <svg id = "cross3" class="w-6 h-6 text-gray-800 dark:text-white hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
                         </svg>
                     </div>
                     <div id="line3" class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
@@ -248,8 +378,11 @@
             <li class="relative w-full mb-6">
                 <div class="flex items-center">
                     <div id="circle4" class="z-10 flex items-center justify-center w-9 h-9 bg-gray-200 rounded-full dark:bg-gray-700 shrink-0">
-                        <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <svg id="tick4" class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                             <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
+                        </svg>
+                        <svg id = "cross4" class="w-6 h-6 text-gray-800 dark:text-white hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
                         </svg>
                     </div>
                     <div id="line4" class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
@@ -261,8 +394,11 @@
             <li class="relative w-full mb-6">
                 <div class="flex items-center">
                     <div id="circle5" class="z-10 flex items-center justify-center w-9 h-9 bg-gray-200 rounded-full dark:bg-gray-700 shrink-0">
-                        <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <svg id="tick5" class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                             <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
+                        </svg>
+                        <svg id = "cross5" class="w-6 h-6 text-gray-800 dark:text-white hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
                         </svg>
                     </div>
                 </div>

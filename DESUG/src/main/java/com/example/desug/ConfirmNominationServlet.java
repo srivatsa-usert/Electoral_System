@@ -52,83 +52,65 @@ public class ConfirmNominationServlet extends HttpServlet {
         // JDBC variables
         Connection conn = null;
 
+        // Inside the doGet method
         try {
             // Establishing connection
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
             // Check if the confirmation is for accepting the nomination
-                // SQL query to check if the registration number corresponds to a proposer
-                String sqlCheckProposer = "SELECT COUNT(*) FROM candidate_nomination WHERE proposer_registration_number = ? AND id = ?";
-                PreparedStatement pstmtCheckProposer = conn.prepareStatement(sqlCheckProposer);
-                pstmtCheckProposer.setString(1, registrationNumber);
-                pstmtCheckProposer.setString(2, nominationId);
-                ResultSet proposerResult = pstmtCheckProposer.executeQuery();
+            // SQL query to check if the registration number corresponds to a proposer
+            String sqlCheckProposer = "SELECT COUNT(*) FROM candidate_nomination WHERE proposer_registration_number = ? AND id = ?";
+            PreparedStatement pstmtCheckProposer = conn.prepareStatement(sqlCheckProposer);
+            pstmtCheckProposer.setString(1, registrationNumber);
+            pstmtCheckProposer.setString(2, nominationId);
+            ResultSet proposerResult = pstmtCheckProposer.executeQuery();
 
-                // SQL query to check if the registration number corresponds to a seconder
-                String sqlCheckSeconder = "SELECT COUNT(*) FROM candidate_nomination WHERE seconder_registration_number = ? and id = ?";
-                PreparedStatement pstmtCheckSeconder = conn.prepareStatement(sqlCheckSeconder);
-                pstmtCheckSeconder.setString(1, registrationNumber);
-                pstmtCheckSeconder.setString(2, nominationId);
-                ResultSet seconderResult = pstmtCheckSeconder.executeQuery();
+            // SQL query to check if the registration number corresponds to a seconder
+            String sqlCheckSeconder = "SELECT COUNT(*) FROM candidate_nomination WHERE seconder_registration_number = ? and id = ?";
+            PreparedStatement pstmtCheckSeconder = conn.prepareStatement(sqlCheckSeconder);
+            pstmtCheckSeconder.setString(1, registrationNumber);
+            pstmtCheckSeconder.setString(2, nominationId);
+            ResultSet seconderResult = pstmtCheckSeconder.executeQuery();
 
-                // Check if the registration number corresponds to a proposer
-                if (proposerResult.next() && proposerResult.getInt(1) > 0) {
-                    // Check if already confirmed
-                    String sqlCheckProposerStatus = "SELECT proposer_status FROM nomination_status WHERE nomination_id = ?";
-                    PreparedStatement pstmtCheckProposerStatus = conn.prepareStatement(sqlCheckProposerStatus);
-                    pstmtCheckProposerStatus.setString(1, nominationId);
-                    ResultSet proposerStatusResult = pstmtCheckProposerStatus.executeQuery();
+            // Check if the registration number corresponds to a proposer
+            if (proposerResult.next() && proposerResult.getInt(1) > 0) {
+                // Update proposer status
+                String sqlUpdateProposerStatus = "UPDATE nomination_status SET proposer_status = ? WHERE nomination_id = ?";
+                PreparedStatement pstmtUpdateProposerStatus = conn.prepareStatement(sqlUpdateProposerStatus);
+                pstmtUpdateProposerStatus.setString(1, confirmation);
+                pstmtUpdateProposerStatus.setString(2, nominationId);
+                int rowsUpdated = pstmtUpdateProposerStatus.executeUpdate();
 
-                    if (proposerStatusResult.next() && proposerStatusResult.getString(1) != null) {
-                        // Redirect to an error page if the proposer has already confirmed
-                        response.sendRedirect("error.jsp?error=already_confirmed");
-                        return;
-                    }
-                    else {
-                        // Update proposer status
-                        String sqlUpdateProposerStatus = "UPDATE nomination_status SET proposer_status = ? WHERE nomination_id = ?";
-                        PreparedStatement pstmtUpdateProposerStatus = conn.prepareStatement(sqlUpdateProposerStatus);
-                        pstmtUpdateProposerStatus.setString(1, confirmation);
-                        pstmtUpdateProposerStatus.setString(2, nominationId);
-                        int rowsUpdated = pstmtUpdateProposerStatus.executeUpdate();
+                if (confirmation.equalsIgnoreCase("no")) {
+                    // Update status to 3.5 if confirmation is 'no'
+                    String updateStatusSql = "UPDATE nomination_status SET status = 3.5 WHERE nomination_id = ?";
+                    PreparedStatement updateStatusStmt = conn.prepareStatement(updateStatusSql);
+                    updateStatusStmt.setString(1, nominationId); // Set nomination ID here
+                    int rowsUpdatedStatus = updateStatusStmt.executeUpdate();
+                } else if (confirmation.equalsIgnoreCase("yes")) {
+                    checkAndUpdateStatus(conn, nominationId, "proposer");
+                }
+            } else if (seconderResult.next() && seconderResult.getInt(1) > 0) {
+                // Update seconder status
+                String sqlUpdateSeconderStatus = "UPDATE nomination_status SET seconder_status = ? WHERE nomination_id = ?";
+                PreparedStatement pstmtUpdateSeconderStatus = conn.prepareStatement(sqlUpdateSeconderStatus);
+                pstmtUpdateSeconderStatus.setString(1, confirmation);
+                pstmtUpdateSeconderStatus.setString(2, nominationId);
+                int rowsUpdated = pstmtUpdateSeconderStatus.executeUpdate();
 
-                        if (confirmation.equalsIgnoreCase("yes")) {
-                            checkAndUpdateStatus(conn, nominationId, "proposer");
-                        }
-                    }
-                } else if (seconderResult.next() && seconderResult.getInt(1) > 0) {
-                    // Check if already confirmed
-                    String sqlCheckSeconderStatus = "SELECT seconder_status FROM nomination_status WHERE nomination_id = ?";
-                    PreparedStatement pstmtCheckSeconderStatus = conn.prepareStatement(sqlCheckSeconderStatus);
-                    pstmtCheckSeconderStatus.setString(1, nominationId);
-                    ResultSet seconderStatusResult = pstmtCheckSeconderStatus.executeQuery();
-
-                    if (seconderStatusResult.next() && seconderStatusResult.getString(1) != null) {
-                        // Redirect to an error page if the seconder has already confirmed
-                        response.sendRedirect("error.jsp?error=already_confirmed");
-                        return;
-                    }
-                    else {
-                        // Update seconder status
-                        String sqlUpdateSeconderStatus = "UPDATE nomination_status SET seconder_status = ? WHERE nomination_id = ?";
-                        PreparedStatement pstmtUpdateSeconderStatus = conn.prepareStatement(sqlUpdateSeconderStatus);
-                        pstmtUpdateSeconderStatus.setString(1, confirmation);
-                        pstmtUpdateSeconderStatus.setString(2, nominationId);
-                        int rowsUpdated = pstmtUpdateSeconderStatus.executeUpdate();
-
-                        if (confirmation.equalsIgnoreCase("yes")) {
-                            checkAndUpdateStatus(conn, nominationId, "seconder");
-                        }
-                    }
-                }/* else {
-                    // Handle the case where the registration number does not match any records
-                }*/
-
+                if (confirmation.equalsIgnoreCase("no")) {
+                    // Update status to 3.5 if confirmation is 'no'
+                    String updateStatusSql = "UPDATE nomination_status SET status = 3.5 WHERE nomination_id = ?";
+                    PreparedStatement updateStatusStmt = conn.prepareStatement(updateStatusSql);
+                    updateStatusStmt.setString(1, nominationId); // Set nomination ID here
+                    int rowsUpdatedStatus = updateStatusStmt.executeUpdate();
+                } else if (confirmation.equalsIgnoreCase("yes")) {
+                    checkAndUpdateStatus(conn, nominationId, "seconder");
+                }
+            }
             // Redirect to a success page after processing confirmation
             response.sendRedirect("success.jsp");
-
-
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             // Redirect to an error page if an exception occurs
@@ -141,6 +123,7 @@ public class ConfirmNominationServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
+
     }
 
     private void checkAndUpdateStatus(Connection conn, String nominationId, String role) throws SQLException {

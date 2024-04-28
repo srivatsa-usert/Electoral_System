@@ -22,6 +22,9 @@ import org.json.JSONObject;
 @WebServlet("/getCandidateList")
 public class GetNominationForms extends HttpServlet {
 
+
+
+
     private static Properties getConnectionData() {
         Properties props = new Properties();
         try {

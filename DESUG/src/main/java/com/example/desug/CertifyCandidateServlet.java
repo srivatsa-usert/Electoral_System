@@ -66,7 +66,7 @@ public class CertifyCandidateServlet extends HttpServlet {
             conn.setAutoCommit(false);
 
             // SQL query to insert data into table
-            String sql = "INSERT INTO certification_data (registrationNumber, attendance, academicArrears, registeredPhd, courseRequirements, researchProgress, DRCReport, comments, dateCertification, nominationId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?))";
+            String sql = "INSERT INTO certification_data (registrationNumber, attendance, academicArrears, registeredStudent, courseRequirements, researchProgress, DRCReport, comments, dateCertification, nominationId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?))";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, registrationNumber);
             stmt.setString(2, attendance);
@@ -89,7 +89,7 @@ public class CertifyCandidateServlet extends HttpServlet {
                     !"no".equalsIgnoreCase(researchProgress) && !"no".equalsIgnoreCase(DRCReport) && rowsAffected[0]>0) {
 
                 // Update nomination_status
-                String sqlUpdate = "UPDATE nomination_status SET status = 4 WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
+                String sqlUpdate = "UPDATE nomination_status SET status = '4' WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
                 stmt = conn.prepareStatement(sqlUpdate);
                 stmt.setString(1, registrationNumber);
 
@@ -103,6 +103,22 @@ public class CertifyCandidateServlet extends HttpServlet {
                 out.println("<h2>Record inserted and status updated successfully!</h2>");
                 out.println("</body></html>");
             }
+            else{
+                String sqlUpdate = "UPDATE nomination_status SET status = '4.5' WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
+                stmt = conn.prepareStatement(sqlUpdate);
+                stmt.setString(1, registrationNumber);
+                stmt.executeUpdate();
+
+                stmt.addBatch();
+
+                // Send response
+                response.setContentType("text/html");
+                PrintWriter out = response.getWriter();
+                out.println("<html><body>");
+                out.println("<h2>Record inserted and status updated successfully!</h2>");
+                out.println("</body></html>");
+            }
+
 
             // Add the prepared statement to the batch
             stmt.addBatch();

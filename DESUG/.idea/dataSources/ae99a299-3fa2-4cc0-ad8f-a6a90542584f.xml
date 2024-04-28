@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="DESUG">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.52">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.51">
     <root id="1">
       <DefaultCasing>exact</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -1027,7 +1027,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </collation>
     <schema id="288" parent="1" name="DESUG">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-04-27.16:45:38</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-04-28.00:08:48</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="defaultdb">
@@ -1318,7 +1318,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>enum(&apos;yes&apos;, &apos;no&apos;)|0e</DasType>
       <Position>4</Position>
     </column>
-    <column id="357" parent="305" name="registeredPhd">
+    <column id="357" parent="305" name="registeredStudent">
       <DasType>enum(&apos;yes&apos;, &apos;no&apos;)|0e</DasType>
       <Position>5</Position>
     </column>
@@ -1529,7 +1529,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>4</Position>
     </column>
     <column id="401" parent="308" name="status">
-      <DasType>enum(&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;)|0e</DasType>
+      <DasType>enum(&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;3.5&apos;, &apos;4&apos;, &apos;4.5&apos;, &apos;5&apos;, &apos;5.5&apos;)|0e</DasType>
       <Position>5</Position>
     </column>
     <foreign-key id="402" parent="308" name="nomination_status_ibfk_1">
