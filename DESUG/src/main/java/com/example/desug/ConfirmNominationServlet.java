@@ -84,7 +84,7 @@ public class ConfirmNominationServlet extends HttpServlet {
 
                 if (confirmation.equalsIgnoreCase("no")) {
                     // Update status to 3.5 if confirmation is 'no'
-                    String updateStatusSql = "UPDATE nomination_status SET status = 3.5 WHERE nomination_id = ?";
+                    String updateStatusSql = "UPDATE nomination_status SET status = '3.5' WHERE nomination_id = ?";
                     PreparedStatement updateStatusStmt = conn.prepareStatement(updateStatusSql);
                     updateStatusStmt.setString(1, nominationId); // Set nomination ID here
                     int rowsUpdatedStatus = updateStatusStmt.executeUpdate();
@@ -101,7 +101,7 @@ public class ConfirmNominationServlet extends HttpServlet {
 
                 if (confirmation.equalsIgnoreCase("no")) {
                     // Update status to 3.5 if confirmation is 'no'
-                    String updateStatusSql = "UPDATE nomination_status SET status = 3.5 WHERE nomination_id = ?";
+                    String updateStatusSql = "UPDATE nomination_status SET status = '3.5' WHERE nomination_id = ?";
                     PreparedStatement updateStatusStmt = conn.prepareStatement(updateStatusSql);
                     updateStatusStmt.setString(1, nominationId); // Set nomination ID here
                     int rowsUpdatedStatus = updateStatusStmt.executeUpdate();
