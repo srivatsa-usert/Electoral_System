@@ -55,8 +55,8 @@ public class EnclosuresServlet extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
-            // SQL query to insert data into UploadedFiles table
-            String sql = "INSERT INTO UploadedFiles (nomination_id, candidate_file_path, proposer_file_path, seconder_file_path, dob_proof_file_path, attendance_file_path, category_file_path) VALUES ((select id from candidate_nomination where election_id = (select election_id from elections order by created_at desc limit 1)  and registration_number= ?), ?, ?, ?, ?, ?, ?)";
+            // SQL query to insert data into uploaded_files table
+            String sql = "INSERT INTO uploaded_files (nomination_id, candidate_file_path, proposer_file_path, seconder_file_path, dob_proof_file_path, attendance_file_path, category_file_path) VALUES ((select id from candidate_nomination where election_id = (select election_id from elections order by created_at desc limit 1)  and registration_number= ?), ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             // Set the nomination_id

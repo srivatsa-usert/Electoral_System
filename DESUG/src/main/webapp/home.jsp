@@ -19,7 +19,7 @@
 
     <!-- Main Content -->
     <div class="flex-grow p-6 bg-white dark:bg-gray-800">
-        <h1 class="text-4xl font-bold mb-8 text-gray-800 dark:text-white">Welcome to Our Website</h1>
+        <h1 class="text-4xl font-bold mb-8 text-gray-800 dark:text-white">Welcome to the University Electoral System</h1>
 
         <p class="text-lg mb-6 text-gray-800 dark:text-gray-400">
             Elections to the Students' Union for the year 20XX - 20XX will be conducted as per the details mentioned below:
@@ -33,7 +33,7 @@
             respective Schools.
         </p>
 
-        <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Learn More</a>
+        <a href="https://uohyd.ac.in/" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Learn More...</a>
     </div>
 
     <!-- Footer -->

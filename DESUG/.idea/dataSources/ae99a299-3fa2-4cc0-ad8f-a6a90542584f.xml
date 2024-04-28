@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="DESUG">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.51">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.52">
     <root id="1">
       <DefaultCasing>exact</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -1027,7 +1027,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </collation>
     <schema id="288" parent="1" name="DESUG">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-04-28.00:08:48</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-04-28.05:17:32</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="defaultdb">
@@ -1079,43 +1079,43 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Host>%:%</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="302" parent="288" name="UploadedFiles">
+    <table id="302" parent="288" name="age_rule">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="303" parent="288" name="age_rule">
+    <table id="303" parent="288" name="candidate_nomination">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="304" parent="288" name="candidate_nomination">
+    <table id="304" parent="288" name="certification_data">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="305" parent="288" name="certification_data">
+    <table id="305" parent="288" name="elections">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="306" parent="288" name="elections">
+    <table id="306" parent="288" name="login">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="307" parent="288" name="login">
+    <table id="307" parent="288" name="nomination_status">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="308" parent="288" name="nomination_status">
+    <table id="308" parent="288" name="office_bearers">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="309" parent="288" name="office_bearers">
+    <table id="309" parent="288" name="school_boards_councillors">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="310" parent="288" name="school_boards_councillors">
+    <table id="310" parent="288" name="student">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="311" parent="288" name="student">
+    <table id="311" parent="288" name="uploaded_files">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
@@ -1123,583 +1123,589 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="313" parent="302" name="id">
-      <AutoIncrement>11</AutoIncrement>
+    <column id="313" parent="302" name="election_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="314" parent="302" name="nomination_id">
-      <DasType>int|0s</DasType>
+    <column id="314" parent="302" name="academic_programme">
+      <DasType>enum(&apos;UG&apos;, &apos;PG&apos;, &apos;Research&apos;)|0e</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="315" parent="302" name="candidate_file_path">
-      <DasType>varchar(255)|0s</DasType>
+    <column id="315" parent="302" name="minimum_age">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="316" parent="302" name="proposer_file_path">
-      <DasType>varchar(255)|0s</DasType>
+    <column id="316" parent="302" name="maximum_age">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="317" parent="302" name="seconder_file_path">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>5</Position>
-    </column>
-    <column id="318" parent="302" name="dob_proof_file_path">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>6</Position>
-    </column>
-    <column id="319" parent="302" name="attendance_file_path">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>7</Position>
-    </column>
-    <column id="320" parent="302" name="category_file_path">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>8</Position>
-    </column>
-    <foreign-key id="321" parent="302" name="UploadedFiles_ibfk_1">
-      <ColNames>nomination_id</ColNames>
-      <RefColNames>id</RefColNames>
-      <RefTableName>candidate_nomination</RefTableName>
+    <foreign-key id="317" parent="302" name="age_rule_ibfk_1">
+      <ColNames>election_id</ColNames>
+      <RefColNames>election_id</RefColNames>
+      <RefTableName>elections</RefTableName>
     </foreign-key>
-    <index id="322" parent="302" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="323" parent="302" name="nomination_id">
-      <ColNames>nomination_id</ColNames>
+    <index id="318" parent="302" name="election_id">
+      <ColNames>election_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="324" parent="302" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <column id="325" parent="303" name="academic_programme">
-      <DasType>varchar(20)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="326" parent="303" name="min_age">
-      <DasType>int|0s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="327" parent="303" name="max_age">
-      <DasType>int|0s</DasType>
-      <Position>3</Position>
-    </column>
-    <index id="328" parent="303" name="PRIMARY">
-      <ColNames>academic_programme</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="329" parent="303" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <column id="330" parent="304" name="id">
+    <column id="319" parent="303" name="id">
       <AutoIncrement>39</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="331" parent="304" name="registration_number">
+    <column id="320" parent="303" name="registration_number">
       <DasType>varchar(8)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="332" parent="304" name="position">
+    <column id="321" parent="303" name="position">
       <DasType>varchar(50)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="333" parent="304" name="name_on_ballot_paper">
+    <column id="322" parent="303" name="name_on_ballot_paper">
       <DasType>varchar(100)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="334" parent="304" name="age">
+    <column id="323" parent="303" name="age">
       <DasType>int|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="335" parent="304" name="category">
+    <column id="324" parent="303" name="category">
       <DasType>varchar(20)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="336" parent="304" name="fathers_name">
+    <column id="325" parent="303" name="fathers_name">
       <DasType>varchar(100)|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="337" parent="304" name="mobile_number">
+    <column id="326" parent="303" name="mobile_number">
       <DasType>varchar(15)|0s</DasType>
       <Position>8</Position>
     </column>
-    <column id="338" parent="304" name="email">
+    <column id="327" parent="303" name="email">
       <DasType>varchar(100)|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="339" parent="304" name="residential_address">
+    <column id="328" parent="303" name="residential_address">
       <DasType>text|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="340" parent="304" name="proposer_registration_number">
+    <column id="329" parent="303" name="proposer_registration_number">
       <DasType>varchar(8)|0s</DasType>
       <Position>11</Position>
     </column>
-    <column id="341" parent="304" name="seconder_registration_number">
+    <column id="330" parent="303" name="seconder_registration_number">
       <DasType>varchar(8)|0s</DasType>
       <Position>12</Position>
     </column>
-    <column id="342" parent="304" name="election_id">
+    <column id="331" parent="303" name="election_id">
       <DasType>int|0s</DasType>
       <Position>13</Position>
     </column>
-    <foreign-key id="343" parent="304" name="candidate_nomination_ibfk_1">
+    <foreign-key id="332" parent="303" name="candidate_nomination_ibfk_1">
       <ColNames>registration_number</ColNames>
       <RefColNames>roll_number</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <foreign-key id="344" parent="304" name="candidate_nomination_ibfk_2">
+    <foreign-key id="333" parent="303" name="candidate_nomination_ibfk_2">
       <ColNames>proposer_registration_number</ColNames>
       <RefColNames>roll_number</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <foreign-key id="345" parent="304" name="candidate_nomination_ibfk_3">
+    <foreign-key id="334" parent="303" name="candidate_nomination_ibfk_3">
       <ColNames>seconder_registration_number</ColNames>
       <RefColNames>roll_number</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <foreign-key id="346" parent="304" name="fk_election_id">
+    <foreign-key id="335" parent="303" name="fk_election_id">
       <ColNames>election_id</ColNames>
       <RefColNames>election_id</RefColNames>
       <RefTableName>elections</RefTableName>
     </foreign-key>
-    <index id="347" parent="304" name="PRIMARY">
+    <index id="336" parent="303" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="348" parent="304" name="registration_number">
+    <index id="337" parent="303" name="registration_number">
       <ColNames>registration_number</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="349" parent="304" name="proposer_registration_number">
+    <index id="338" parent="303" name="proposer_registration_number">
       <ColNames>proposer_registration_number</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="350" parent="304" name="seconder_registration_number">
+    <index id="339" parent="303" name="seconder_registration_number">
       <ColNames>seconder_registration_number</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="351" parent="304" name="fk_election_id">
+    <index id="340" parent="303" name="fk_election_id">
       <ColNames>election_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="352" parent="304" name="PRIMARY">
+    <key id="341" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="353" parent="305" name="id">
+    <column id="342" parent="304" name="id">
       <AutoIncrement>7</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="354" parent="305" name="registrationNumber">
+    <column id="343" parent="304" name="registrationNumber">
       <DasType>varchar(20)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="355" parent="305" name="attendance">
+    <column id="344" parent="304" name="attendance">
       <DasType>enum(&apos;yes&apos;, &apos;no&apos;)|0e</DasType>
       <Position>3</Position>
     </column>
-    <column id="356" parent="305" name="academicArrears">
+    <column id="345" parent="304" name="academicArrears">
       <DasType>enum(&apos;yes&apos;, &apos;no&apos;)|0e</DasType>
       <Position>4</Position>
     </column>
-    <column id="357" parent="305" name="registeredStudent">
+    <column id="346" parent="304" name="registeredStudent">
       <DasType>enum(&apos;yes&apos;, &apos;no&apos;)|0e</DasType>
       <Position>5</Position>
     </column>
-    <column id="358" parent="305" name="courseRequirements">
+    <column id="347" parent="304" name="courseRequirements">
       <DasType>enum(&apos;yes&apos;, &apos;no&apos;)|0e</DasType>
       <Position>6</Position>
     </column>
-    <column id="359" parent="305" name="researchProgress">
+    <column id="348" parent="304" name="researchProgress">
       <DasType>enum(&apos;yes&apos;, &apos;no&apos;)|0e</DasType>
       <Position>7</Position>
     </column>
-    <column id="360" parent="305" name="DRCReport">
+    <column id="349" parent="304" name="DRCReport">
       <DasType>enum(&apos;yes&apos;, &apos;no&apos;)|0e</DasType>
       <Position>8</Position>
     </column>
-    <column id="361" parent="305" name="comments">
+    <column id="350" parent="304" name="comments">
       <DasType>text|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="362" parent="305" name="dateCertification">
+    <column id="351" parent="304" name="dateCertification">
       <DasType>datetime|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="363" parent="305" name="nominationId">
+    <column id="352" parent="304" name="nominationId">
       <DasType>int|0s</DasType>
       <Position>11</Position>
     </column>
-    <foreign-key id="364" parent="305" name="certification_data_ibfk_1">
+    <foreign-key id="353" parent="304" name="certification_data_ibfk_1">
       <ColNames>registrationNumber</ColNames>
       <RefColNames>roll_number</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <foreign-key id="365" parent="305" name="certification_data_ibfk_2">
+    <foreign-key id="354" parent="304" name="certification_data_ibfk_2">
       <ColNames>nominationId</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>candidate_nomination</RefTableName>
     </foreign-key>
-    <index id="366" parent="305" name="PRIMARY">
+    <index id="355" parent="304" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="367" parent="305" name="registrationNumber">
+    <index id="356" parent="304" name="registrationNumber">
       <ColNames>registrationNumber</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="368" parent="305" name="nominationId">
+    <index id="357" parent="304" name="nominationId">
       <ColNames>nominationId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="369" parent="305" name="PRIMARY">
+    <key id="358" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="370" parent="306" name="election_id">
+    <column id="359" parent="305" name="election_id">
       <AutoIncrement>4</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="371" parent="306" name="election_name">
+    <column id="360" parent="305" name="election_name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="372" parent="306" name="nomination_start_datetime">
+    <column id="361" parent="305" name="nomination_start_datetime">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="373" parent="306" name="nomination_end_datetime">
+    <column id="362" parent="305" name="nomination_end_datetime">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="374" parent="306" name="scrutiny_list_datetime">
+    <column id="363" parent="305" name="scrutiny_list_datetime">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="375" parent="306" name="withdrawal_start_datetime">
+    <column id="364" parent="305" name="withdrawal_start_datetime">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="376" parent="306" name="withdrawal_end_datetime">
+    <column id="365" parent="305" name="withdrawal_end_datetime">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="377" parent="306" name="final_list_datetime">
+    <column id="366" parent="305" name="final_list_datetime">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="378" parent="306" name="campaign_start_date">
+    <column id="367" parent="305" name="campaign_start_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="379" parent="306" name="campaign_end_date">
+    <column id="368" parent="305" name="campaign_end_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="380" parent="306" name="polling_agents_datetime">
+    <column id="369" parent="305" name="polling_agents_datetime">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="381" parent="306" name="no_campaign_datetime">
+    <column id="370" parent="305" name="no_campaign_datetime">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="382" parent="306" name="polling_date">
+    <column id="371" parent="305" name="polling_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>13</Position>
     </column>
-    <column id="383" parent="306" name="polling_start_time">
+    <column id="372" parent="305" name="polling_start_time">
       <DasType>time|0s</DasType>
       <NotNull>1</NotNull>
       <Position>14</Position>
     </column>
-    <column id="384" parent="306" name="polling_end_time">
+    <column id="373" parent="305" name="polling_end_time">
       <DasType>time|0s</DasType>
       <NotNull>1</NotNull>
       <Position>15</Position>
     </column>
-    <column id="385" parent="306" name="results_datetime">
+    <column id="374" parent="305" name="results_datetime">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>16</Position>
     </column>
-    <column id="386" parent="306" name="created_at">
+    <column id="375" parent="305" name="created_at">
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>17</Position>
     </column>
-    <index id="387" parent="306" name="PRIMARY">
+    <index id="376" parent="305" name="PRIMARY">
       <ColNames>election_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="388" parent="306" name="PRIMARY">
+    <key id="377" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="389" parent="307" name="id">
+    <column id="378" parent="306" name="id">
       <AutoIncrement>84</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="390" parent="307" name="username">
+    <column id="379" parent="306" name="username">
       <DasType>varchar(8)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="391" parent="307" name="password">
+    <column id="380" parent="306" name="password">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="392" parent="307" name="type">
+    <column id="381" parent="306" name="type">
       <DasType>enum(&apos;Student&apos;, &apos;Dean&apos;, &apos;Hod&apos;, &apos;ElectionChair&apos;)|0e</DasType>
       <DefaultExpression>&apos;Student&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <index id="393" parent="307" name="PRIMARY">
+    <index id="382" parent="306" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="394" parent="307" name="username">
+    <index id="383" parent="306" name="username">
       <ColNames>username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="395" parent="307" name="PRIMARY">
+    <key id="384" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="396" parent="307" name="username">
+    <key id="385" parent="306" name="username">
       <UnderlyingIndexName>username</UnderlyingIndexName>
     </key>
-    <column id="397" parent="308" name="id">
+    <column id="386" parent="307" name="id">
       <AutoIncrement>36</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="398" parent="308" name="nomination_id">
+    <column id="387" parent="307" name="nomination_id">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="399" parent="308" name="proposer_status">
+    <column id="388" parent="307" name="proposer_status">
       <DasType>enum(&apos;yes&apos;, &apos;no&apos;)|0e</DasType>
       <Position>3</Position>
     </column>
-    <column id="400" parent="308" name="seconder_status">
+    <column id="389" parent="307" name="seconder_status">
       <DasType>enum(&apos;yes&apos;, &apos;no&apos;)|0e</DasType>
       <Position>4</Position>
     </column>
-    <column id="401" parent="308" name="status">
+    <column id="390" parent="307" name="status">
       <DasType>enum(&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;3.5&apos;, &apos;4&apos;, &apos;4.5&apos;, &apos;5&apos;, &apos;5.5&apos;)|0e</DasType>
       <Position>5</Position>
     </column>
-    <foreign-key id="402" parent="308" name="nomination_status_ibfk_1">
+    <foreign-key id="391" parent="307" name="nomination_status_ibfk_1">
       <ColNames>nomination_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>candidate_nomination</RefTableName>
     </foreign-key>
-    <index id="403" parent="308" name="PRIMARY">
+    <index id="392" parent="307" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="404" parent="308" name="nomination_id">
+    <index id="393" parent="307" name="nomination_id">
       <ColNames>nomination_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="405" parent="308" name="PRIMARY">
+    <key id="394" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="406" parent="309" name="election_id">
+    <column id="395" parent="308" name="election_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="407" parent="309" name="position">
+    <column id="396" parent="308" name="position">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="408" parent="309" name="office_bearers_ibfk_1">
+    <foreign-key id="397" parent="308" name="office_bearers_ibfk_1">
       <ColNames>election_id</ColNames>
       <RefColNames>election_id</RefColNames>
       <RefTableName>elections</RefTableName>
     </foreign-key>
-    <index id="409" parent="309" name="PRIMARY">
+    <index id="398" parent="308" name="PRIMARY">
       <ColNames>election_id
 position</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="410" parent="309" name="PRIMARY">
+    <key id="399" parent="308" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="411" parent="310" name="election_id">
+    <column id="400" parent="309" name="election_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="412" parent="310" name="school_name">
+    <column id="401" parent="309" name="school_name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="413" parent="310" name="num_board_members">
+    <column id="402" parent="309" name="num_board_members">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="414" parent="310" name="num_councillors">
+    <column id="403" parent="309" name="num_councillors">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <foreign-key id="415" parent="310" name="school_boards_councillors_ibfk_1">
+    <foreign-key id="404" parent="309" name="school_boards_councillors_ibfk_1">
       <ColNames>election_id</ColNames>
       <RefColNames>election_id</RefColNames>
       <RefTableName>elections</RefTableName>
     </foreign-key>
-    <index id="416" parent="310" name="PRIMARY">
+    <index id="405" parent="309" name="PRIMARY">
       <ColNames>election_id
 school_name</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="417" parent="310" name="PRIMARY">
+    <key id="406" parent="309" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="418" parent="311" name="roll_number">
+    <column id="407" parent="310" name="roll_number">
       <DasType>char(8)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="419" parent="311" name="name">
+    <column id="408" parent="310" name="name">
       <DasType>varchar(100)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="420" parent="311" name="department">
+    <column id="409" parent="310" name="department">
       <DasType>enum(&apos;SLS&apos;, &apos;SEST&apos;, &apos;SoMS&apos;, &apos;SMS&apos;, &apos;SSS&apos;, &apos;SE&apos;, &apos;SH&apos;, &apos;SM&amp;S&apos;, &apos;SCIS&apos;, &apos;SP.SC&apos;, &apos;SNS&apos;, &apos;CIS&apos;)|0e</DasType>
       <Position>3</Position>
     </column>
-    <column id="421" parent="311" name="student_type">
+    <column id="410" parent="310" name="student_type">
       <DasType>enum(&apos;PG&apos;, &apos;Research&apos;)|0e</DasType>
       <Position>4</Position>
     </column>
-    <column id="422" parent="311" name="subject">
+    <column id="411" parent="310" name="subject">
       <DasType>varchar(100)|0s</DasType>
       <DefaultExpression>&apos;CS&apos;</DefaultExpression>
       <Position>5</Position>
     </column>
-    <column id="423" parent="311" name="course">
+    <column id="412" parent="310" name="course">
       <DasType>varchar(100)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="424" parent="311" name="DOB">
+    <column id="413" parent="310" name="DOB">
       <DasType>date|0s</DasType>
       <DefaultExpression>&apos;2000-01-01&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="425" parent="311" name="semester">
+    <column id="414" parent="310" name="semester">
       <DasType>int|0s</DasType>
       <DefaultExpression>1</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <index id="426" parent="311" name="PRIMARY">
+    <index id="415" parent="310" name="PRIMARY">
       <ColNames>roll_number</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="427" parent="311" name="PRIMARY">
+    <key id="416" parent="310" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="428" parent="312" name="id">
+    <column id="417" parent="311" name="id">
+      <AutoIncrement>11</AutoIncrement>
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="418" parent="311" name="nomination_id">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="419" parent="311" name="candidate_file_path">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="420" parent="311" name="proposer_file_path">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="421" parent="311" name="seconder_file_path">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="422" parent="311" name="dob_proof_file_path">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="423" parent="311" name="attendance_file_path">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="424" parent="311" name="category_file_path">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <foreign-key id="425" parent="311" name="uploaded_files_ibfk_1">
+      <ColNames>nomination_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>candidate_nomination</RefTableName>
+    </foreign-key>
+    <index id="426" parent="311" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="427" parent="311" name="nomination_id">
+      <ColNames>nomination_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="428" parent="311" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="429" parent="312" name="id">
       <AutoIncrement>29</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="429" parent="312" name="username">
+    <column id="430" parent="312" name="username">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="430" parent="312" name="verification_code">
+    <column id="431" parent="312" name="verification_code">
       <DasType>varchar(8)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="431" parent="312" name="sent_time">
+    <column id="432" parent="312" name="sent_time">
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>4</Position>
     </column>
-    <column id="432" parent="312" name="expiry_time">
+    <column id="433" parent="312" name="expiry_time">
       <DasType>timestamp|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="433" parent="312" name="PRIMARY">
+    <index id="434" parent="312" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="434" parent="312" name="username">
+    <index id="435" parent="312" name="username">
       <ColNames>username</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="435" parent="312" name="expiry_time">
+    <index id="436" parent="312" name="expiry_time">
       <ColNames>expiry_time</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="436" parent="312" name="PRIMARY">
+    <key id="437" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

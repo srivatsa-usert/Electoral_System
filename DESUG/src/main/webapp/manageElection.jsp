@@ -151,11 +151,12 @@
                                         <option value="joint-secretary">Joint Secretary</option>
                                         <option value="cultural-secretary">Cultural Secretary</option>
                                         <option value="sports-secretary">Sports Secretary</option>
-<%--                                        <option value="other">Other</option>--%>
+                                        <%--<option value="other">Other</option>--%>
                                     </select>
                                     <input type="text" id="other-position-0" name="other-position-0" class="hidden other-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter other position">
                                 </div>
                             </div>
+                            <!-- Add button to add more office bearers -->
                             <button id="add-btn1" class="add-btn bg-blue-500 text-white px-4 py-2 rounded-md ml-2">+</button>
                         </div>
                     </div>
@@ -189,7 +190,7 @@
                                         <option value="school-of-chemistry">School of Chemistry</option>
                                         <option value="school-of-arts-and-communication">School of Arts and Communication</option>
                                         <option value="college-for-integrated-studies">College for Integrated Studies</option>
-<%--                                        <option value="other">Other</option>--%>
+                                        <%--<option value="other">Other</option>--%>
                                     </select>
                                     <input type="text" id="other-school-name-0" name="other-school-name-0" class="hidden other-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter other school">
                                     <label for="number-of-school-board-members-0" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of School Board Members: </label>
@@ -198,7 +199,52 @@
                                     <input type="number" id="number-of-councillors-0" name="number-of-councillors-0" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" <%--required--%>>
                                 </div>
                             </div>
+                            <!-- Add button to add more school board members & councillors -->
                             <button id="add-btn2" class="add-btn bg-blue-500 text-white px-4 py-2 rounded-md ml-2">+</button>
+                        </div>
+                    </div>
+
+                    <!-- age rules -->
+                    <h2 id="accordion-collapse-heading-4">
+                        <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-4" aria-expanded="false" aria-controls="accordion-collapse-body-4">
+                            <span>Age Rules</span>
+                            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                            </svg>
+                        </button>
+                    </h2>
+                    <div id="accordion-collapse-body-4" class="hidden" aria-labelledby="accordion-collapse-heading-4">
+                        <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                            <!-- minimum age for UG students -->
+                            <div class="mb-5">
+                                <label for="min-age-ug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Minimum Age for UG Students: </label>
+                                <input type="number" id="min-age-ug" name="min-age-ug" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            </div>
+                            <!-- maximum age for UG students -->
+                            <div class="mb-5">
+                                <label for="max-age-ug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Maximum Age for UG Students: </label>
+                                <input type="number" id="max-age-ug" name="max-age-ug" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            </div>
+                            <!-- minimum age for PG students -->
+                            <div class="mb-5">
+                                <label for="min-age-pg" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Minimum Age for PG Students: </label>
+                                <input type="number" id="min-age-pg" name="min-age-pg" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            </div>
+                            <!-- maximum age for PG students -->
+                            <div class="mb-5">
+                                <label for="max-age-pg" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Maximum Age for PG Students: </label>
+                                <input type="number" id="max-age-pg" name="max-age-pg" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            </div>
+                            <!-- minimum age for Research students -->
+                            <div class="mb-5">
+                                <label for="min-age-research" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Minimum Age for Research Students: </label>
+                                <input type="number" id="min-age-research" name="min-age-research" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            </div>
+                            <!-- maximum age for Research students -->
+                            <div class="mb-5">
+                                <label for="max-age-research" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Maximum Age for Research Students: </label>
+                                <input type="number" id="max-age-research" name="max-age-research" min="0" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -278,19 +324,28 @@
         addBtn1.addEventListener('click', function(event) {
             event.preventDefault();
             const newInput = container1.querySelector('.office-bearer-input').cloneNode(true);
+            newInput.id = 'office-bearer-input-' + officeBearerIndex;
 
             // Set unique names for select and input elements
             const selectElement = newInput.querySelector('select');
             const inputElement = newInput.querySelector('input');
+            const newObRemoveBtn = document.createElement('button');
 
             selectElement.name = 'office-bearers-'+officeBearerIndex;
             inputElement.name = 'other-position-'+officeBearerIndex;
+            newObRemoveBtn.name = 'remove-btn-'+officeBearerIndex;
+            newObRemoveBtn.type = 'button';
+            newObRemoveBtn.classList.add('remove-btn', 'bg-red-500', 'text-white', 'px-4', 'py-2', 'rounded-md', 'ml-2');
+            newObRemoveBtn.textContent = '-';
 
             // Increment index for the next set of fields
             officeBearerIndex++;
 
             // Clear the selected value
             selectElement.selectedIndex = 0;
+
+            // Append the remove button to the new input
+            newInput.appendChild(newObRemoveBtn);
 
             // Append the new input to the container
             container1.appendChild(newInput);
@@ -321,17 +376,23 @@
         addBtn2.addEventListener('click', function(event) {
             event.preventDefault();
             const newInput = container2.querySelector('.school-board-members-councillors-input').cloneNode(true);
+            newInput.id = 'school-board-members-councillors-input-' + schoolBoardMemberIndex;
 
             // Set unique names for select and input elements
             const selectElement = newInput.querySelector('select');
             const inputElement = newInput.querySelector('#number-of-school-board-members-0');
             const inputElement2 = newInput.querySelector('#number-of-councillors-0');
             const inputElement3 = newInput.querySelector('#other-school-name-0');
+            const newSbmCcrRemoveBtn = document.createElement('button');
 
             selectElement.name = 'name-of-school-' + schoolBoardMemberIndex;
             inputElement.name = 'number-of-school-board-members-' + schoolBoardMemberIndex;
             inputElement2.name = 'number-of-councillors-' + schoolBoardMemberIndex;
             inputElement3.name = 'other-school-' + schoolBoardMemberIndex;
+            newSbmCcrRemoveBtn.name = 'remove-btn-' + schoolBoardMemberIndex;
+            newSbmCcrRemoveBtn.type = 'button';
+            newSbmCcrRemoveBtn.classList.add('remove-btn', 'bg-red-500', 'text-white', 'px-4', 'py-2', 'rounded-md', 'ml-2');
+            newSbmCcrRemoveBtn.textContent = '-';
 
             // Increment index for the next set of fields
             schoolBoardMemberIndex++;
@@ -341,6 +402,9 @@
             inputElement.value = '';
             inputElement2.value = '';
             inputElement3.value = '';
+
+            // Append the remove button to the new input
+            newInput.appendChild(newSbmCcrRemoveBtn);
 
             // Append the new input to the container
             container2.appendChild(newInput);
@@ -358,6 +422,32 @@
             } else {
                 otherInput.classList.add('hidden');
             }
+        });
+    </script>--%>
+
+    <!-- Script to remove office bearers input div when remove button is clicked -->
+    <%--<script>
+        <!-- Get remove buttons whose name starts with remove-btn- in office bearer container -->
+        const container1 = document.getElementById('office-bearers-container');
+        const removeButtons1 = container1.querySelectorAll('button[name^="remove-btn-"]');
+
+        removeButtons1.forEach(function(button) {
+            button.addEventListener('click', function() {
+                button.parentElement.remove();
+            });
+        });
+    </script>--%>
+
+    <!-- Script to remove school board members & councillors input div when remove button is clicked -->
+    <%--<script>
+        <!-- Get remove buttons whose name starts with remove-btn- in school board members & councillors container -->
+        const container2 = document.getElementById('school-board-members-councillors-container');
+        const removeButtons2 = container2.querySelectorAll('button[name^="remove-btn-"]');
+
+        removeButtons2.forEach(function(button) {
+            button.addEventListener('click', function() {
+                button.parentElement.remove();
+            });
         });
     </script>--%>
 </body>

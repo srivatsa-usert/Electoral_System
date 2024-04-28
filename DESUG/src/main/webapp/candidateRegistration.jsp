@@ -202,10 +202,9 @@
                         }
                     }
                 };
+
+                // Send the XMLHttpRequest
                 xhr.send();
-
-
-
             }
         }
         if (status >= 4) {
@@ -279,7 +278,6 @@
                 // Send the XMLHttpRequest
                 xhr.send();
             }
-
         }
         if (status >= 5) {
             circle5.classList.remove('bg-gray-200','dark:bg-gray-700');

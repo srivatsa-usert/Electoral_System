@@ -107,8 +107,8 @@ public class FileServlet extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
-            // SQL query to insert data into UploadedFiles table
-            String sql = "SELECT " + file + " FROM UploadedFiles WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
+            // SQL query to insert data into uploaded_files table
+            String sql = "SELECT " + file + " FROM uploaded_filesiles WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, registrationId);
             ResultSet rs = stmt.executeQuery();

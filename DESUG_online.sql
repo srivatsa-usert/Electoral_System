@@ -257,8 +257,8 @@ DROP FOREIGN KEY "login_ibfk_1";
 ALTER TABLE "login"
 ADD COLUMN "type" ENUM('Student', 'Dean', 'Hod', 'ElectionChair') NOT NULL DEFAULT 'Student';
 
-desc UploadedFiles;
-select * from UploadedFiles;
+desc uploaded_files;
+select * from uploaded_files;
 
 select * from nomination_status;
 select * from student;
@@ -282,7 +282,7 @@ CREATE TABLE certification_data (
     FOREIGN KEY (nominationId) REFERENCES candidate_nomination(id)
 );
 
-update nomination_status set seconder_status = null where nomination_id = 39;
+update nomination_status set seconder_status = 'yes' where nomination_id = 39;
 
 ALTER TABLE nomination_status
 MODIFY status ENUM('1', '2', '3','3.5', '4','4.5', '5','5.5');
@@ -302,4 +302,22 @@ update certification_data set registeredStudent = 'no' where id = 11;
 
 delete from certification_data where id = 10;
 
+use DESUG;
+SELECT * FROM age_rule;
+DROP TABLE age_rule;
 
+SET SESSION sql_require_primary_key = OFF;
+SET SESSION sql_require_primary_key = ON;
+
+CREATE TABLE age_rule (
+	election_id INT NOT NULL,
+	academic_programme ENUM('UG', 'PG', 'Research') NOT NULL,
+    minimum_age INT NOT NULL,
+    maximum_age INT NOT NULL,
+    FOREIGN KEY (election_id) REFERENCES elections (election_id)
+);
+
+INSERT INTO age_rule VALUES
+(3, 'UG', 17, 22),
+(3, 'PG', 17, 24),
+(3, 'Research', 17, 28);

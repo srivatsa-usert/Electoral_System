@@ -90,6 +90,14 @@ public class AddNewElectionServlet extends HttpServlet {
             }
         }
 
+        // Age Rule values
+        String minAgeUG = request.getParameter("min-age-ug");
+        String maxAgeUG = request.getParameter("max-age-ug");
+        String minAgePG = request.getParameter("min-age-pg");
+        String maxAgePG = request.getParameter("max-age-pg");
+        String minAgeResearch = request.getParameter("min-age-research");
+        String maxAgeResearch = request.getParameter("max-age-research");
+
         Properties props = getConnectionData();
 
         // Database connection parameters
@@ -161,6 +169,23 @@ public class AddNewElectionServlet extends HttpServlet {
                         membersStmt.setInt(4, numberOfCouncillorsList.get(i));
                         membersStmt.executeUpdate();
                     }
+
+                    // Insert age rule values
+                    String insertAgeRuleSql = "INSERT INTO age_rule (election_id, academic_programme, minimum_age, maximum_age) VALUES (?, ?, ?, ?), (?, ?, ?, ?), (?, ?, ?, ?)";
+                    PreparedStatement ageRuleStmt = conn.prepareStatement(insertAgeRuleSql);
+                    ageRuleStmt.setInt(1, electionId);
+                    ageRuleStmt.setString(2, "UG");
+                    ageRuleStmt.setString(3, minAgeUG);
+                    ageRuleStmt.setString(4, maxAgeUG);
+                    ageRuleStmt.setInt(5, electionId);
+                    ageRuleStmt.setString(6, "PG");
+                    ageRuleStmt.setString(7, minAgePG);
+                    ageRuleStmt.setString(8, maxAgePG);
+                    ageRuleStmt.setInt(9, electionId);
+                    ageRuleStmt.setString(10, "Research");
+                    ageRuleStmt.setString(11, minAgeResearch);
+                    ageRuleStmt.setString(12, maxAgeResearch);
+                    ageRuleStmt.executeUpdate();
 
                     // Commit transaction
                     conn.commit();
