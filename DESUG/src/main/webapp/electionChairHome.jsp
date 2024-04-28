@@ -26,6 +26,11 @@
         <div class="max-w-screen-xl mx-auto p-4">
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Approve Candidates</h2>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Approve the candidates who have applied for the election.</p>
+                    <a href="approveCandidates.jsp" class="block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">Approve Candidates</a>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
                     <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Election Management</h2>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Manage the election process, add candidates, voters, and more.</p>
                     <a href="manageElection.jsp" class="block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">Manage Election</a>
@@ -34,11 +39,6 @@
                     <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Delegate Work</h2>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Delegate work to the election committee members.</p>
                     <a href="delegateWork.jsp" class="block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">Delegate Work</a>
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
-                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Hola!</h2>
-                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">This is a placeholder for the third card.</p>
-                    <a href="#" class="block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">Learn More</a>
                 </div>
             </div>
         </div>
