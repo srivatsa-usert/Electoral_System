@@ -6,15 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="3d42f10b-8775-4446-a953-b62b70f9d5f7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ae99a299-3fa2-4cc0-ad8f-a6a90542584f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ae99a299-3fa2-4cc0-ad8f-a6a90542584f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/AddNewElectionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/AddNewElectionServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/EnclosuresServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/EnclosuresServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/CheckAgeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/CheckAgeServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/FileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/FileServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/approveCandidateForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/approveCandidateForm.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/approveCandidates.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/approveCandidates.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/candidateRegistration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/candidateRegistration.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/castVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/castVote.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/certifyCandidateForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/certifyCandidateForm.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/certifyCandidates.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/certifyCandidates.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/confirmNomination.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/confirmNomination.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/deanHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/deanHome.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/delegateWork.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/delegateWork.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/electionChairHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/electionChairHome.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/footer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/manageElection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/manageElection.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/viewFile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/viewFile.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +55,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -464,6 +473,7 @@
       <workItem from="1714135716771" duration="1326000" />
       <workItem from="1714219599359" duration="6143000" />
       <workItem from="1714274122043" duration="12541000" />
+      <workItem from="1714300069065" duration="7086000" />
     </task>
     <servers />
   </component>

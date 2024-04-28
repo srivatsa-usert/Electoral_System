@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: anant
-  Date: 29-02-2024
-  Time: 21:37
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%
     session = request.getSession();
@@ -59,7 +52,7 @@
 <script>
     window.addEventListener('DOMContentLoaded', function () {
         fetchCandidateDetails('<%= candidateRegNumber %>');
-        console.log('<%= session %>');
+        /*console.log('<%= session %>');*/
     });
 
     function fetchCandidateDetails(candidateRegNumber) {
@@ -295,31 +288,11 @@
             }
         }
     }
-
 </script>
 
 <body class="flex flex-col min-h-screen">
     <!-- Header -->
     <%@ include file="header.jsp" %>
-
-    <!-- Script to toggle the user menu -->
-    <script>
-        const loginButton = document.getElementById('loginButton');
-        const loginModal = document.getElementById('authentication-modal');
-        const userMenuButton = document.getElementById('user-menu-button');
-
-        window.addEventListener('load', function() {
-            let username = '<%= candidateRegNumber %>';
-            console.log(username);
-
-            if (username && username !== "null" && username !== "NULL") {
-                // User is logged in, then hide login button and show user menu button
-                loginButton.classList.add('hidden');
-                userMenuButton.classList.remove('hidden');
-                // userMenuButton.innerText = username;
-            }
-        });
-    </script>
 
     <!-- Main content -->
     <div class="flex-grow p-6 bg-white dark:bg-gray-800">

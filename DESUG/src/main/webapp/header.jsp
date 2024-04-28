@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: anant
-  Date: 10-04-2024
-  Time: 13:31
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -107,6 +100,12 @@
                         <li>
                             <a href="candidateRegistration.jsp" aria-current="<%= request.getRequestURI().endsWith("candidateRegistration.jsp") ? "page" : "" %>">File Nomination</a>
                         </li>
+                        <li>
+                            <a href="nominationWithdrawal.jsp" aria-current="<%= request.getRequestURI().endsWith("nominationWithdrawal.jsp") ? "page" : "" %>">Withdraw Nomination</a>
+                        </li>
+                        <%--<li>
+                            <a href="assignAgents.jsp" aria-current="<%= request.getRequestURI().endsWith("assignAgents.jsp") ? "page" : "" %>">Assign Agents</a>
+                        </li>--%>
                     <% } %>
                     <%-- old list items --%>
                     <%--<li>
