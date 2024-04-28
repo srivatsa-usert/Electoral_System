@@ -337,7 +337,7 @@
                             <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
                         </svg>
                         <svg id = "cross3" class="w-6 h-6 text-gray-800 dark:text-white hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"></path>
                         </svg>
                     </div>
                     <div id="line3" class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
@@ -353,7 +353,7 @@
                             <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
                         </svg>
                         <svg id = "cross4" class="w-6 h-6 text-gray-800 dark:text-white hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"></path>
                         </svg>
                     </div>
                     <div id="line4" class="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
@@ -369,7 +369,7 @@
                             <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"> </path>
                         </svg>
                         <svg id = "cross5" class="w-6 h-6 text-gray-800 dark:text-white hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"></path>
                         </svg>
                     </div>
                 </div>
@@ -522,7 +522,7 @@
                                 </p>
                                 <!-- Checkbox for agreement -->
                                 <label for="agreeCheckbox" class="dark:text-white">
-                                    <strong>I AGREE &lt;%&ndash;TO THE TERMS AND CONDITIONS&ndash;%&gt;</strong>
+                                    <strong>I AGREE TO THE TERMS AND CONDITIONS</strong>
                                 </label>
                                 <input type="checkbox" id="agreeCheckbox" onchange="toggleCheckbox()" required>
                                 <button id="submitButton" type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>

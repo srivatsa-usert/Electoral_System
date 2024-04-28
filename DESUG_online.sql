@@ -285,14 +285,14 @@ CREATE TABLE certification_data (
 update nomination_status set seconder_status = 'yes' where nomination_id = 39;
 
 ALTER TABLE nomination_status
-MODIFY status ENUM('1', '2', '3','3.5', '4','4.5', '5','5.5');
+MODIFY status ENUM('-1','1', '2', '3','3.5', '4','4.5', '5','5.5');
 
 ALTER TABLE nomination_status
 MODIFY proposer_status ENUM('yes', 'no') DEFAULT NULL,
 MODIFY seconder_status ENUM('yes', 'no') DEFAULT NULL;
 
 select * from nomination_status;
-update nomination_status set status = '3' where nomination_id = 29;
+update nomination_status set status = '5' where nomination_id = 36;
 
 show tables;
 select * from certification_data;

@@ -56,17 +56,25 @@
                     </div>
                     <!-- Item 2 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="${pageContext.request.contextPath}/Images/vote-quote-1.jpg" class="relative block max-h-full w-auto rounded-lg mx-auto" alt="...">
+                        <img src="${pageContext.request.contextPath}/Images/Desug2.jpg" class="relative block max-h-full w-auto rounded-lg mx-auto" alt="...">
                     </div>
                     <!-- Item 3 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="${pageContext.request.contextPath}/Images/elections-logo-2024.png" class="relative block max-h-full w-auto rounded-lg mx-auto" alt="...">
+                        <img src="${pageContext.request.contextPath}/Images/vote-quote-1.jpg" class="relative block max-h-full w-auto rounded-lg mx-auto" alt="...">
                     </div>
                     <!-- Item 4 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="${pageContext.request.contextPath}/Images/vote-quote-2.jpg" class="relative block max-h-full w-auto rounded-lg mx-auto" alt="...">
+                        <img src="${pageContext.request.contextPath}/Images/elections-logo-2024.png" class="relative block max-h-full w-auto rounded-lg mx-auto" alt="...">
                     </div>
                     <!-- Item 5 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="${pageContext.request.contextPath}/Images/vote-quote-2.jpg" class="relative block max-h-full w-auto rounded-lg mx-auto" alt="...">
+                    </div>
+                    <!-- Item 6 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="${pageContext.request.contextPath}/Images/Desug4.jpg" class="relative block max-h-full w-auto rounded-lg mx-auto" alt="...">
+                    </div>
+                    <!-- Item 7 -->
                     <div class="hidden duration-700 ease-in-out mt-8" data-carousel-item>
                         <img src="${pageContext.request.contextPath}/Images/student-elections-event.jpg" class="relative block max-h-full w-auto rounded-lg mx-auto" alt="...">
                     </div>
@@ -78,6 +86,8 @@
                     <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
                     <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
                     <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 6" data-carousel-slide-to="5"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 7" data-carousel-slide-to="6"></button>
                 </div>
                 <!-- Slider controls -->
                 <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>

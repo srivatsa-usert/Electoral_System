@@ -64,14 +64,14 @@ public class CheckAgeServlet extends HttpServlet {
             stmt.setString(1, academicProgram);
             ResultSet rs = stmt.executeQuery();
 
-            // If a record is found, retrieve min_age and max_age
+            // If a record is found, retrieve minimum_age and maximum_age
             if (rs.next()) {
-                // Handle NULL values for min_age and max_age
-                minAge = rs.getInt("min_age");
+                // Handle NULL values for minimum_age and maximum_age
+                minAge = rs.getInt("minimum_age");
                 if (rs.wasNull()) {
                     minAge = 0;
                 }
-                maxAge = rs.getInt("max_age");
+                maxAge = rs.getInt("maximum_age");
                 if (rs.wasNull()) {
                     maxAge = 999;
                 }
