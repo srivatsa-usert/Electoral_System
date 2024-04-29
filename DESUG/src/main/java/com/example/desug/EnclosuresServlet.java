@@ -40,8 +40,8 @@ public class EnclosuresServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String student = session.getAttribute("username").toString();
 
-        String UPLOAD_DIRECTORY = "C:\\Users\\anant\\Downloads\\Nominations";
-//        String UPLOAD_DIRECTORY = "C:\\Users\\Srivatsa\\Downloads";
+//        String UPLOAD_DIRECTORY = "C:\\Users\\anant\\Downloads\\Nominations";
+        String UPLOAD_DIRECTORY = "C:\\Users\\Srivatsa\\Downloads\\Nominations";
 
         Properties props = getConnectionData();
 
@@ -100,10 +100,13 @@ public class EnclosuresServlet extends HttpServlet {
                 boolean proposerYes = false;
                 boolean seconderYes = false;
                 if (resultSet.next()) {
-                    proposerYes = resultSet.getString("proposer_status").equals("yes");
-                    seconderYes = resultSet.getString("seconder_status").equals("yes");
+                    if (resultSet.getString("proposer_status") != null) {
+                        proposerYes = resultSet.getString("proposer_status").equals("yes");
+                    }
+                    if (resultSet.getString("seconder_status") != null) {
+                        seconderYes = resultSet.getString("seconder_status").equals("yes");
+                    }
                 }
-
                 if (proposerYes && seconderYes) {
                     // Both proposer and seconder statuses are "yes", update status to 3
                     String updateStatusSql = "UPDATE nomination_status SET status = 3 WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";

@@ -107,8 +107,8 @@
                     <th scope="col" class="px-6 py-3">Candidate Name</th>
                     <th scope="col" class="px-6 py-3">Registration Number</th>
                     <th scope="col" class="px-6 py-3">Position</th>
-                    <th scope="col" class="px-6 py-3">Category</th> <!-- Added Category -->
-                    <th scope="col" class="px-6 py-3">Status</th>
+                    <th scope="col" class="px-6 py-3">Status</th> <!-- Added Category -->
+                    <th scope="col" class="px-6 py-3">Category</th>
                     <th scope="col" class="px-6 py-3">Department</th> <!-- Added Department -->
                     <th scope="col" class="px-6 py-3">Subject</th> <!-- Added Subject -->
                     <th scope="col" class="px-6 py-3">Course</th> <!-- Added Course -->
