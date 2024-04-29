@@ -325,3 +325,5 @@ INSERT INTO age_rule VALUES
 (3, 'UG', 17, 22),
 (3, 'PG', 17, 24),
 (3, 'Research', 17, 28);
+
+SELECT *  FROM candidate_nomination cn JOIN nomination_status ns ON cn.id = ns.nomination_id JOIN student s ON cn.registration_number = s.roll_number;

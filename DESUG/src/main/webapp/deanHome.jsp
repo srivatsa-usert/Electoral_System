@@ -28,8 +28,8 @@
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
                     <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Certify Candidate</h2>
-                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Certify a candidate for the upcoming convocation.</p>
-                    <a href="getCandidateList" class="block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">Certify Candidate</a>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Certify a candidate with the attendance and academic record.</p>
+                    <a href="certifyCandidates.jsp" class="block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">Certify Candidate</a>
                 </div>
             </div>
         </div>

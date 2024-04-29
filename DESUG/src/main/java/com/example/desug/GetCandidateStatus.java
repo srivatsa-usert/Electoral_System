@@ -56,7 +56,7 @@ public class GetCandidateStatus extends HttpServlet {
         }
 
         // Perform database operations to check candidate status
-        float status = getCandidateStatus(candidateRegNumber);
+        String status = getCandidateStatus(candidateRegNumber);
 
         // Display candidate status
         String jsonResponse = "{\"status\": " + status + "}";
@@ -66,8 +66,8 @@ public class GetCandidateStatus extends HttpServlet {
     }
 
     // Method to retrieve candidate status from the database
-    private float getCandidateStatus(String candidateId) {
-        float status = 0; // Default status
+    private String getCandidateStatus(String candidateId) {
+        String status = "0"; // Default status
 
         try {
             // Load MySQL JDBC Driver
@@ -91,7 +91,7 @@ public class GetCandidateStatus extends HttpServlet {
 
             // Process query result
             if (resultSet.next()) {
-                status = resultSet.getFloat("status");
+                status = resultSet.getString("status");
             }
 
             // Close connections
@@ -105,4 +105,3 @@ public class GetCandidateStatus extends HttpServlet {
         return status;
     }
 }
-

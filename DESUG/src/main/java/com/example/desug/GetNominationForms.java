@@ -46,34 +46,71 @@ public class GetNominationForms extends HttpServlet {
         String dbUser = props.getProperty("db.username");
         String dbPassword = props.getProperty("db.password");
 
+
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
-            // Query to fetch registration number, name, and position of candidates with nomination status = 3
-            String sql = "SELECT cn.registration_number, cn.name_on_ballot_paper AS name, cn.position " +
-                    "FROM candidate_nomination cn " +
-                    "JOIN nomination_status ns ON cn.id = ns.nomination_id " +
-                    "WHERE ns.status = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1,status);
-            ResultSet rs = stmt.executeQuery();
-
-            // Prepare JSON array to hold candidate objects
             JSONArray candidateList = new JSONArray();
 
-            // Build JSON array with fetched data
-            while (rs.next()) {
-                JSONObject candidate = new JSONObject();
-                candidate.put("registrationNumber", rs.getString("registration_number"));
-                candidate.put("Name", rs.getString("name"));
-                candidate.put("Position", rs.getString("position"));
-                candidateList.put(candidate);
+
+            if (status.equals("all")) {
+                // Query to fetch registration number, name, and position of candidates with nomination status = 3
+                String sql = "SELECT * " +
+                        "FROM candidate_nomination cn " +
+                        "JOIN nomination_status ns ON cn.id = ns.nomination_id "+
+                        "JOIN student s ON cn.registration_number = s.roll_number";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery();
+
+                // Prepare JSON array to hold candidate objects
+
+                // Build JSON array with fetched data
+                while (rs.next()) {
+                    JSONObject candidate = new JSONObject();
+                    candidate.put("registrationNumber", rs.getString("registration_number"));
+                    candidate.put("name", rs.getString("name"));
+                    candidate.put("position", rs.getString("position"));
+                    candidate.put("category", rs.getString("category"));
+                    candidate.put("status", rs.getString("status"));
+                    candidate.put("department", rs.getString("department"));
+                    candidate.put("subject", rs.getString("subject"));
+                    candidate.put("course", rs.getString("course"));
+                    candidateList.put(candidate);
+                }
+
+                // Close resources
+                rs.close();
+                stmt.close();
+            }
+            else{
+                // Query to fetch registration number, name, and position of candidates with nomination status = 3
+                String sql = "SELECT cn.registration_number, cn.name_on_ballot_paper AS name, cn.position " +
+                        "FROM candidate_nomination cn " +
+                        "JOIN nomination_status ns ON cn.id = ns.nomination_id " +
+                        "WHERE ns.status = ? AND cn.election_id = (SELECT election_id FROM elections ORDER BY election_id DESC LIMIT 1)";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1,status);
+                ResultSet rs = stmt.executeQuery();
+
+                // Prepare JSON array to hold candidate objects
+
+                // Build JSON array with fetched data
+                while (rs.next()) {
+                    JSONObject candidate = new JSONObject();
+                    candidate.put("registrationNumber", rs.getString("registration_number"));
+                    candidate.put("Name", rs.getString("name"));
+                    candidate.put("Position", rs.getString("position"));
+                    candidateList.put(candidate);
+                }
+
+                // Close resources
+                rs.close();
+                stmt.close();
             }
 
-            // Close resources
-            rs.close();
-            stmt.close();
+
             conn.close();
 
             // Send JSON response

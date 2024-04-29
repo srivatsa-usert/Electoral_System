@@ -99,22 +99,22 @@
     function checkFilePath(filePathKey, registrationId) {
         let text;
         if (filePathKey === "candidate_file_path") {
-            text = "View Candidate's Semester Card";
+            text = "Candidate's Semester Card";
         }
         else if (filePathKey === "proposer_file_path") {
-            text = "View Proposer's Semester Card";
+            text = "Proposer's Semester Card";
         }
         else if (filePathKey === "seconder_file_path") {
-            text = "View Seconder's Semester Card";
+            text = "Seconder's Semester Card";
         }
         else if (filePathKey === "dob_proof_file_path") {
-            text = "View Candidate's DoB Proof";
+            text = "Candidate's DoB Proof";
         }
         else if (filePathKey === "attendance_file_path") {
-            text = "View Candidate's Certificate of Attendance & Academic Record";
+            text = "Candidate's Certificate of Attendance & Academic Record";
         }
         else if (filePathKey === "category_file_path") {
-            text = "View Candidate's Category Certificate";
+            text = "Candidate's Category Certificate";
         }
 
         let xhr = new XMLHttpRequest();

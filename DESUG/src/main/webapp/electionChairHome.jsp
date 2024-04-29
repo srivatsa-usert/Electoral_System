@@ -32,13 +32,18 @@
                 </div>
                 <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
                     <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Election Management</h2>
-                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Manage the election process, add candidates, voters, and more.</p>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Manage the election process, add schedule, positions, schools, and age criteria.</p>
                     <a href="manageElection.jsp" class="block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">Manage Election</a>
                 </div>
-                <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
+                <%--<div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
                     <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Delegate Work</h2>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Delegate work to the election committee members.</p>
                     <a href="delegateWork.jsp" class="block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">Delegate Work</a>
+                </div>--%>
+                <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white">View Candidates</h2>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">View all the candidates who have applied for the election.</p>
+                    <a href="viewCandidates.jsp" class="block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">View Candidates</a>
                 </div>
             </div>
         </div>

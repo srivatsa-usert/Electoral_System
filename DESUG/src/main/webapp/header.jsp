@@ -82,8 +82,11 @@
                             <a href="manageElection.jsp" aria-current="<%= request.getRequestURI().endsWith("manageElection.jsp") ? "page" : "" %>">Manage Election</a>
                         </li>
                         <li>
-                            <a href="delegateWork.jsp" aria-current="<%= request.getRequestURI().endsWith("delegateWork.jsp") ? "page" : "" %>">Delegate Work</a>
+                            <a href="viewCandidates.jsp" aria-current="<%= request.getRequestURI().endsWith("viewCandidates.jsp") ? "page" : "" %>">View Candidates</a>
                         </li>
+                        <%--<li>
+                            <a href="delegateWork.jsp" aria-current="<%= request.getRequestURI().endsWith("delegateWork.jsp") ? "page" : "" %>">Delegate Work</a>
+                        </li>--%>
                     <% }
                     else if (username.startsWith("dean")) { %>
                         <li>
