@@ -37,7 +37,7 @@ public class GetNominationForms extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        int status = Integer.parseInt(request.getParameter("status"));
+        String status = request.getParameter("status");
 
         Properties props = getConnectionData();
 
@@ -56,7 +56,7 @@ public class GetNominationForms extends HttpServlet {
                     "JOIN nomination_status ns ON cn.id = ns.nomination_id " +
                     "WHERE ns.status = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1,status);
+            stmt.setString(1,status);
             ResultSet rs = stmt.executeQuery();
 
             // Prepare JSON array to hold candidate objects

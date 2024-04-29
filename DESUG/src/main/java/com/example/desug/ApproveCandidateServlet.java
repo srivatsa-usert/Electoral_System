@@ -32,13 +32,27 @@ public class ApproveCandidateServlet extends HttpServlet {
         return props;
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Get form data
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String registrationNumber = request.getParameter("registrationNumber");
+        String candidateFileApproval = request.getParameter("candidate_file_pathAcceptReject");
+        String proposerFileApproval = request.getParameter("proposer_file_pathAcceptReject");
+        String seconderFileApproval = request.getParameter("seconder_file_pathAcceptReject");
+        String dobProofFileApproval = request.getParameter("dob_proof_file_pathAcceptReject");
+        String attendanceFileApproval = request.getParameter("attendance_file_pathAcceptReject");
+        String categoryFileApproval = request.getParameter("category_file_pathAcceptReject");
+        String comment = request.getParameter("comment");
+
+        System.out.println(registrationNumber);
+        System.out.println(candidateFileApproval);
+        System.out.println(proposerFileApproval);
+        System.out.println(seconderFileApproval);
+        System.out.println(dobProofFileApproval);
+        System.out.println(candidateFileApproval);
+
+
+        String status = calculateStatus(candidateFileApproval, proposerFileApproval, seconderFileApproval, dobProofFileApproval);
 
         // JDBC variables
-        Connection conn = null;
         PreparedStatement stmt = null;
 
         Properties props = getConnectionData();
@@ -48,29 +62,58 @@ public class ApproveCandidateServlet extends HttpServlet {
         String dbUser = props.getProperty("db.username");
         String dbPassword = props.getProperty("db.password");
 
-        try {
-            conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
-            String sqlUpdate = "UPDATE nomination_status SET status = 5 WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
-            stmt = conn.prepareStatement(sqlUpdate);
-            stmt.setString(1, registrationNumber);
-            stmt.executeUpdate();
+        try (Connection conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword)) {
+            conn.setAutoCommit(false);
 
+            updateNominationStatus(conn, registrationNumber, status);
+
+            insertApproval(conn, registrationNumber, candidateFileApproval, proposerFileApproval,
+                    seconderFileApproval, dobProofFileApproval, attendanceFileApproval,
+                    categoryFileApproval, comment) ;
+
+            conn.commit();
             response.sendRedirect("approveCandidates.jsp");
         } catch (SQLException ex) {
-            Logger lgr = Logger.getLogger(CertifyCandidateServlet.class.getName());
-            lgr.log(Level.SEVERE, ex.getMessage(), ex);
-        } finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                Logger lgr = Logger.getLogger(CertifyCandidateServlet.class.getName());
-                lgr.log(Level.WARNING, ex.getMessage(), ex);
-            }
+            Logger.getLogger(ApproveCandidateServlet.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing your request.");
         }
     }
+
+    private String calculateStatus(String candidateApproval, String proposerApproval, String seconderApproval, String dobProofApproval) {
+        if ("accept".equals(candidateApproval) && "accept".equals(proposerApproval) &&
+                "accept".equals(seconderApproval) && "accept".equals(dobProofApproval)) {
+            return "5";
+        } else {
+            return "5.5";
+        }
+    }
+
+    private void updateNominationStatus(Connection conn, String registrationNumber, String status) throws SQLException {
+        String sqlUpdate = "UPDATE nomination_status SET status = ? WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sqlUpdate)) {
+            stmt.setString(1, status);
+            stmt.setString(2, registrationNumber);
+            stmt.executeUpdate();
+        }
+    }
+
+    private void insertApproval(Connection conn, String registrationNumber, String candidateApproval, String proposerApproval,
+                                String seconderApproval, String dobProofApproval, String attendanceApproval,
+                                String categoryApproval, String comment) throws SQLException {
+        String sqlInsert = "INSERT INTO candidate_approval (registrationNumber, candidate_file_approval, proposer_file_approval, seconder_file_approval, dob_proof_file_approval, attendance_file_approval, category_file_approval, comment, nominationId) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?))";
+        try (PreparedStatement stmt = conn.prepareStatement(sqlInsert)) {
+            stmt.setString(1, registrationNumber);
+            stmt.setString(2, candidateApproval);
+            stmt.setString(3, proposerApproval);
+            stmt.setString(4, seconderApproval);
+            stmt.setString(5, dobProofApproval);
+            stmt.setString(6, attendanceApproval);
+            stmt.setString(7, categoryApproval);
+            stmt.setString(8, comment);
+            stmt.setString(9, registrationNumber);
+            stmt.executeUpdate();
+        }
+    }
+
 }

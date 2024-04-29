@@ -278,14 +278,75 @@
             document.getElementById("electionChairApprovalFormContainer").classList.add('hidden');
             document.getElementById("finalStatusContainer").classList.remove('hidden');
 
-            if(status >5.4 && status < 5.6){
-                circle5.classList.remove('bg-blue-700','dark:bg-blue-600');
-                circle5.classList.add('bg-red-700','dark:bg-red-600');
+            if (status > 5.4 && status < 5.6) {
+                circle5.classList.remove('bg-blue-700', 'dark:bg-blue-600');
+                circle5.classList.add('bg-red-700', 'dark:bg-red-600');
                 document.getElementById("tick5").classList.add('hidden');
                 document.getElementById("cross5").classList.remove('hidden');
                 document.getElementById("electionChairApprovalFormContainer").classList.remove('hidden');
                 document.getElementById("finalStatusContainer").classList.add('hidden');
+
+                // Create an XMLHttpRequest object
+                xhr = new XMLHttpRequest();
+
+                // Define the URL with the status parameter
+                url = 'rejectedcandidates?status=5.5';
+
+                // Open a GET request to the servlet
+                xhr.open('GET', url, true);
+
+                // Define the callback function to handle the response
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            // Request successful, parse JSON response
+                            var response = JSON.parse(xhr.responseText);
+
+                            // Process the response
+                            // Update the HTML content based on the response
+                            // For example, assuming the response contains properties 'candidate_file_approval' and 'proposer_file_approval':
+                            var html = '<h1 class="text-2xl font-bold text-gray-900 dark:text-white">Approval Information:</h1>' +
+                                '<ul class="space-y-4 text-gray-700 dark:text-gray-400">';
+
+                            // Add fields to HTML only if they are defined in the response
+                            if (response.candidate_file_approval !== undefined) {
+                                html += '<li>Candidate File: ' + response.candidate_file_approval + '</li>';
+                            }
+                            if (response.proposer_file_approval !== undefined) {
+                                html += '<li>Proposer File: ' + response.proposer_file_approval + '</li>';
+                            }
+                            if (response.seconder_file_approval !== undefined) {
+                                html += '<li>Seconder File: ' + response.seconder_file_approval + '</li>';
+                            }
+                            if (response.dob_proof_file_approval !== undefined) {
+                                html += '<li>DOB Proof: ' + response.dob_proof_file_approval + '</li>';
+                            }
+                            if (response.attendance_file_approval !== undefined) {
+                                html += '<li>Attendance/Academic Report: ' + response.attendance_file_approval + '</li>';
+                            }
+                            if (response.category_file_approval !== undefined) {
+                                html += '<li>Category File: ' + response.category_file_approval + '</li>';
+                            }
+                            if (response.comment !== undefined) {
+                                html += '<li>Comments: ' + response.comment + '</li>';
+                            }
+
+                            html += '</ul>';
+
+                            // Update the content of electionChairApprovalFormContainer
+                            document.getElementById("electionChairApprovalFormContainer").innerHTML = html;
+                        } else {
+                            // Request failed, handle error
+                            console.error('Failed to fetch approval information.');
+                        }
+                    }
+                };
+
+                // Send the XMLHttpRequest
+                xhr.send();
             }
+
+
         }
     }
 </script>

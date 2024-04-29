@@ -113,6 +113,32 @@ public class RejectedCandidatesServlet extends HttpServlet {
         return jsonObject;
     }
 
+    private JSONObject getCandidateApprovalInfo(String candidateRegNumber, String jdbcUrl, String dbUser, String dbPassword) throws SQLException {
+        JSONObject jsonObject = new JSONObject();
+
+        try (Connection connection = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword)) {
+            String query = "SELECT candidate_file_approval, proposer_file_approval, seconder_file_approval, dob_proof_file_approval, attendance_file_approval, category_file_approval, comment "
+                    + "FROM candidate_approval "
+                    + "WHERE nominationId = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, candidateRegNumber);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                jsonObject.put("candidate_file_approval", resultSet.getString("candidate_file_approval"));
+                jsonObject.put("proposer_file_approval", resultSet.getString("proposer_file_approval"));
+                jsonObject.put("seconder_file_approval", resultSet.getString("seconder_file_approval"));
+                jsonObject.put("dob_proof_file_approval", resultSet.getString("dob_proof_file_approval"));
+                jsonObject.put("attendance_file_approval", resultSet.getString("attendance_file_approval"));
+                jsonObject.put("category_file_approval", resultSet.getString("category_file_approval"));
+                jsonObject.put("comment", resultSet.getString("comment"));
+            }
+        }
+        return jsonObject;
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         String candidateRegNumber = "";
@@ -135,6 +161,9 @@ public class RejectedCandidatesServlet extends HttpServlet {
             }
             else if(requestStatus != null && requestStatus.equals("4.5")){
                 jsonObject = getDeanRejectReasons(candidateRegNumber, jdbcUrl, dbUser, dbPassword);
+            }
+            else if(requestStatus != null && requestStatus.equals("5.5")){
+                jsonObject = getCandidateApprovalInfo(candidateRegNumber, jdbcUrl, dbUser, dbPassword);
             }
             else {
                 jsonObject = new JSONObject();

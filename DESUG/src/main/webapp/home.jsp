@@ -121,7 +121,7 @@
                     respective Schools.
                 </p>
 
-                <a href="https://uohyd.ac.in/" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Learn More...</a>
+                <a href="https://uohyd.ac.in/" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Learn More...</a>
             </div>
         </div>
     </div>
