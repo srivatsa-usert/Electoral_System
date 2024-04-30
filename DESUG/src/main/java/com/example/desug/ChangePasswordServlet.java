@@ -26,7 +26,7 @@ public class ChangePasswordServlet extends HttpServlet {
     private static Properties getConnectionData() {
         Properties props = new Properties();
         try {
-            InputStream inputStream = LoginServlet.class.getClassLoader().getResourceAsStream("db.properties");
+            InputStream inputStream = ChangePasswordServlet.class.getClassLoader().getResourceAsStream("db.properties");
             props.load(inputStream);
         } catch (IOException ioe) {
             Logger lgr = Logger.getLogger(ChangePasswordServlet.class.getName());
@@ -77,21 +77,18 @@ public class ChangePasswordServlet extends HttpServlet {
             stmt.setString(2, username);
             int rowsAffected = stmt.executeUpdate();
 
+            PrintWriter out = response.getWriter();
+            out.println("<script type=\"text/javascript\">");
             if (rowsAffected > 0) {
                 // Password updated successfully
-                PrintWriter out = response.getWriter();
-                out.println("<script type=\"text/javascript\">");
                 out.println("alert('Password changed successfully');");
                 out.println("location='home.jsp';");
-                out.println("</script>");
             } else {
                 // No rows affected, likely username not found
-                PrintWriter out = response.getWriter();
-                out.println("<script type=\"text/javascript\">");
                 out.println("alert('Failed to change password');");
                 out.println("location='change_password.jsp';");
-                out.println("</script>");
             }
+            out.println("</script>");
         } catch (SQLException | ClassNotFoundException e) {
             Logger lgr = Logger.getLogger(ChangePasswordServlet.class.getName());
             lgr.log(Level.SEVERE, e.getMessage(), e);

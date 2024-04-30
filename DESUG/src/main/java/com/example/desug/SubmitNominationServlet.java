@@ -11,7 +11,6 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -60,8 +59,8 @@ public class SubmitNominationServlet extends HttpServlet {
 
         // JDBC variables
         Connection conn = null;
-        PreparedStatement pstmtNomination = null;
-        PreparedStatement pstmtStatus = null;
+        PreparedStatement stmtNomination = null;
+        PreparedStatement stmtStatus = null;
 
         try {
             // Establishing connection
@@ -70,30 +69,30 @@ public class SubmitNominationServlet extends HttpServlet {
 
             // SQL query to insert data into candidate_nomination table
             String sqlNomination = "INSERT INTO candidate_nomination (position, registration_number, name_on_ballot_paper, age, category, fathers_name, mobile_number, email, residential_address, proposer_registration_number, seconder_registration_number, election_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1))";
-            pstmtNomination = conn.prepareStatement(sqlNomination, PreparedStatement.RETURN_GENERATED_KEYS);
+            stmtNomination = conn.prepareStatement(sqlNomination, PreparedStatement.RETURN_GENERATED_KEYS);
 
             // Set parameters for the nomination SQL query
-            pstmtNomination.setString(1, position);
-            pstmtNomination.setString(2, registrationNumber);
-            pstmtNomination.setString(3, nameOnBallotPaper);
-            pstmtNomination.setString(4, age);
-            pstmtNomination.setString(5, category);
-            pstmtNomination.setString(6, fathersName);
-            pstmtNomination.setString(7, mobileNumber);
-            pstmtNomination.setString(8, email);
-            pstmtNomination.setString(9, residentialAddress);
-            pstmtNomination.setString(10, proposerRegistrationNumber);
-            pstmtNomination.setString(11, seconderRegistrationNumber);
+            stmtNomination.setString(1, position);
+            stmtNomination.setString(2, registrationNumber);
+            stmtNomination.setString(3, nameOnBallotPaper);
+            stmtNomination.setString(4, age);
+            stmtNomination.setString(5, category);
+            stmtNomination.setString(6, fathersName);
+            stmtNomination.setString(7, mobileNumber);
+            stmtNomination.setString(8, email);
+            stmtNomination.setString(9, residentialAddress);
+            stmtNomination.setString(10, proposerRegistrationNumber);
+            stmtNomination.setString(11, seconderRegistrationNumber);
 
             // Execute the nomination SQL query
-            int rowsInsertedNomination = pstmtNomination.executeUpdate();
+            int rowsInsertedNomination = stmtNomination.executeUpdate();
 
             int nomination_id = -1;
 
             // Check if the insertion was successful
             if (rowsInsertedNomination > 0) {
                 // Retrieve the generated keys (which should include the nomination ID)
-                ResultSet generatedKeys = pstmtNomination.getGeneratedKeys();
+                ResultSet generatedKeys = stmtNomination.getGeneratedKeys();
                 if (generatedKeys.next()) {
                     nomination_id = generatedKeys.getInt(1);
                 }
@@ -101,11 +100,11 @@ public class SubmitNominationServlet extends HttpServlet {
 
             // SQL query to insert data into nomination_status table
             String sqlStatus = "INSERT INTO nomination_status (nomination_id, status) VALUES (?, '1')";
-            pstmtStatus = conn.prepareStatement(sqlStatus);
-            pstmtStatus.setInt(1, nomination_id);
+            stmtStatus = conn.prepareStatement(sqlStatus);
+            stmtStatus.setInt(1, nomination_id);
 
             // Execute the status SQL query
-            int rowsInsertedStatus = pstmtStatus.executeUpdate();
+            int rowsInsertedStatus = stmtStatus.executeUpdate();
 
             // Check if data inserted into both tables successfully
             if (rowsInsertedNomination > 0 && rowsInsertedStatus > 0) {
@@ -181,17 +180,19 @@ public class SubmitNominationServlet extends HttpServlet {
                 response.sendRedirect("error.jsp"); // Redirect to an error page
             }
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(SubmitNominationServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             // Redirect to an error page if an exception occurs
             response.sendRedirect("error.jsp");
         } finally {
             // Closing resources
             try {
-                if (pstmtNomination != null) pstmtNomination.close();
-                if (pstmtStatus != null) pstmtStatus.close();
+                if (stmtNomination != null) stmtNomination.close();
+                if (stmtStatus != null) stmtStatus.close();
                 if (conn != null) conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                Logger lgr = Logger.getLogger(SubmitNominationServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             }
         }
     }
@@ -230,7 +231,8 @@ public class SubmitNominationServlet extends HttpServlet {
             // Send message
             Transport.send(mimeMessage);
         } catch (MessagingException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(SubmitNominationServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
         }
     }
 }

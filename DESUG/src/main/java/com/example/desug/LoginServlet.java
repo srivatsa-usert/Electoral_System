@@ -77,12 +77,17 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("username", rollNumber);
 
                 // Redirect based on user type
-                if (userType.equals("Student")) {
-                    response.sendRedirect("home.jsp");
-                } else if (userType.equals("Dean") || userType.equals("Hod")) {
-                    response.sendRedirect("deanHome.jsp");
-                } else if (userType.equals("ElectionChair")) {
-                    response.sendRedirect("electionChairHome.jsp");
+                switch (userType) {
+                    case "Student":
+                        response.sendRedirect("home.jsp");
+                        break;
+                    case "Dean":
+                    case "Hod":
+                        response.sendRedirect("deanHome.jsp");
+                        break;
+                    case "ElectionChair":
+                        response.sendRedirect("electionChairHome.jsp");
+                        break;
                 }
             } else {
                 // If user does not exist, show error message

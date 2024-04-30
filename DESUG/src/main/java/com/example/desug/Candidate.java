@@ -1,7 +1,7 @@
 package com.example.desug;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -33,9 +33,9 @@ public class Candidate {
 
     private static Properties getConnectionData() {
         Properties props = new Properties();
-        String fileName = "S:\\Coding '-'\\Software Engineering\\SE_Lab\\DESUG\\src\\main\\java\\com\\example\\desug\\db.properties";
-        try (FileInputStream fis = new FileInputStream(fileName)) {
-            props.load(fis);
+        try {
+            InputStream inputStream = Candidate.class.getClassLoader().getResourceAsStream("db.properties");
+            props.load(inputStream);
         } catch (IOException ioe) {
             Logger lgr = Logger.getLogger(Candidate.class.getName());
             lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
@@ -47,12 +47,6 @@ public class Candidate {
         List<Candidate> candidates = new ArrayList<>();
         Properties props = getConnectionData();
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch(ClassNotFoundException cnfe) {
-            System.out.println(cnfe);
-        }
-
         String url = props.getProperty("db.url");
         String user = props.getProperty("db.username");
         String password = props.getProperty("db.password");
@@ -63,9 +57,9 @@ public class Candidate {
             while (rs.next()) {
                 candidates.add(new Candidate(rs.getString("roll_number"), rs.getString("election_position"), rs.getString("manifesto"), rs.getString("election_status"), rs.getString("proposer"), rs.getString("seconder")));
             }
-        } catch (SQLException sqle) {
+        } catch (SQLException e) {
             Logger lgr = Logger.getLogger(Candidate.class.getName());
-            lgr.log(Level.SEVERE, sqle.getMessage(), sqle);
+            lgr.log(Level.SEVERE, e.getMessage(), e);
         }
         return candidates;
     }

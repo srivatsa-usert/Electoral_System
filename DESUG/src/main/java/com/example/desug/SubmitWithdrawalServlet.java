@@ -42,7 +42,7 @@ public class SubmitWithdrawalServlet extends HttpServlet {
         String dbPassword = props.getProperty("db.password");
 
         // JDBC variables
-        Connection conn = null;
+        Connection conn;
         PreparedStatement stmt = null;
         HttpSession session = request.getSession();
 
@@ -59,14 +59,15 @@ public class SubmitWithdrawalServlet extends HttpServlet {
 
             if (rowsUpdated > 0) {
                 String email = session.getAttribute("username").toString() + "@uohyd.ac.in";
-//                sendEmail(email, "Withdrawal of Nomination", "Your nomination has been successfully withdrawn.");
+                sendEmail(email, "Withdrawal of Nomination", "Your nomination has been successfully withdrawn.");
                 response.sendRedirect("nominationWithdrawal.jsp");
             } else {
                 // Failed to insert data
                 response.sendRedirect("error.jsp"); // Redirect to an error page
             }
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(SubmitWithdrawalServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             // Redirect to an error page if an exception occurs
             response.sendRedirect("error.jsp");
         } finally {
@@ -75,8 +76,9 @@ public class SubmitWithdrawalServlet extends HttpServlet {
                 if (stmt != null) {
                     stmt.close();
                 }
-            } catch (SQLException se) {
-                se.printStackTrace();
+            } catch (SQLException e) {
+                Logger lgr = Logger.getLogger(SubmitWithdrawalServlet.class.getName());
+                lgr.log(Level.SEVERE, e.getMessage(), e);
             }
         }
     }
@@ -115,7 +117,8 @@ public class SubmitWithdrawalServlet extends HttpServlet {
             // Send message
             Transport.send(mimeMessage);
         } catch (MessagingException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(SubmitWithdrawalServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.desug;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,6 +20,19 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/checkAge")
 public class CheckAgeServlet extends HttpServlet {
+    // Method to load database connection properties
+    private Properties getConnectionData() throws IOException {
+        Properties props = new Properties();
+        try {
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db.properties");
+            props.load(inputStream);
+        } catch (IOException e) {
+            Logger lgr = Logger.getLogger(CheckAgeServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+        }
+        return props;
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // Retrieve age parameter from request
         int age = 0; // Default age value
@@ -82,7 +98,8 @@ public class CheckAgeServlet extends HttpServlet {
             stmt.close();
             conn.close();
         } catch (SQLException | IOException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(CheckAgeServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
         }
 
         // Perform eligibility check based on retrieved age rules
@@ -117,7 +134,8 @@ public class CheckAgeServlet extends HttpServlet {
             stmt.close();
             conn.close();
         } catch (SQLException | IOException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(CheckAgeServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
         }
 
         switch (academicProgram) {
@@ -133,12 +151,5 @@ public class CheckAgeServlet extends HttpServlet {
         }
         // System.out.println(academicProgram);
         return academicProgram;
-    }
-
-    // Method to load database connection properties
-    private Properties getConnectionData() throws IOException {
-        Properties props = new Properties();
-        props.load(getClass().getClassLoader().getResourceAsStream("db.properties"));
-        return props;
     }
 }

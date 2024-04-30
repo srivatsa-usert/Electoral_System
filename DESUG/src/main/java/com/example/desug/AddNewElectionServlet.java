@@ -107,7 +107,7 @@ public class AddNewElectionServlet extends HttpServlet {
 
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
+        ResultSet rs;
         boolean success = false;
 
         try {

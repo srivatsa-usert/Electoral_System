@@ -103,7 +103,8 @@ public class FetchDetails extends HttpServlet {
                 out.println("{}");
             }
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(FetchDetails.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
         } finally {
             // Closing resources
             try {
@@ -111,7 +112,8 @@ public class FetchDetails extends HttpServlet {
                 if (stmt != null) stmt.close();
                 if (conn != null) conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                Logger lgr = Logger.getLogger(FetchDetails.class.getName());
+                lgr.log(Level.SEVERE, e.getMessage(), e);
             }
         }
     }

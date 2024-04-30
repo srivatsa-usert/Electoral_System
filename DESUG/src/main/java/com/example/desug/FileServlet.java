@@ -19,10 +19,10 @@ public class FileServlet extends HttpServlet {
     private static Properties getConnectionData() {
         Properties props = new Properties();
         try {
-            InputStream inputStream = AddNewElectionServlet.class.getClassLoader().getResourceAsStream("db.properties");
+            InputStream inputStream = FileServlet.class.getClassLoader().getResourceAsStream("db.properties");
             props.load(inputStream);
         } catch (IOException ioe) {
-            Logger lgr = Logger.getLogger(AddNewElectionServlet.class.getName());
+            Logger lgr = Logger.getLogger(FileServlet.class.getName());
             lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
         }
         return props;
@@ -117,7 +117,8 @@ public class FileServlet extends HttpServlet {
                 return rs.getString(file);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(FileServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
         }
 
         return null;

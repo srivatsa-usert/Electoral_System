@@ -17,7 +17,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 @WebServlet("/rejectedCandidates")
@@ -26,10 +25,10 @@ public class RejectedCandidatesServlet extends HttpServlet {
     private static Properties getConnectionData() {
         Properties props = new Properties();
         try {
-            InputStream inputStream = AddNewElectionServlet.class.getClassLoader().getResourceAsStream("db.properties");
+            InputStream inputStream = RejectedCandidatesServlet.class.getClassLoader().getResourceAsStream("db.properties");
             props.load(inputStream);
         } catch (IOException ioe) {
-            Logger lgr = Logger.getLogger(AddNewElectionServlet.class.getName());
+            Logger lgr = Logger.getLogger(RejectedCandidatesServlet.class.getName());
             lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
         }
         return props;
@@ -169,13 +168,14 @@ public class RejectedCandidatesServlet extends HttpServlet {
                 jsonObject = new JSONObject();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(RejectedCandidatesServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             return;
         }
 
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        out.print(jsonObject.toString());
+        out.print(jsonObject);
     }
 }

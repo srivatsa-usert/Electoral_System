@@ -6,7 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -43,14 +42,11 @@ public class CreateUserServlet extends HttpServlet {
 
         // JDBC variables
         Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
 
         try {
             // Establishing connection
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
-
 
             // Loop through each roll_number
 
@@ -69,16 +65,16 @@ public class CreateUserServlet extends HttpServlet {
             response.sendRedirect("home.jsp");
 
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(CreateUserServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             // Handle exceptions appropriately
         } finally {
             // Closing resources
             try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
                 if (conn != null) conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                Logger lgr = Logger.getLogger(CreateUserServlet.class.getName());
+                lgr.log(Level.SEVERE, e.getMessage(), e);
             }
         }
     }
@@ -104,7 +100,8 @@ public class CreateUserServlet extends HttpServlet {
             // Return the hashed password
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(CreateUserServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             return null;
         }
     }

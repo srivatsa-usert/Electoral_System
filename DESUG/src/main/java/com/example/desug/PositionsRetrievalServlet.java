@@ -1,7 +1,6 @@
 package com.example.desug;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,7 +23,7 @@ public class PositionsRetrievalServlet extends HttpServlet {
 
     private static Properties getConnectionData() {
         Properties props = new Properties();
-        try (InputStream inputStream = LoginServlet.class.getClassLoader().getResourceAsStream("db.properties")) {
+        try (InputStream inputStream = PositionsRetrievalServlet.class.getClassLoader().getResourceAsStream("db.properties")) {
             props.load(inputStream);
         } catch (IOException ioe) {
             logger.log(Level.SEVERE, "Error loading database properties", ioe);
@@ -35,9 +34,9 @@ public class PositionsRetrievalServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Connection conn = null;
-            PreparedStatement pstmt = null;
-            ResultSet positionResult = null;
+            Connection conn;
+            PreparedStatement stmt;
+            ResultSet positionResult;
 
             HttpSession session = request.getSession();
             String candidateRegNumber = "";
@@ -45,7 +44,7 @@ public class PositionsRetrievalServlet extends HttpServlet {
             // Check if session is not null and if username attribute is present
             if (session != null && session.getAttribute("username") != null) {
                 // Get the registration number from session attribute "username"
-                candidateRegNumber = (String) session.getAttribute("username");
+                candidateRegNumber = (String) session.getAttribute("username"); // can be used to get department/school when School Board Member and/or Councillor option is not available to all candidates
             }
 
             Properties props = getConnectionData();
@@ -63,8 +62,8 @@ public class PositionsRetrievalServlet extends HttpServlet {
 
             // Execute SQL query to get the latest election ID
             String latestElectionQuery = "SELECT election_id FROM elections ORDER BY election_id DESC LIMIT 1";
-            pstmt = conn.prepareStatement(latestElectionQuery);
-            ResultSet electionResult = pstmt.executeQuery();
+            stmt = conn.prepareStatement(latestElectionQuery);
+            ResultSet electionResult = stmt.executeQuery();
 
             int latestElectionId = 0;
             if (electionResult.next()) {
@@ -73,9 +72,9 @@ public class PositionsRetrievalServlet extends HttpServlet {
 
             // Execute SQL query to get all positions for the latest election ID
             String positionQuery = "SELECT position FROM office_bearers WHERE election_id = ?";
-            pstmt = conn.prepareStatement(positionQuery);
-            pstmt.setInt(1, latestElectionId);
-            positionResult = pstmt.executeQuery();
+            stmt = conn.prepareStatement(positionQuery);
+            stmt.setInt(1, latestElectionId);
+            positionResult = stmt.executeQuery();
 
             // Create a JSON array to hold positions
             JsonArray jsonArray = new JsonArray();

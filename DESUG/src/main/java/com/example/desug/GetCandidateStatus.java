@@ -19,10 +19,10 @@ public class GetCandidateStatus extends HttpServlet {
     private static Properties getConnectionData() {
         Properties props = new Properties();
         try {
-            InputStream inputStream = ForgotPasswordServlet.class.getClassLoader().getResourceAsStream("db.properties");
+            InputStream inputStream = GetCandidateStatus.class.getClassLoader().getResourceAsStream("db.properties");
             props.load(inputStream);
         } catch (IOException ioe) {
-            Logger lgr = Logger.getLogger(ForgotPasswordServlet.class.getName());
+            Logger lgr = Logger.getLogger(GetCandidateStatus.class.getName());
             lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
         }
         return props;
@@ -99,7 +99,8 @@ public class GetCandidateStatus extends HttpServlet {
             statement.close();
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(GetCandidateStatus.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
         }
 
         return status;

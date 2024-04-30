@@ -27,10 +27,10 @@ public class EnclosuresServlet extends HttpServlet {
     private static Properties getConnectionData() {
         Properties props = new Properties();
         try {
-            InputStream inputStream = AddNewElectionServlet.class.getClassLoader().getResourceAsStream("db.properties");
+            InputStream inputStream = EnclosuresServlet.class.getClassLoader().getResourceAsStream("db.properties");
             props.load(inputStream);
         } catch (IOException ioe) {
-            Logger lgr = Logger.getLogger(AddNewElectionServlet.class.getName());
+            Logger lgr = Logger.getLogger(EnclosuresServlet.class.getName());
             lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
         }
         return props;
@@ -68,7 +68,7 @@ public class EnclosuresServlet extends HttpServlet {
                 Part filePart = request.getPart(fileFields[i]);
                 if (filePart != null && filePart.getSize() > 0) {
                     String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-                    String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;
+                    String uniqueFileName = UUID.randomUUID() + "_" + fileName;
                     String savePath = UPLOAD_DIRECTORY + File.separator + uniqueFileName;
 
                     try (InputStream fileContent = filePart.getInputStream()) {
@@ -115,7 +115,8 @@ public class EnclosuresServlet extends HttpServlet {
             response.sendRedirect("candidateRegistration.jsp");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(EnclosuresServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
         }
     }
 }

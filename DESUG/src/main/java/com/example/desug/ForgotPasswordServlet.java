@@ -91,22 +91,19 @@ public class ForgotPasswordServlet extends HttpServlet {
             stmt.setString(2, username);
             int rowsAffected = stmt.executeUpdate();
 
+            PrintWriter out = response.getWriter();
+            out.println("<script type=\"text/javascript\">");
             if (rowsAffected > 0) {
                 // Password updated successfully
-                PrintWriter out = response.getWriter();
-                out.println("<script type=\"text/javascript\">");
                 out.println("alert('Password changed successfully');");
                 out.println("location='home.jsp';");
-                out.println("</script>");
                 // Redirect only after showing the alert
             } else {
                 // No rows affected, likely username not found
-                PrintWriter out = response.getWriter();
-                out.println("<script type=\"text/javascript\">");
                 out.println("alert('Failed to change password');");
                 out.println("location='forgotPassword.jsp';");
-                out.println("</script>");
             }
+            out.println("</script>");
 
         } catch (SQLException | ClassNotFoundException e) {
             Logger lgr = Logger.getLogger(ForgotPasswordServlet.class.getName());

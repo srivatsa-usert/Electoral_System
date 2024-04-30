@@ -24,10 +24,10 @@ public class CertifyCandidateServlet extends HttpServlet {
     private static Properties getConnectionData() {
         Properties props = new Properties();
         try {
-            InputStream inputStream = AddNewElectionServlet.class.getClassLoader().getResourceAsStream("db.properties");
+            InputStream inputStream = CertifyCandidateServlet.class.getClassLoader().getResourceAsStream("db.properties");
             props.load(inputStream);
         } catch (IOException ioe) {
-            Logger lgr = Logger.getLogger(AddNewElectionServlet.class.getName());
+            Logger lgr = Logger.getLogger(CertifyCandidateServlet.class.getName());
             lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
         }
         return props;
@@ -124,7 +124,7 @@ public class CertifyCandidateServlet extends HttpServlet {
             stmt.addBatch();
 
             // Execute the batch
-            rowsAffected = stmt.executeBatch();
+            stmt.executeBatch();
 
             // Commit the transaction
             conn.commit();
@@ -138,14 +138,16 @@ public class CertifyCandidateServlet extends HttpServlet {
 
             response.sendRedirect("certifyCandidates.jsp");
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(CertifyCandidateServlet.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             try {
                 if (conn != null) {
                     // Rollback the transaction in case of an exception
                     conn.rollback();
                 }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+            } catch (SQLException sql) {
+                lgr = Logger.getLogger(CertifyCandidateServlet.class.getName());
+                lgr.log(Level.SEVERE, sql.getMessage(), sql);
             }
         } finally {
             // Close resources
@@ -153,7 +155,8 @@ public class CertifyCandidateServlet extends HttpServlet {
                 if (stmt != null) stmt.close();
                 if (conn != null) conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                Logger lgr = Logger.getLogger(CertifyCandidateServlet.class.getName());
+                lgr.log(Level.SEVERE, e.getMessage(), e);
             }
         }
     }

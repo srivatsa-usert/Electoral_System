@@ -9,6 +9,8 @@ import jakarta.mail.*;
 import jakarta.mail.internet.*;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/sendMail")
 public class SendMailServlet extends HttpServlet {
@@ -56,7 +58,8 @@ public class SendMailServlet extends HttpServlet {
             // Send response to client
             response.getWriter().println("Email sent successfully!");
         } catch (MessagingException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(FetchDetails.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to send email");
         }
     }

@@ -24,10 +24,10 @@ public class GetNominationForms extends HttpServlet {
     private static Properties getConnectionData() {
         Properties props = new Properties();
         try {
-            InputStream inputStream = AddNewElectionServlet.class.getClassLoader().getResourceAsStream("db.properties");
+            InputStream inputStream = GetNominationForms.class.getClassLoader().getResourceAsStream("db.properties");
             props.load(inputStream);
         } catch (IOException ioe) {
-            Logger lgr = Logger.getLogger(AddNewElectionServlet.class.getName());
+            Logger lgr = Logger.getLogger(GetNominationForms.class.getName());
             lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
         }
         return props;
@@ -46,14 +46,11 @@ public class GetNominationForms extends HttpServlet {
         String dbUser = props.getProperty("db.username");
         String dbPassword = props.getProperty("db.password");
 
-
-
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
             JSONArray candidateList = new JSONArray();
-
 
             if (status.equals("all")) {
                 // Query to fetch details of candidates with any nomination status
@@ -65,7 +62,6 @@ public class GetNominationForms extends HttpServlet {
                 ResultSet rs = stmt.executeQuery();
 
                 // Prepare JSON array to hold candidate objects
-
                 // Build JSON array with fetched data
                 while (rs.next()) {
                     JSONObject candidate = new JSONObject();
@@ -119,7 +115,8 @@ public class GetNominationForms extends HttpServlet {
             out.flush();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(GetNominationForms.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }

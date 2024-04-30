@@ -23,10 +23,10 @@ public class ApproveCandidateServlet extends HttpServlet {
     private static Properties getConnectionData() {
         Properties props = new Properties();
         try {
-            InputStream inputStream = AddNewElectionServlet.class.getClassLoader().getResourceAsStream("db.properties");
+            InputStream inputStream = ApproveCandidateServlet.class.getClassLoader().getResourceAsStream("db.properties");
             props.load(inputStream);
         } catch (IOException ioe) {
-            Logger lgr = Logger.getLogger(AddNewElectionServlet.class.getName());
+            Logger lgr = Logger.getLogger(ApproveCandidateServlet.class.getName());
             lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
         }
         return props;
@@ -49,11 +49,7 @@ public class ApproveCandidateServlet extends HttpServlet {
         System.out.println(dobProofFileApproval);
         System.out.println(candidateFileApproval);
 
-
         String status = calculateStatus(candidateFileApproval, proposerFileApproval, seconderFileApproval, dobProofFileApproval);
-
-        // JDBC variables
-        PreparedStatement stmt = null;
 
         Properties props = getConnectionData();
 
@@ -73,8 +69,8 @@ public class ApproveCandidateServlet extends HttpServlet {
 
             conn.commit();
             response.sendRedirect("approveCandidates.jsp");
-        } catch (SQLException ex) {
-            Logger.getLogger(ApproveCandidateServlet.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        } catch (SQLException e) {
+            Logger.getLogger(ApproveCandidateServlet.class.getName()).log(Level.SEVERE, e.getMessage(), e);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing your request.");
         }
     }

@@ -20,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @WebServlet("/sendForgotMailServlet")
-public class SendForgotMailServlet extends HttpServlet {
+public class ForgotPasswordMailServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class SendForgotMailServlet extends HttpServlet {
             InputStream inputStream = LoginServlet.class.getClassLoader().getResourceAsStream("db.properties");
             props.load(inputStream);
         } catch (IOException ioe) {
-            Logger lgr = Logger.getLogger(LoginServlet.class.getName());
+            Logger lgr = Logger.getLogger(ForgotPasswordMailServlet.class.getName());
             lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
         }
         return props;
@@ -86,7 +86,7 @@ public class SendForgotMailServlet extends HttpServlet {
 
             response.getWriter().println("Verification code sent successfully.");
         } catch (SQLException | ClassNotFoundException | MessagingException e) {
-            Logger lgr = Logger.getLogger(SendForgotMailServlet.class.getName());
+            Logger lgr = Logger.getLogger(ForgotPasswordMailServlet.class.getName());
             lgr.log(Level.SEVERE, e.getMessage(), e);
             response.getWriter().println("Error: unable to send verification code.");
         } finally {
@@ -95,7 +95,7 @@ public class SendForgotMailServlet extends HttpServlet {
                 if (stmt != null) stmt.close();
                 if (conn != null) conn.close();
             } catch (SQLException e) {
-                Logger lgr = Logger.getLogger(SendForgotMailServlet.class.getName());
+                Logger lgr = Logger.getLogger(ForgotPasswordMailServlet.class.getName());
                 lgr.log(Level.SEVERE, e.getMessage(), e);
             }
         }

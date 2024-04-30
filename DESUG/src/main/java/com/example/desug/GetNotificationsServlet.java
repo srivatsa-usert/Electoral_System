@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,6 +23,20 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/getNotifications")
 public class GetNotificationsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+
+    // Method to get database connection properties
+    private Properties getConnectionData() {
+        Properties props = new Properties();
+        try {
+            // Load properties from file
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db.properties");
+            props.load(inputStream);
+        } catch (IOException ioe) {
+            Logger lgr = Logger.getLogger(FetchDetails.class.getName());
+            lgr.log(Level.SEVERE, ioe.getMessage(), ioe);
+        }
+        return props;
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get the session
@@ -41,8 +57,8 @@ public class GetNotificationsServlet extends HttpServlet {
         String dbPassword = props.getProperty("db.password");
 
         Connection conn = null;
-        PreparedStatement pstmtProposer = null;
-        PreparedStatement pstmtSeconder = null;
+        PreparedStatement stmtProposer = null;
+        PreparedStatement stmtSeconder = null;
         ResultSet rsProposer = null;
         ResultSet rsSeconder = null;
 
@@ -59,9 +75,9 @@ public class GetNotificationsServlet extends HttpServlet {
                     "JOIN candidate_nomination cn ON cn.id = ns.nomination_id " +
                     "JOIN student s ON s.roll_number = cn.registration_number " +
                     "WHERE ns.proposer_status = 'no' AND ns.status = 'pending' AND cn.proposer_registration_number = ?";
-            pstmtProposer = conn.prepareStatement(sqlProposer);
-            pstmtProposer.setString(1, candidateRegistrationNumber);
-            rsProposer = pstmtProposer.executeQuery();
+            stmtProposer = conn.prepareStatement(sqlProposer);
+            stmtProposer.setString(1, candidateRegistrationNumber);
+            rsProposer = stmtProposer.executeQuery();
 
             // Process result set for ProposerList
             while (rsProposer.next()) {
@@ -78,9 +94,9 @@ public class GetNotificationsServlet extends HttpServlet {
                     "JOIN candidate_nomination cn ON cn.id = ns.nomination_id " +
                     "JOIN student s ON s.roll_number = cn.registration_number " +
                     "WHERE ns.seconder_status = 'no' AND ns.status = 'pending' AND cn.seconder_registration_number = ?";
-            pstmtSeconder = conn.prepareStatement(sqlSeconder);
-            pstmtSeconder.setString(1, candidateRegistrationNumber);
-            rsSeconder = pstmtSeconder.executeQuery();
+            stmtSeconder = conn.prepareStatement(sqlSeconder);
+            stmtSeconder.setString(1, candidateRegistrationNumber);
+            rsSeconder = stmtSeconder.executeQuery();
 
             // Process result set for SeconderList
             while (rsSeconder.next()) {
@@ -96,32 +112,21 @@ public class GetNotificationsServlet extends HttpServlet {
             request.setAttribute("seconderNotifications", seconderNotifications);
             request.getRequestDispatcher("notification.jsp").forward(request, response);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger lgr = Logger.getLogger(FetchDetails.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error fetching notifications");
         } finally {
             // Closing resources
             try {
                 if (rsProposer != null) rsProposer.close();
                 if (rsSeconder != null) rsSeconder.close();
-                if (pstmtProposer != null) pstmtProposer.close();
-                if (pstmtSeconder != null) pstmtSeconder.close();
+                if (stmtProposer != null) stmtProposer.close();
+                if (stmtSeconder != null) stmtSeconder.close();
                 if (conn != null) conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                Logger lgr = Logger.getLogger(FetchDetails.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
             }
         }
-    }
-
-    // Method to get database connection properties
-    private Properties getConnectionData() {
-        Properties props = new Properties();
-        try {
-            // Load properties from file
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db.properties");
-            props.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return props;
     }
 }
