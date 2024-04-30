@@ -14,30 +14,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/DESUG-1.0-SNAPSHOT.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/AddNewElectionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/AddNewElectionServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/ApproveCandidateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/ApproveCandidateServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/Candidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/Candidate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/CertifyCandidateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/CertifyCandidateServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/ChangePasswordServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/ChangePasswordServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/CheckAgeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/CheckAgeServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/ConfirmNominationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/ConfirmNominationServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/CreateUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/CreateUserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/EnclosuresServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/EnclosuresServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/FetchDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/FetchDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/FileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/FileServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/ForgotPasswordServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/ForgotPasswordServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/GenerateTokenServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/GenerateTokenServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/GetCandidateStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/GetCandidateStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/GetNominationForms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/GetNominationForms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/GetNotificationsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/GetNotificationsServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/PositionsRetrievalServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/PositionsRetrievalServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/RejectedCandidatesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/RejectedCandidatesServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/SendForgotMailServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/ForgotPasswordMailServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/SendMailServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/SendMailServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/SubmitNominationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/SubmitNominationServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desug/SubmitWithdrawalServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desug/SubmitWithdrawalServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/approveCandidateForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/approveCandidateForm.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -490,7 +467,8 @@
       <workItem from="1714300069065" duration="21618000" />
       <workItem from="1714358811766" duration="4835000" />
       <workItem from="1714442527336" duration="189000" />
-      <workItem from="1714453868581" duration="7668000" />
+      <workItem from="1714453868581" duration="7841000" />
+      <workItem from="1714466260958" duration="4714000" />
     </task>
     <servers />
   </component>

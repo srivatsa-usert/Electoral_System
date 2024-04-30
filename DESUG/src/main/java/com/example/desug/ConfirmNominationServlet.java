@@ -106,13 +106,13 @@ public class ConfirmNominationServlet extends HttpServlet {
                 }
             } else if (seconderResult.next() && seconderResult.getInt(1) > 0) {
                 // Check if already confirmed
-                String sqlCheckProposerStatus = "SELECT proposer_status FROM nomination_status WHERE nomination_id = ?";
+                String sqlCheckProposerStatus = "SELECT seconder_status FROM nomination_status WHERE nomination_id = ?";
                 PreparedStatement stmtCheckProposerStatus = conn.prepareStatement(sqlCheckProposerStatus);
                 stmtCheckProposerStatus.setString(1, nominationId);
-                ResultSet proposerStatusResult = stmtCheckProposerStatus.executeQuery();
+                ResultSet seconderStatusResult = stmtCheckProposerStatus.executeQuery();
 
-                if (proposerStatusResult.next() && proposerStatusResult.getString(1) != null) {
-                    // Redirect to an error page if the proposer has already confirmed
+                if (seconderStatusResult.next() && seconderStatusResult.getString(1) != null) {
+                    // Redirect to an error page if the seconder has already confirmed
                     response.sendRedirect("error.jsp?error=already_confirmed");
                     return;
                 }
