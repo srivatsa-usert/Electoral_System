@@ -107,11 +107,11 @@
                     <th scope="col" class="px-6 py-3">Candidate Name</th>
                     <th scope="col" class="px-6 py-3">Registration Number</th>
                     <th scope="col" class="px-6 py-3">Position</th>
-                    <th scope="col" class="px-6 py-3">Status</th> <!-- Added Category -->
+                    <th scope="col" class="px-6 py-3">Status</th>
                     <th scope="col" class="px-6 py-3">Category</th>
-                    <th scope="col" class="px-6 py-3">Department</th> <!-- Added Department -->
-                    <th scope="col" class="px-6 py-3">Subject</th> <!-- Added Subject -->
-                    <th scope="col" class="px-6 py-3">Course</th> <!-- Added Course -->
+                    <th scope="col" class="px-6 py-3">Department</th>
+                    <th scope="col" class="px-6 py-3">Subject</th>
+                    <th scope="col" class="px-6 py-3">Course</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -137,13 +137,13 @@
                     $("#candidatesTable tbody").empty();
 
                     $.each(response, function(index, candidate) {
-                        var statusText = getStatusText(candidate.status); // Get the status text based on the numeric status value
+                        let statusText = getStatusText(candidate.status); // Get the status text based on the status value
 
-                        var row = "<tr class='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>" +
+                        let row = "<tr class='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>" +
                             "<th scope='row' class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>" + candidate.name + "</th>" +
                             "<td class='px-6 py-4'>" + candidate.registrationNumber + "</td>" +
                             "<td class='px-6 py-4'>" + candidate.position + "</td>" +
-                            "<td class='px-6 py-4'>" + statusText + "</td>" + // Display the status text based on the numeric status value
+                            "<td class='px-6 py-4'>" + statusText + "</td>" +
                             "<td class='px-6 py-4'>" + candidate.category + "</td>" +
                             "<td class='px-6 py-4'>" + candidate.department + "</td>" +
                             "<td class='px-6 py-4'>" + candidate.subject + "</td>" +

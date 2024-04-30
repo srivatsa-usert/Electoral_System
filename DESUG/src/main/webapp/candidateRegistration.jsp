@@ -2,13 +2,11 @@
 <%
     session = request.getSession();
     String candidateRegNumber = "";
-    String status = "0";
 
     // Check if session is not null and if username attribute is present
     if (session != null && session.getAttribute("username") != null) {
         // Get the registration number from session attribute "username"
         candidateRegNumber = (String) session.getAttribute("username");
-        status = (String) session.getAttribute("status");
     }
     else {
         // Redirect to home page if session is null or username attribute is not present
@@ -162,7 +160,7 @@
                 document.getElementById("deanApprovalFormContainer").classList.add('hidden');
 
                 xhr = new XMLHttpRequest();
-                url = 'rejectedcandidates?status=3.5'; // Set request parameter to 3.5
+                url = 'rejectedCandidates?status=3.5'; // Set request parameter to 3.5
                 xhr.open('GET', url, true);
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -220,7 +218,7 @@
 
                 // Set up the XMLHttpRequest and send the request
                 xhr = new XMLHttpRequest();
-                url = 'rejectedcandidates?status=4.5'; // Set request parameter to 4.5
+                url = 'rejectedCandidates?status=4.5'; // Set request parameter to 4.5
                 xhr.open('GET', url, true);
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -288,11 +286,7 @@
 
                 // Create an XMLHttpRequest object
                 xhr = new XMLHttpRequest();
-
-                // Define the URL with the status parameter
-                url = 'rejectedcandidates?status=5.5';
-
-                // Open a GET request to the servlet
+                url = 'rejectedCandidates?status=5.5'; // Set request parameter to 5.5
                 xhr.open('GET', url, true);
 
                 // Define the callback function to handle the response

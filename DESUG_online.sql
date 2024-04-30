@@ -259,7 +259,7 @@ ADD COLUMN "type" ENUM('Student', 'Dean', 'Hod', 'ElectionChair') NOT NULL DEFAU
 
 desc uploaded_files;
 
-
+use DESUG;
 select * from nomination_status;
 select * from student;
 select * from candidate_nomination;
@@ -295,9 +295,6 @@ ALTER TABLE nomination_status
 MODIFY proposer_status ENUM('yes', 'no') DEFAULT NULL,
 MODIFY seconder_status ENUM('yes', 'no') DEFAULT NULL;
 
-select * from nomination_status;
-
-
 show tables;
 select * from certification_data;
 show create table certification_data;
@@ -305,6 +302,7 @@ ALTER TABLE certification_data CHANGE registeredPhd registeredStudent ENUM('yes'
 update certification_data set registeredStudent = 'no' where id = 11;
 
 delete from certification_data where id = 10;
+delete from uploaded_files where nomination_id = 42;
 
 use DESUG;
 SELECT * FROM age_rule;

@@ -2,13 +2,11 @@
 <%
     session = request.getSession();
     String candidateRegNumber = "";
-    String status = "0";
 
     // Check if session is not null and if username attribute is present
     if (session != null && session.getAttribute("username") != null) {
         // Get the registration number from session attribute "username"
         candidateRegNumber = (String) session.getAttribute("username");
-        status = (String) session.getAttribute("status");
     }
     else {
         // Redirect to home page if session is null or username attribute is not present
@@ -44,7 +42,7 @@
         xhr.send();
     }
 
-    let status = null;
+    let status = "0";
     document.addEventListener("DOMContentLoaded", function() {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", "getCandidateStatus", true);
@@ -54,12 +52,12 @@
                     const response = JSON.parse(xhr.responseText);
                     status = response.status;
                     // Check if the candidate is approved
-                    if (status == "5") {
+                    if (status === "5") {
                         checkFilePath('candidate_file_path', '<%= candidateRegNumber %>');
                         document.getElementById("withdrawalForm").classList.remove("hidden");
                         document.getElementById("message").classList.add("hidden");
                         document.getElementById("nominationWithdrawn").classList.add("hidden");
-                    } else if (status == "-1") {
+                    } else if (status === "-1") {
                         document.getElementById("nominationWithdrawn").classList.remove("hidden");
                         document.getElementById("message").classList.add("hidden");
                         document.getElementById("withdrawalForm").classList.add("hidden");

@@ -40,8 +40,8 @@ public class EnclosuresServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String student = session.getAttribute("username").toString();
 
-//        String UPLOAD_DIRECTORY = "C:\\Users\\anant\\Downloads\\Nominations";
-        String UPLOAD_DIRECTORY = "C:\\Users\\Srivatsa\\Downloads\\Nominations";
+        String UPLOAD_DIRECTORY = "C:\\Users\\anant\\Downloads\\Nominations";
+//        String UPLOAD_DIRECTORY = "C:\\Users\\Srivatsa\\Downloads\\Nominations";
 
         Properties props = getConnectionData();
 
@@ -60,7 +60,7 @@ public class EnclosuresServlet extends HttpServlet {
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             // Set the nomination_id
-            stmt.setString(1, (String) session.getAttribute("username"));
+            stmt.setString(1, student);
 
             // Handle the file uploads
             String[] fileFields = {"candidateSemesterRegistrationCard", "proposerSemesterRegistrationCard", "seconderSemesterRegistrationCard", "proofOfDob", "certificateOfAttendanceAcademicRecord", "categoryCertificate"};
@@ -87,34 +87,29 @@ public class EnclosuresServlet extends HttpServlet {
 
             if (rowsInserted > 0) {
                 // If the insert was successful, update the nomination_status table
-                String updateSql = "UPDATE nomination_status SET status = 2 WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
+                String updateSql = "UPDATE nomination_status SET status = '2' WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
                 PreparedStatement updateStmt = conn.prepareStatement(updateSql);
-                updateStmt.setString(1, (String) session.getAttribute("username"));
+                updateStmt.setString(1, student);
                 updateStmt.executeUpdate();
 
                 String checkSql = "SELECT proposer_status, seconder_status FROM nomination_status WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
                 PreparedStatement checkStmt = conn.prepareStatement(checkSql);
-                checkStmt.setString(1, (String) session.getAttribute("username")); // Set nomination ID here
+                checkStmt.setString(1, student); // Set nomination ID here
                 ResultSet resultSet = checkStmt.executeQuery();
 
-                boolean proposerYes = false;
-                boolean seconderYes = false;
+                String proposerStatus = null;
+                String seconderStatus = null;
                 if (resultSet.next()) {
-                    if (resultSet.getString("proposer_status") != null) {
-                        proposerYes = resultSet.getString("proposer_status").equals("yes");
-                    }
-                    if (resultSet.getString("seconder_status") != null) {
-                        seconderYes = resultSet.getString("seconder_status").equals("yes");
-                    }
+                    proposerStatus = resultSet.getString("proposer_status");
+                    seconderStatus = resultSet.getString("seconder_status");
                 }
-                if (proposerYes && seconderYes) {
+                if ((proposerStatus != null && proposerStatus.equals("yes")) && (seconderStatus != null && seconderStatus.equals("yes"))) {
                     // Both proposer and seconder statuses are "yes", update status to 3
-                    String updateStatusSql = "UPDATE nomination_status SET status = 3 WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
+                    String updateStatusSql = "UPDATE nomination_status SET status = '3' WHERE nomination_id = (SELECT id FROM candidate_nomination WHERE election_id = (SELECT election_id FROM elections ORDER BY created_at DESC LIMIT 1) AND registration_number = ?)";
                     PreparedStatement updateStatusStmt = conn.prepareStatement(updateStatusSql);
-                    updateStatusStmt.setString(1, (String) session.getAttribute("username")); // Set nomination ID here
+                    updateStatusStmt.setString(1, student); // Set nomination ID here
                     updateStatusStmt.executeUpdate();
                 }
-
             }
 
             response.sendRedirect("candidateRegistration.jsp");

@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-@WebServlet("/rejectedcandidates")
+@WebServlet("/rejectedCandidates")
 public class RejectedCandidatesServlet extends HttpServlet {
 
     private static Properties getConnectionData() {

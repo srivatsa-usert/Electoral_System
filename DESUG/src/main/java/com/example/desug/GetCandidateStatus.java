@@ -59,7 +59,7 @@ public class GetCandidateStatus extends HttpServlet {
         String status = getCandidateStatus(candidateRegNumber);
 
         // Display candidate status
-        String jsonResponse = "{\"status\": " + status + "}";
+        String jsonResponse = "{\"status\": \"" + status + "\"}";
 
         // Send the JSON response
         out.println(jsonResponse);

@@ -38,7 +38,7 @@ public class ConfirmNominationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get the confirmation status (accept/reject)
         String confirmation = request.getParameter("confirmation");
-        // Get the candidate registration number
+        // Get the candidate registration number and nomination ID
         String registrationNumber = request.getParameter("candidate");
         String nominationId = request.getParameter("nomination_id");
 
@@ -92,14 +92,14 @@ public class ConfirmNominationServlet extends HttpServlet {
                     PreparedStatement pstmtUpdateProposerStatus = conn.prepareStatement(sqlUpdateProposerStatus);
                     pstmtUpdateProposerStatus.setString(1, confirmation);
                     pstmtUpdateProposerStatus.setString(2, nominationId);
-                    int rowsUpdated = pstmtUpdateProposerStatus.executeUpdate();
+                    pstmtUpdateProposerStatus.executeUpdate();
 
                     if (confirmation.equalsIgnoreCase("no")) {
                         // Update status to 3.5 if confirmation is 'no'
                         String updateStatusSql = "UPDATE nomination_status SET status = '3.5' WHERE nomination_id = ?";
                         PreparedStatement updateStatusStmt = conn.prepareStatement(updateStatusSql);
                         updateStatusStmt.setString(1, nominationId); // Set nomination ID here
-                        int rowsUpdatedStatus = updateStatusStmt.executeUpdate();
+                        updateStatusStmt.executeUpdate();
                     } else if (confirmation.equalsIgnoreCase("yes")) {
                         checkAndUpdateStatus(conn, nominationId, "proposer");
                     }
@@ -122,14 +122,14 @@ public class ConfirmNominationServlet extends HttpServlet {
                     PreparedStatement pstmtUpdateSeconderStatus = conn.prepareStatement(sqlUpdateSeconderStatus);
                     pstmtUpdateSeconderStatus.setString(1, confirmation);
                     pstmtUpdateSeconderStatus.setString(2, nominationId);
-                    int rowsUpdated = pstmtUpdateSeconderStatus.executeUpdate();
+                    pstmtUpdateSeconderStatus.executeUpdate();
 
                     if (confirmation.equalsIgnoreCase("no")) {
                         // Update status to 3.5 if confirmation is 'no'
                         String updateStatusSql = "UPDATE nomination_status SET status = '3.5' WHERE nomination_id = ?";
                         PreparedStatement updateStatusStmt = conn.prepareStatement(updateStatusSql);
                         updateStatusStmt.setString(1, nominationId); // Set nomination ID here
-                        int rowsUpdatedStatus = updateStatusStmt.executeUpdate();
+                        updateStatusStmt.executeUpdate();
                     } else if (confirmation.equalsIgnoreCase("yes")) {
                         checkAndUpdateStatus(conn, nominationId, "seconder");
                     }
@@ -168,7 +168,7 @@ public class ConfirmNominationServlet extends HttpServlet {
             sendMailToDean("21mcme08@uohyd.ac.in", "Nomination Confirmation", "Both the proposer and seconder have confirmed the nomination for nomination ID: " + nominationId);
 
             // Update status to 3 for the given nomination ID if status is currently 2
-            String updateStatusSql = "UPDATE nomination_status SET status = 3 WHERE nomination_id = ? AND status = 2";
+            String updateStatusSql = "UPDATE nomination_status SET status = '3' WHERE nomination_id = ? AND status = '2'";
             PreparedStatement updateStatusStmt = conn.prepareStatement(updateStatusSql);
             updateStatusStmt.setString(1, nominationId); // Set nomination ID here
             int rowsUpdated = updateStatusStmt.executeUpdate();

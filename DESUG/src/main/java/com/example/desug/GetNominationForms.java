@@ -56,7 +56,7 @@ public class GetNominationForms extends HttpServlet {
 
 
             if (status.equals("all")) {
-                // Query to fetch registration number, name, and position of candidates with nomination status = 3
+                // Query to fetch details of candidates with any nomination status
                 String sql = "SELECT * " +
                         "FROM candidate_nomination cn " +
                         "JOIN nomination_status ns ON cn.id = ns.nomination_id "+
@@ -85,7 +85,7 @@ public class GetNominationForms extends HttpServlet {
                 stmt.close();
             }
             else{
-                // Query to fetch registration number, name, and position of candidates with nomination status = 3
+                // Query to fetch details of candidates whose nomination status is specified
                 String sql = "SELECT cn.registration_number, cn.name_on_ballot_paper AS name, cn.position " +
                         "FROM candidate_nomination cn " +
                         "JOIN nomination_status ns ON cn.id = ns.nomination_id " +

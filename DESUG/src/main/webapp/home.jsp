@@ -9,7 +9,7 @@
             position: fixed;
             z-index: 99;
             top: 15%;
-            left: 50%;
+            left: 85%;
             transform: translate(-50%, -50%);
         }
     </style>
