@@ -1,7 +1,6 @@
 # Software Engineering Lab
 
 <h2><underline> Project: Digital Electoral System for University Governance </underline></h2>
-<br>
 
 <h3> Techologies: </h3>
     <ul>
