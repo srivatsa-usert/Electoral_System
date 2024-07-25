@@ -24,10 +24,10 @@ public class SendMailServlet extends HttpServlet {
         System.out.println(recipientEmail+"\n"+subject+"\n"+message);
 
         // Email configuration
-        String host = "smtp.gmail.com"; // Your SMTP server host
-        String port = "587"; // Port for SMTP (587 for TLS, 465 for SSL)
-        String senderEmail = "21mcme06@uohyd.ac.in"; // Sender email address
-        String senderPassword = "duikkfhyeclrmvoq"; // Sender email password
+        String host = ""; // Your SMTP server host
+        String port = ""; // Port for SMTP (587 for TLS, 465 for SSL)
+        String senderEmail = ""; // Sender email address
+        String senderPassword = ""; // Sender email password
 
         // Create properties for the JavaMail session
         Properties properties = new Properties();

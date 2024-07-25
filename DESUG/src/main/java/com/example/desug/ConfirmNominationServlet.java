@@ -166,7 +166,7 @@ public class ConfirmNominationServlet extends HttpServlet {
         if (oppositeStatusResult.next() && oppositeStatusResult.getString(1) != null && oppositeStatusResult.getString(1).equalsIgnoreCase("yes")) {
             // Both roles have confirmed, send email to dean
             // Change to dean mail later
-            sendMailToDean("21mcme08@uohyd.ac.in", "Nomination Confirmation", "Both the proposer and seconder have confirmed the nomination for nomination ID: " + nominationId);
+            sendMailToDean("mail@domain", "Nomination Confirmation", "Both the proposer and seconder have confirmed the nomination for nomination ID: " + nominationId);
 
             // Update status to 3 for the given nomination ID if status is currently 2
             String updateStatusSql = "UPDATE nomination_status SET status = '3' WHERE nomination_id = ? AND status = '2'";
@@ -178,10 +178,10 @@ public class ConfirmNominationServlet extends HttpServlet {
 
     private void sendMailToDean(String recipientEmail, String subject, String message) {
         // Email configuration
-        String host = "smtp.gmail.com"; // Your SMTP server host
-        String port = "587"; // Port for SMTP (587 for TLS, 465 for SSL)
-        String senderEmail = "21mcme06@uohyd.ac.in"; // Sender email address
-        String senderPassword = "duikkfhyeclrmvoq"; // Sender email password
+        String host = ""; // Your SMTP server host
+        String port = ""; // Port for SMTP (587 for TLS, 465 for SSL)
+        String senderEmail = ""; // Sender email address
+        String senderPassword = ""; // Sender email password
 
         // Create properties for the JavaMail session
         Properties properties = new Properties();
